@@ -1,0 +1,11 @@
+<div class="ant-spin-nested-loading"></div>
+<div>
+  <div class="ant-spin ant-spin-lg ant-spin-spinning">
+    <div class="dw-f-loading-http-modal">
+      <dw-spin [dwSpinning]="loadingMask.spinning" [dwSize]="'large'" [dwTip]="loadingMask.tip"
+        [dwDelay]="loadingMask.delay">
+        <ng-content></ng-content>
+      </dw-spin>
+    </div>
+  </div>
+</div>

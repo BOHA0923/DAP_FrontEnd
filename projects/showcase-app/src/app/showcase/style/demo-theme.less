@@ -1,0 +1,220 @@
+.dw-demo-theme-wp {
+  padding: 1rem;
+  .title-h1 {
+    // font-size: 1.13rem;
+    position: relative;
+    span.link-txt {
+      font-size: .75rem;
+      position: absolute;
+      right: 6px;
+      top: 9px;
+    }
+  } // 文字說明
+  .theme-info {
+    img {
+      width: 99%;
+    }
+    .theme-info-box {
+      img {
+        padding: .25rem;
+        border: .06rem solid #efefef;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        li {
+          margin-bottom: .94rem;
+          position: relative;
+          padding-left: 20px;
+          &::before {
+            content: "• ";
+            font-size: 1.13rem;
+            color: @theme-color;
+            position: absolute;
+            top: -.31rem;
+            left: .5rem;
+          }
+        }
+      }
+    }
+  }
+  .info-box-col2 {
+    ul {
+      column-count: 2;
+      column-width: 49%;
+      column-gap: 20px;
+      li {
+        margin-bottom: .94rem;
+        position: initial;
+        padding-left: 0;
+        break-inside: avoid;
+      }
+    }
+  } // demo 樣式切換
+  .theme-info.demo-style {
+    margin: 1.5rem 0;
+    .demo-style-box {
+      height: 16rem;
+      border-radius: .5rem;
+      border: .06rem solid #fff;
+      padding: 1.25rem .63rem;
+      cursor: pointer;
+      .demo-style-txt {
+        text-align: center;
+        .name {
+          font-size: 1rem;
+          color: #000;
+          margin-top: 1rem;
+        }
+        i {
+          font-size: 1.75rem;
+          color: @theme-color;
+          display: none;
+        }
+      }
+      &.active,
+      &:hover {
+        border: .06rem solid #ddd;
+        i {
+          display: inline-block;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  // demo 樣式切換
+  .theme-info.demo-style {
+    margin: 1.5rem 0;
+    .demo-style-box {
+      height: 16rem;
+      border-radius: .5rem;
+      border: .06rem solid #fff;
+      padding: 1.25rem .63rem;
+      cursor: pointer;
+      .demo-style-txt {
+        text-align: center;
+        .name {
+          font-size: 1rem;
+          color: #000;
+          margin-top: 1rem;
+        }
+        i {
+          font-size: 1.75rem;
+          color: @theme-color;
+          display: none;
+        }
+      }
+      &.active,
+      &:hover {
+        border: .06rem solid #ddd;
+        i {
+          display: inline-block;
+          background-color: #fff;
+        }
+      }
+    }
+  } // table
+  dw-table.dw-common-var {
+    thead {
+      tr th {
+        background-color: @dark-color;
+        color: #fff;
+        &:last-child,
+        &:first-child {
+          border-radius: 0;
+        }
+      }
+    }
+    tbody {
+      tr:nth-child(2n) {
+        background-color: @lighten-color;
+      }
+    }
+  }
+}
+
+@theme-default: @theme-color;
+// themes   元件組
+@theme-default: #1890ff;
+@theme-green: #0b6808;
+@theme-red: #740f4a;
+@theme-yellow: #fd8f00;
+@theme-white: #159cd1;
+@theme-layout-b: #20c4ec;
+// .dw-theme-popover .theme-group
+.dw-theme-popover {
+  margin-top: 1rem;
+}
+
+.theme-group {
+  width: 350px;
+  ul.theme-list {
+    border: none;
+    margin: 0;
+    padding: 0 0 .5rem;
+    background-color: #fff;
+    li {
+      display: inline-block;
+      margin: .5rem 0;
+      margin-bottom: 0;
+      padding: 0;
+      width: ~"calc(100% / 2)";
+      cursor: pointer;
+      position: relative;
+      span {
+        display: block;
+        font-size: .75rem;
+        transform: scale(0.95);
+        color: #fff;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        height: 1.8rem;
+        line-height: 1.8;
+        padding: 0 1.6rem 0 .5rem;
+        border: 2px solid #fff;
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, .3);
+        background-color: @theme-default;
+        &:hover {
+          box-shadow: 1px 2px 2px rgba(0, 0, 0, .8), inset 0 0 0 1rem rgba(0, 0, 0, .2);
+        }
+        &.theme-green {
+          background-color: @theme-green;
+        }
+        &.theme-yellow {
+          background-color: @theme-yellow;
+        }
+        &.theme-red {
+          background-color: @theme-red;
+        }
+        &.theme-layout-b {
+          background-color: @theme-layout-b;
+        }
+        &.theme-white {
+          background-color: @theme-white;
+        }
+      }
+      span+i {
+        color: rgba(255, 255, 255, .5);
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        display: none;
+      }
+      &:hover i,
+      &.active i {
+        color: rgb(255, 255, 255);
+        display: block;
+      }
+    }
+  }
+}
+
+// RWD
+@media (min-width: 1520px) {
+  .theme-info .info-box-col2 ul {
+    column-count: 4;
+    column-width: 25%;
+  }
+}

@@ -1,0 +1,57 @@
+<div dw-row>
+  <div dw-col dwSpan="24">
+    <div dw-row style="padding: 8px;">
+      <ng-container *ngIf="demoDirId">
+        <dw-upload dwAction="" [dwCustomRequest]="customReq" [(dwFileList)]="thumbnailList2" [dwShowUploadList]="false"
+          (dwChange)="uploadChange($event)" [dwMultiple]="true" [dwDisabled]="isCheckShow2 || fileUploadingCount > 0">
+          <button dw-button [disabled]="isCheckShow2 || fileUploadingCount > 0">
+            <i dw-icon dwType="upload"></i><span>{{'dw-demo-image-viewer-upload' | translate}}</span>
+          </button>
+        </dw-upload>
+        &nbsp;
+        <button dw-button type="default" (click)="cancelUploading()" [disabled]="fileUploadingCount === 0">
+          {{ 'dw-demo-image-viewer-cancel-uploading' | translate }}
+        </button>
+        <button dw-button (click)="batchAudit()"
+          [disabled]="thumbnailList2.length === 0 || isCheckShow2 || fileUploadingCount > 0">
+          {{'dw-demo-image-viewer-batch-audit' | translate}}
+        </button>
+      </ng-container>
+    </div>
+    <div dw-row>
+      <div style="padding: 8px;">
+        {{'set-style' | translate}} <dw-switch [(ngModel)]="isDemoStyle"></dw-switch>
+      </div>
+    </div>
+    <div dw-row>
+      <div dw-col dwSpan="24">
+        <div class="ant-upload-list ant-upload-list-picture-card" [ngClass]="{'my-list' : isDemoStyle}">
+          <ng-container *ngFor="let file of thumbnailList2; trackBy: trackByUid">
+            <dw-image-viewer-list-item [dwListType]="'picture-card'" [dwFile]="file"
+              [dwItemAction]="listActionMap2[file.uid]" [dwTitleTpl]="titleTpl" [dwDesignTpl]="designTpl"
+              [onPreview]="handlePreview2" [onRemove]="handleRemove2" [onCheck]="handleCheck"
+              [onOtherAction]="handleOtherAction">
+
+              <ng-template #titleTpl let-fileItem>
+                <div><a (click)="titleClick(file)">{{file.title}}</a></div>
+                <div>{{file.type}}</div>
+                <div *ngIf="isDemoStyle">name: {{file.name}}</div>
+                <div *ngIf="isDemoStyle">size: {{file.size}} byte</div>
+              </ng-template>
+              <ng-template #designTpl let-fileItem>
+                <div class="myTitleTag" *ngIf="file.isAudit">{{'dw-demo-image-viewer-audit' | translate}}</div>
+              </ng-template>
+            </dw-image-viewer-list-item>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div dw-row class="dw-f-bottom-btn-bar" *ngIf="isCheckShow2">
+      <div dw-col [dwSpan]="24" class="dw-f-txt-center">
+        {{'dw-demo-image-viewer-batch-audit' | translate}}
+        <button dw-button dwType="primary" (click)="batchAuditSave()">{{ 'dw-save' | translate }}</button>
+        <button dw-button dwType="default" (click)="showCheckBox(false)">{{ 'dw-cancel' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

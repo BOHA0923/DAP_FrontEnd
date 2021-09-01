@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../../../dist/facebook/es5",
+    "declaration": false,
+    "removeComments": true
+  },
+  "files": ["analytics-facebook.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": false,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "analytics/facebook"
+  }
+}

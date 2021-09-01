@@ -1,0 +1,31 @@
+.forget-bg {
+  background-color: rgba(0, 21, 41, 1);
+  min-height: 100vh;
+}
+
+.forget-logo {
+  margin-bottom: 20px;
+  padding-top: 30px;
+}
+
+.forget-copyright {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.forget-copyright span {
+  font-size: 14px;
+}
+span {
+  color: white;
+}
+/*  */
+@media (max-width: 1279px){
+  .forget-main-block>div { 
+    width: 100%;
+  }
+  .forget-main-block>div:nth-of-type(2){
+    width: 360px;
+    margin: 0 auto;
+    float: none;
+  }
+}

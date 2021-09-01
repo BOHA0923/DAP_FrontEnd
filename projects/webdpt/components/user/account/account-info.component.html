@@ -1,0 +1,180 @@
+<dw-content class="dw-f-content-list" *ngIf="isShowForm">
+  <form dw-form [formGroup]="accountInfoForm" class="account-info-form">
+
+    <div class="inputBlock">
+        <!-- 左邊-頭像與密碼 -->
+        <div class="user-pic-block">
+            <div class="photo-box">
+              <img src="./assets/img/user-pic.png" *ngIf="!isUseHeadImage">
+
+              <dw-upload
+                *ngIf="isUseHeadImage"
+                [dwBeforeUpload]="beforeLogoUpload"
+                [dwRemove]="remove"
+                [dwShowUploadList]="{showPreviewIcon: false, showRemoveIcon: true}"
+                [(dwFileList)]="headImage"
+                dwListType="picture-card"
+                dwFileType="image/png,image/jpeg,image/gif,image/bmp"
+                [dwShowButton]="headImage.length < 1"
+                [dwMultiple]="false"
+                class="headImage-upload"
+                >
+                <p class="ant-upload-drag-icon">
+                  <i dw-icon dwType="plus" dwTheme="outline"></i>
+                </p>
+                <p class="ant-upload-text">{{ 'dw-account-info-upload' | translate }}</p>
+              </dw-upload>
+            </div>
+            <div *ngIf="isUseUpdatePassword" class="btn-block">
+              <button dw-button [dwType]="'primary'" (click)="updatePassword()">
+                <span translate>{{ 'dw-account-info-updatePassword' | translate }}</span>
+              </button>
+            </div>
+        </div>
+
+        <!-- 右邊-個人資料 -->
+        <div class="user-data-block">
+          <div dw-row>
+            <ng-container *ngFor="let items of formOption">
+              <div dw-col [dwSpan]="items.grid.colSpan">
+                <ng-container [ngSwitch]="items.type">
+
+                  <!-- 樣版: checkbox -->
+                  <ng-container *ngSwitchCase="'checkbox'">
+                    <dw-form-item>
+                      <dw-form-control [dwSpan]="items.grid.inputSpan" [dwOffset]="items.grid.labelSpan">
+                        <label dw-checkbox [formControlName]="items.name">{{ items.label | translate }}</label>
+                      </dw-form-control>
+                    </dw-form-item>
+                  </ng-container>
+
+                  <!-- 樣版: label -->
+                  <ng-container *ngSwitchCase="'label'">
+                    <dw-form-item>
+                      <dw-form-label [dwSpan]="items.grid.labelSpan">
+                        {{ items.label | translate }}
+                      </dw-form-label>
+                      <dw-form-control [dwSpan]="items.grid.inputSpan">
+                        {{ accountInfoForm.get(items.name).value }}
+                      </dw-form-control>
+                    </dw-form-item>
+                  </ng-container>
+
+                  <!-- 樣版: radio-group -->
+                  <ng-container *ngSwitchCase="'radio'">
+                    <dw-form-item>
+                      <dw-form-label [dwSpan]="items.grid.labelSpan">
+                        {{ items.label | translate }}
+                      </dw-form-label>
+                      <dw-form-control [dwSpan]="items.grid.inputSpan">
+                        <dw-radio-group [formControlName]="items.name">
+                          <ng-container *ngFor="let ritems of items.option">
+                            <label dw-radio [dwValue]="ritems.value">{{ ritems.label | translate }}</label>
+                          </ng-container>
+                        </dw-radio-group>
+                      </dw-form-control>
+                    </dw-form-item>
+                  </ng-container>
+
+                  <!-- 樣版: select -->
+                  <ng-container *ngSwitchCase="'select'">
+                    <dw-form-select
+                      [dwOptionList]="items.option"
+                      [dwMode]="items.selectMode"
+                      [formControlName]="items.name"
+                      [dwLabel]="items.label | translate"
+                      [dwShowSearch]="items.selectShowSearch"
+                      [dwPlaceHolder]="items.placeHolder | translate"
+                      [dwLabelSpan]="items.grid.labelSpan"
+                      [dwInputSpan]="items.grid.inputSpan"
+                    >
+                    </dw-form-select>
+                  </ng-container>
+
+                  <!-- 樣版: date-picker -->
+                  <ng-container *ngSwitchCase="'date'">
+                    <dw-form-date-picker
+                      [formControlName]="items.name"
+                      [dwLabel]="items.label | translate"
+                      [dwPlaceHolder]="items.placeHolder | translate"
+                      [dwLabelSpan]="items.grid.labelSpan"
+                      [dwInputSpan]="items.grid.inputSpan"
+                      [dwDisabled]="items.disabled"
+                    >
+                    </dw-form-date-picker>
+
+                  </ng-container>
+
+                  <!-- 樣版: phone -->
+                  <ng-container *ngSwitchCase="'phone'">
+                    <dw-form-item dw-row>
+                      <dw-form-label [dwSpan]="items.grid.labelSpan" dwRequired="items.required">
+                        {{ items.label | translate }}
+                      </dw-form-label>
+                      <dw-form-control [dwSpan]="items.grid.inputSpan" [dwValidateStatus]="checkPhoneError(items.required)" [dwErrorTip]="accountInfoErrorTpl">
+                        <ng-container *ngIf="items.prefix.type === 'prefixSelect'">
+                          <dw-input-group [dwAddOnBefore]="phoneTemplate">
+                            <ng-template #phoneTemplate>
+                              <dw-select [formControlName]="items.prefix.name" style="width: 80px;" [dwDisabled]="items.disabled">
+                                <ng-container *ngFor="let ritems of items.prefix.option">
+                                  <dw-option [dwLabel]="ritems.label" [dwValue]="ritems.value"></dw-option>
+                                </ng-container>
+                              </dw-select>
+                            </ng-template>
+                            <input dw-input [formControlName]="items.name" [placeholder]="items.placeHolder | translate">
+                          </dw-input-group>
+                        </ng-container>
+
+                        <ng-template #accountInfoErrorTpl>
+                          <ng-container *ngIf="accountInfoForm.get(items.name).dirty && accountInfoForm.get(items.prefix.name).errors">
+                            <span *ngFor="let msg of accountInfoForm.get(items.prefix.name).errors | keyvalue">
+                              {{ msg.key | translate:msg.value }}
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="accountInfoForm.get(items.name).dirty && accountInfoForm.get(items.name).errors">
+                            <span *ngFor="let msg of accountInfoForm.get(items.name).errors | keyvalue">
+                              {{ msg.key | translate:msg.value }}
+                            </span>
+                          </ng-container>
+                        </ng-template>
+                      </dw-form-control>
+                    </dw-form-item>
+                  </ng-container>
+
+                  <!-- 樣版 input: 默認 -->
+                  <ng-container *ngSwitchDefault>
+                    <dw-form-input
+                      [formControlName]="items.name"
+                      [dwLabel]="items.label | translate"
+                      [dwPlaceHolder]="items.placeHolder | translate"
+                      [dwLabelSpan]="items.grid.labelSpan"
+                      [dwInputSpan]="items.grid.inputSpan"
+                      [dwRequired]="items.required"
+                    >
+                    </dw-form-input>
+                  </ng-container>
+
+                </ng-container>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- 按鈕 -->
+          <div dw-row>
+            <div dw-col>
+              <dw-form-item class="customize-footer">
+                <dw-form-control>
+                  <button dw-button [dwType]="'primary'" [disabled]="!accountInfoForm.valid" (click)="saveFormData()" [dwLoading]="isButtLoading">
+                    <span translate>dw-account-info-save</span>
+                  </button>
+                </dw-form-control>
+              </dw-form-item>
+            </div>
+          </div>
+        </div>
+
+
+    </div>
+  </form>
+</dw-content>
+

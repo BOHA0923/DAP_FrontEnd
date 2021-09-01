@@ -1,0 +1,85 @@
+<dw-content class="dw-f-content-list">
+  <div dw-row class="dw-f-form-head" *ngIf="defs.isFilter">
+    <dw-form-item dw-row>
+      <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+        <dw-input-group dwSuffixIcon="search">
+          <input #searchTextInput type="text" dw-input placeholder="{{'dw-pleaseEnter' | translate}}" [(ngModel)]="searchText" name="searchText">
+        </dw-input-group>
+      </dw-form-control>
+    </dw-form-item>
+  </div>
+
+  <div class="dw-f-table">
+    <dw-radio-group [(ngModel)]="radioModel" name="radioGroup">
+      <dw-table #selectionTable
+          [dwData]="datas"
+          [(dwPageSize)]="dwPageSize"
+          [(dwTotal)]="dwTotal"
+          [(dwPageIndex)]="dwPageIndex"
+          [(dwLoading)]="dwLoading"
+          [dwFrontPagination]="defs.dwFrontPagination"
+          [dwShowPagination]="defs.dwShowPagination"
+          [dwShowSizeChanger]="defs.dwShowSizeChanger"
+          [dwNoResult]="defs.dwNoResult"
+          (dwCurrentPageDataChange)="currentPageDataChange($event)"
+          (dwPageIndexChange)="pageIndexChange()"
+          (dwPageSizeChange)="pageSizeChange()"
+          [(dwPageSizeOptions)]="defs.dwPageSizeOptions">
+        <thead (dwSortOrderChange)="sortChange($event)">
+          <tr>
+            <th *ngIf="defs.multiSelect" dwShowCheckbox [(dwChecked)]="allChecked" [dwIndeterminate]="indeterminate" (dwCheckedChange)="checkAll($event)"></th>
+            <th *ngIf="!defs.multiSelect"> </th>
+            <th *ngFor="let cols of defs.colDefs" dwShowSort="{{cols.isSort}}" [(dwSortOrder)]="cols.sortOrder" dwColumnKey="{{cols.field}}" dwWidth="{{cols.width}}">{{cols.title | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rows of selectionTable.data">
+            <td *ngIf="defs.multiSelect" dwShowCheckbox [(dwChecked)]="rows.dwChecked" (dwCheckedChange)="refreshStatus()"></td>
+            <td *ngIf="!defs.multiSelect"><label dw-radio dwValue="{{rows.dwValue}}"></label></td>
+            <td *ngFor="let cols of defs.colDefs" class="{{cols.dataClass}}">
+
+              <!-- 有指定的 pipe -->
+              <ng-container *ngIf="cols['dataPipe'] !== null">
+                <!-- 根據不同的 pipe, 指定不同的樣版 -->
+                <ng-container [ngSwitch]="getPipeType(cols['dataPipe'])">
+
+                  <!-- 指定的 pipe 是 "keyvalue", for iterate through objects, maps, and arrays -->
+                  <ng-container *ngSwitchCase="'keyvalue'">
+                    <div *ngFor="let item of rows[cols.field] | keyvalue">
+                      {{item.key}}:{{item.value}}
+                    </div>
+                  </ng-container>
+
+                  <!-- 指定的 pipe 是 "custom" -->
+                  <ng-container *ngSwitchCase="'custom'">
+                    <div [innerHtml]="rows[cols.field] | DwSelectModalCustomFilterPipe: cols['dataPipe']: cols['dataEnum']: cols['customPipe']"></div>
+                  </ng-container>
+
+                  <!-- 默認的 pipe 樣版 -->
+                  <ng-container *ngSwitchDefault>
+                    {{rows[cols.field] | DwSelectModalCustomFilterPipe: cols['dataPipe']: cols['dataEnum']: cols['customPipe']}}
+                  </ng-container>
+
+                </ng-container>
+
+              </ng-container>
+
+              <!-- 沒有指定的 pipe -->
+              <ng-container *ngIf="cols['dataPipe'] === null">
+                {{rows[cols.field]}}
+              </ng-container>
+
+            </td>
+          </tr>
+        </tbody>
+      </dw-table>
+    </dw-radio-group>
+  </div>
+
+  <div class="dw-f-pop-tag-select" *ngIf="defs.showTag && defs.multiSelect">
+    <span *ngFor="let tags of datas">
+      <dw-tag class="dw-f-tag-s" *ngIf="tags.dwChecked" dwMode="closeable" (dwOnClose)="onTagClose($event, tags)" [dwColor]="'blue'">({{tags[defs.idField]}}){{tags[defs.nameField]}}</dw-tag>
+    </span>
+  </div>
+
+</dw-content>

@@ -1,0 +1,7 @@
+<div>
+  <div [innerHtml]="description"></div>
+  <div style="padding-top:20px">
+    <button dw-button dwType="primary" (click)="close()">{{'dw-announcement-got-it'|translate}}</button>
+    &nbsp;&nbsp;<label dw-checkbox [(ngModel)]="isIgnore">{{'dw-announcement-never-show-again'|translate}}</label>
+  </div>
+</div>

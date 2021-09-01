@@ -1,0 +1,12 @@
+{
+  "dw-organize-tree-title": "Organization and user",
+  "dw-organize-tree-org-title": "Organization",
+  "dw-organize-tree": "User id and Organization id",
+  "dw-organize-tree-org": "Organization id",
+  "dw-organize-tree-sid": "User Sid and Organization Sid",
+  "dw-organize-tree-org-sid": "Organization Sid",
+  "dw-organize-tree-multiple": "Multiple",
+  "dw-organize-tree-single": "Single",
+  "dw-organize-tree-data": "Get a list of organization",
+  "dw-organize-tree-onlyuser": "only user"
+}

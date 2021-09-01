@@ -1,0 +1,24 @@
+<dw-radio-group  [(ngModel)]="employeeName">
+  <dw-table #dwTable [dwData]="employees" [dwPageSize]="5">
+    <thead dw-thead>
+    <tr>
+      <th dw-th></th>
+      <th dw-th><span translate>dw-group-employee-id</span></th>
+      <th dw-th><span translate>dw-group-employee-name</span></th>
+    </tr>
+    </thead>
+    <tbody dw-tbody>
+    <tr dw-tbody-tr *ngFor="let data of dwTable.data" (click)="employeeName = data.name">
+      <td dw-td dwCheckbox>
+        <label dw-radio [dwValue]="data.name"></label>
+      </td>
+      <td dw-td>{{data.id}}</td>
+      <td dw-td>{{data.name}}</td>
+    </tr>
+    </tbody>
+  </dw-table>
+</dw-radio-group>
+<div class="customize-footer">
+  <button dw-button type="button" [dwType]="'primary'" (click)="emitDataOutside()" translate>dw-determine</button>
+  <button dw-button type="button" [dwType]="'default'" (click)="handleCancel('onCancel')" translate>dw-group-back</button>
+</div>

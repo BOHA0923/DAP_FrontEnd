@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../../../dist/mixpanel/es5",
+    "declaration": false,
+    "removeComments": true
+  },
+  "files": ["analytics-mixpanel.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": false,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "analytics/mixpanel"
+  }
+}

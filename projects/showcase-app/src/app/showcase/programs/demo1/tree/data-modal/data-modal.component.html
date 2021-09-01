@@ -1,0 +1,68 @@
+<form dw-form [formGroup]="validateForm" [ngClass]=" '' | dwLanguage ">
+  <dw-form-item dw-row>
+    <dw-form-label dw-col [dwSm]="5" [dwXs]="24" dwFor="parent" dwRequired>
+      {{ 'dw-tree-新增類型' | translate }}
+    </dw-form-label>
+    <dw-form-control dw-col [dwSm]="19" [dwXs]="24">
+      <dw-radio-group formControlName="type" (click)="checkType()">
+        <label dw-radio [dwValue]="1">
+          {{ 'dw-tree-新組織' | translate }}
+        </label>
+        <br>
+        <label dw-radio [dwValue]="2">
+          {{ 'dw-tree-子分支於' | translate }}
+        </label>
+      </dw-radio-group>
+      <dw-form-cascader
+        dwChangeOnSelect
+        formControlName="parent"
+        dwLabelSm="0"
+        dwInputSm="24"
+        dwPlaceHolder="{{'dw-tree-請選擇'|translate}}"
+        [dwOptions]="typeOptions"
+        (ngModelChange)="typeChange($event)"
+        [dwDisabled]="validateForm.controls['type'].value===1">
+      </dw-form-cascader>
+    </dw-form-control>
+  </dw-form-item>
+  <dw-form-input
+    formControlName="name"
+    dwLabel="{{'dw-tree-組織名稱' | translate}}"
+    dwLabelSpan="5"
+    dwInputSpan="19"
+    [dwRequired]="true">
+  </dw-form-input>
+  <dw-form-input
+    formControlName="address"
+    dwLabel="{{'dw-tree-地址' | translate}}"
+    dwLabelSpan="5"
+    dwInputSpan="19"
+    [dwRequired]="true">
+  </dw-form-input>
+  <dw-form-input
+    formControlName="amount"
+    dwLabel="{{'dw-tree-月營業額' | translate}}"
+    dwLabelSpan="5"
+    dwInputSpan="19"
+    [dwRequired]="true">
+  </dw-form-input>
+  <dw-form-select
+    [dwOptionList]="statusEnum"
+    formControlName="status"
+    dwLabel="{{'dw-tree-狀態' | translate}}"
+    [dwPlaceHolder]="'dw-tree-請選擇' | translate"
+    [dwNotFoundContent]="'dw-tree-無選項' | translate"
+    dwLabelSpan="5"
+    dwInputSpan="19"
+    [dwRequired]="true">
+  </dw-form-select>
+  <div class="customize-footer">
+    <button dw-button type="button" [dwType]="'default'" (click)="handleCancel($event)">
+      {{ 'dw-cancel' | translate }}
+    </button>
+    <button dw-button type="button" [dwType]="'primary'" [disabled]="!validateForm.valid" (click)="submitForm($event,validateForm.value)">
+      {{ 'dw-save' | translate }}
+    </button>
+  </div>
+
+</form>

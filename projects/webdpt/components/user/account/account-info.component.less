@@ -1,0 +1,66 @@
+// 個人頭像
+.headImage-upload .ant-upload.ant-upload-select-picture-card{
+  margin-top: .31rem;
+  border-radius: .38rem;
+  width: 100%;
+  p{
+    margin-top: 1.13rem;
+    i{
+      font-size: 1.5rem;
+      color: #ddd;
+    }
+  }
+}
+:host ::ng-deep {
+  .user-data-block{
+    .has-error {
+      .ant-form-item-children{
+        line-height: 40px;
+        display: block;
+      }
+      .ant-form-explain{
+        font-size: .75rem;	
+        transform: scale(0.95);	
+        position: absolute;
+        z-index: 2;
+        text-shadow: 1px 1px 5px #fff, -1px -1px 5px #fff;
+        background-color: rgba(255,255,255,.4);
+        bottom: -14px;
+      }
+    }
+    .ant-calendar-picker{
+      width: 100%;
+    }
+  } 
+  .user-pic-block{
+    span.ant-form-item-children img{
+      margin-bottom: 1rem;
+    }
+    .ant-upload-list-picture-card .ant-upload-list-item,
+    .ant-upload.ant-upload-select-picture-card{
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+  
+}
+.inputBlock{
+  display:inline-flex;
+  .user-pic-block{
+    width: 8.75rem;
+    // 頭像位置
+    .photo-box{
+      display: table;
+      margin: 0 auto;
+    }
+    // 按鈕
+    .btn-block{
+      text-align: center;
+      width:100%;
+    }
+  }
+  .user-data-block{
+    width: ~"calc(100% - 9rem)";
+  }
+}
+

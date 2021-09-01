@@ -1,0 +1,32 @@
+<dw-list [dwDataSource]="calendarList" [dwRenderItem]="item">
+  <ng-template #item let-item>
+    <dw-list-item class="calendar-list-item">
+      <label class="ant-checkbox-wrapper">
+        <span [ngClass]="{'ant-checkbox': true, 'ant-checkbox-checked': item.visible}"
+          [ngStyle]="{'background-color': item.color || '#1890ff'}">
+          <input class="ant-checkbox-input" type="checkbox" [(ngModel)]="item.visible"
+            (ngModelChange)="calendarSelect(item, $event)">
+          <span class="ant-checkbox-inner"
+            [ngStyle]="{'border-color': item.color || '#1890ff', 'background-color': item.visible ? item.color || '#1890ff': '#FFF'}">
+          </span>
+        </span>
+        <span class="calendar-list-item-name"
+              dw-tooltip
+              [dwTooltipTitle]="item.name">{{item.name}}</span>
+      </label>
+      <div class="calendar-operators">
+        <i *ngIf="item.modifyDetail" dw-icon dwType="edit" dwTheme="outline"
+           dw-tooltip
+           dwTooltipTitle="{{'dw-modify' | translate}}"
+          (click)="calendarModify(item)"></i>
+        <i *ngIf="item.unsubscribe" dw-icon dwType="close" dwTheme="outline"
+           dw-tooltip
+           dwTooltipTitle="{{'dw-plan-calendar-unsubscribe' | translate}}" (click)="calendarUnsubscribe(item)"></i>
+        <i *ngIf="item.delete" dw-icon dwType="delete" dwTheme="outline"
+           dw-tooltip
+           dwTooltipTitle="{{'dw-delete' | translate}}"
+          (click)="calendarDelete(item)"></i>
+      </div>
+    </dw-list-item>
+  </ng-template>
+</dw-list>

@@ -1,0 +1,9 @@
+<ng-container *ngIf="item">
+  <div class="ww-iframe-overflow" [attr.iframetype]="item?.type">
+    <div class="ww-iframe-block">
+      <iframe #dwIframe [ngClass]="['iframe-ww', 'dw-f-iframe-' + item?.type]" frameborder="0"
+              [attr.sandbox]="item?.attr"></iframe>
+    </div>
+  </div>
+  <div class="drag-handler iframe-mask" [style.display]="(showMask===true) ? 'block': 'none'"></div>
+</ng-container>

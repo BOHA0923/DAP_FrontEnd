@@ -1,0 +1,12 @@
+{
+  "select-modal-mock-data-modalTitle": "Order Details",
+  "select-modal-mock-data-orderId": "Order ID",
+  "select-modal-mock-data-orderDate": "Order date",
+  "select-modal-mock-data-status": "Status code",
+  "select-modal-mock-data-customerId": "Customer ID",
+  "select-modal-mock-data-customerName": "Customer name",
+  "select-modal-mock-data-orderAddr": "Delivery address",
+  "select-modal-mock-data-total": "Order total",
+  "select-modal-mock-data-salesmanName": "Salesman Name",
+  "select-modal-mock-data-gender": "Salesman Gender"
+}

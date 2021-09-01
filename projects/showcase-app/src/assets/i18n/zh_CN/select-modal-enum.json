@@ -1,0 +1,14 @@
+{
+  "select-modal-enum-modalTitle": "订单明细",
+  "select-modal-enum-orderId": "订单编号",
+  "select-modal-enum-orderDate": "订单日期",
+  "select-modal-enum-status": "状态码",
+  "select-modal-enum-customerId": "客户编号",
+  "select-modal-enum-customerName": "客户名称",
+  "select-modal-enum-orderAddr": "送货地址",
+  "select-modal-enum-total": "订单总额",
+  "select-modal-enum-salesmanName": "业务员姓名",
+  "select-modal-enum-gender": "业务员性别",
+  "select-modal-enum-gender-male": "男",
+  "select-modal-enum-gender-female": "女"
+}

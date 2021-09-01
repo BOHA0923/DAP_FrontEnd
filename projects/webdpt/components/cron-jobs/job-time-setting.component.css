@@ -1,0 +1,38 @@
+::ng-deep [dw-checkbox] > span:nth-child(2) {
+  display: inline-block;
+  min-width: 40px;
+}
+dw-checkbox-wrapper > label[dw-checkbox]:first-child,
+dw-checkbox-group > label[dw-checkbox]:first-child {
+  margin-left: 8px;
+}
+.radio-vertical {
+  display: block;
+}
+
+dw-select {
+  width: 80px;
+}
+
+dw-form-time-picker {
+  width: 120px;
+  display: inline-block;
+}
+
+.ant-divider-horizontal {
+  margin: 12px 0;
+}
+
+.timeUnit {
+  width: 80px;
+}
+
+.ant-form-explain, .ant-form-extra {
+  color: red;
+}
+
+.error {
+  display: inline-block;
+  border: 1px solid red;
+  border-radius: 3px;
+}

@@ -1,0 +1,70 @@
+<ng-template #dwBasicSideDefaultHeaderLeft>
+  <i dw-icon [dwType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" class="trigger dw-header-anticon"
+    (click)="isCollapsed=!isCollapsed"></i>
+
+  <div class="dw-f-layout-logo">
+    <img alt="logo" src="{{dwLogoPath | translate}}" *ngIf="logoUrl === null">
+    <a routerLink="{{logoUrl}}" *ngIf="logoUrl !== null">
+      <img alt="logo" src="{{dwLogoPath | translate}}">
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #dwBasicSideDefaultHeaderRightUser>
+  <dw-tenant-block></dw-tenant-block>
+  <dw-user-personalize></dw-user-personalize>
+</ng-template>
+
+<ng-template #dwBasicSideDefaultHeaderRightAction>
+</ng-template>
+
+<ng-template #dwBasicSideDefaultHeaderRight>
+  <!-- <div class="dw-language-block">
+    <dw-language [template]="'basic'"></dw-language>
+  </div> -->
+  <div>
+    <ng-container
+      *ngTemplateOutlet="headerRightActionTemplate ? headerRightActionTemplate: dwBasicSideDefaultHeaderRightAction">
+    </ng-container>
+  </div>
+  <div>
+    <ng-container
+      *ngTemplateOutlet="headerRightUserTemplate ? headerRightUserTemplate: dwBasicSideDefaultHeaderRightUser">
+    </ng-container>
+  </div>
+  <div>
+    <i dw-icon dwType="logout" class="dw-header-anticon" (click)="onLoggedout()"></i>
+  </div>
+</ng-template>
+
+<ng-template #dwBasicSideDefaultHeader>
+  <dw-header class="dw-f-header"
+    [ngClass]="{'en_US':language==='en_US','zh_CN':language==='zh_CN', headerClass:headerClass}">
+    <div class="dw-header-left">
+      <ng-container *ngTemplateOutlet="headerLeftTemplate ? headerLeftTemplate: dwBasicSideDefaultHeaderLeft">
+      </ng-container>
+    </div>
+    <div class="dw-header-right">
+      <ng-container *ngTemplateOutlet="headerRightTemplate ? headerRightTemplate: dwBasicSideDefaultHeaderRight">
+      </ng-container>
+    </div>
+  </dw-header>
+</ng-template>
+
+<dw-layout class="dw-f-layout dw-f-layout-top-drawer"
+  [ngClass]="{'en_US':language==='en_US', 'zh_CN':language==='zh_CN'}">
+  <ng-container *ngTemplateOutlet="headerTemplate ? headerTemplate: dwBasicSideDefaultHeader"></ng-container>
+  <dw-layout class="dw-f-layout-main">
+    <dw-drawer [dwClosable]="true" [dwVisible]="isCollapsed" [dwPlacement]="menuPlacement" dwTitle=""
+      (dwOnClose)="isCollapsed=false" [dwHeight]="'95%'" [dwBodyStyle]="{ overflow: 'auto' }">
+      <dw-menu-drawer (afterClickMenu)="afterClickMenu($event)"></dw-menu-drawer>
+    </dw-drawer>
+
+    <dw-content class="dw-f-content-wp" [ngClass]="{'en_US':language==='en_US','zh_CN':language==='zh_CN'}">
+      <div *ngIf="!usingTab" class="dw-f-layout-content">
+        <router-outlet></router-outlet>
+      </div>
+      <dw-routing-tabset *ngIf="usingTab"></dw-routing-tabset>
+    </dw-content>
+  </dw-layout>
+</dw-layout>

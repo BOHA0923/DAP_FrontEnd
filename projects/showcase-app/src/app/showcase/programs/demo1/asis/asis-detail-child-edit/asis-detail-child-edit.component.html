@@ -1,0 +1,45 @@
+<dw-content class="form-content">
+  <form dw-form [formGroup]="detailEditForm" (ngSubmit)="emitDataOutside()">
+    <dw-form-input
+      formControlName="detailEditBiId"
+      (change)="detailEdit.biId=$event.target.value"
+      dwLabel="{{'dw-asis-BI財務類別編號' | translate}}"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwDisabled]="cmd!=='add'"
+      [dwRequired]="true">
+    </dw-form-input>
+    <dw-form-input
+      formControlName="detailEditBiName"
+      (change)="detailEdit.biName=$event.target.value"
+      dwLabel="{{'dw-asis-BI財務類別名稱' | translate}}"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwDisabled]="cmd!=='add'"
+      [dwRequired]="true">
+    </dw-form-input>
+    <dw-form-input
+      formControlName="detailEditSeq"
+      (change)="detailEdit.seq=$event.target.value"
+      dwLabel="{{'dw-asis-類別行序' | translate}}"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwDisabled]="cmd!=='add'"
+      [dwRequired]="true">
+    </dw-form-input>
+    <dw-form-select
+      [dwOptionList]="searchStatusOptions | async"
+      formControlName="detailEditStatus"
+      dwLabel="{{'dw-asis-系統值' | translate}}"
+      [dwPlaceHolder]="'dw-asis-請選擇' | translate"
+      [dwNotFoundContent]="'dw-asis-無選項' | translate"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwRequired]="true">
+    </dw-form-select>
+    <div class="customize-footer">
+      <button dw-button type="submit" [dwType]="'primary'" [disabled]="!detailEditForm.valid">{{ 'dw-determine' | translate }}</button>
+      <button dw-button type="button" [dwType]="'default'" (click)="handleCancel($event)">{{ 'dw-cancel' | translate }}</button>
+    </div>
+  </form>
+</dw-content>

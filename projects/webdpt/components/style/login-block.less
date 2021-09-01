@@ -1,0 +1,48 @@
+.login-form {
+  min-width: 360px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.login-remember {
+  margin-bottom: 0;
+
+  span {
+    color: white;
+  }
+
+  .dw-f-remeber-block {
+    text-align: left;
+  }
+
+  .dw-f-forgerpassword {
+    text-align: right;
+  }
+}
+
+// login-main-block 元件外的
+.login-main-block {
+  .login-logo {
+    min-width: 360px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .login-main-block {
+    & > div {
+      width: 100%;
+
+      &:nth-of-type(2) {
+        width: 360px;
+        margin: 0 auto;
+        float: none;
+      }
+    }
+  }
+}

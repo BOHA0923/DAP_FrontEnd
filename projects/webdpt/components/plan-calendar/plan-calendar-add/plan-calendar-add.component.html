@@ -1,0 +1,100 @@
+<dw-modal [(dwVisible)]="isVisible" [dwTitle]="title" (dwOnCancel)="handleCancel()" (dwOnOk)="handleOk()"
+  [dwWidth]="dwWidth" [dwMaskClosable]="false" [dwFooter]="null">
+
+  <div class="calendar-container">
+    <div class="calendar-item">
+      <div class="calendar-item-title">
+        <i style="color: red;">*</i>{{'dw-plan-calendar-calendar-name' | translate}}：</div>
+      <div class="calendar-item-content calendar-name-content">
+        <input dw-input type="text" placeholder="{{'dw-plan-calendar-input' | translate}}"
+          [ngClass]="{'has-error': !calendarInfo.name && calendarInfo.name !== null}" [(ngModel)]="calendarInfo.name" />
+
+        <button dw-button dw-dropdown [dwDropdownMenu]="menu" [dwPlacement]="'bottomLeft'" type="button">
+          <i class="colorful" [ngStyle]="{'background-color': calendarInfo.color}"></i>
+        </button>
+        <dw-dropdown-menu #menu="dwDropdownMenu">
+          <ul dw-menu class="colorful-container">
+            <li dw-menu-item (click)="calendarInfo.color = color" *ngFor="let color of colorList">
+              <div class="colorful" [ngStyle]="{'background-color': color}">
+                <i dw-icon dwType="check" dwTheme="outline" *ngIf="color === calendarInfo.color"></i>
+              </div>
+            </li>
+          </ul>
+        </dw-dropdown-menu>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-item-title">{{'dw-description' | translate}}：</div>
+      <div class="calendar-item-content">
+        <textarea rows="3" dw-input [(ngModel)]="calendarInfo.description"></textarea>
+      </div>
+    </div>
+
+    <!-- TODO: 匯入日曆 -->
+    <!-- <div class="calendar-item">
+    <div class="calendar-item-title">{{'dw-plan-calendar-import-calendar' | translate}}：</div>
+    <div class="calendar-item-content">
+      <dw-select style="width: 100%;" [(ngModel)]="calendarInfo.sourceCalendarSid" dwAllowClear
+        dwPlaceHolder="{{'dw-plan-calendar-select' | translate}}">
+        <dw-option *ngFor="let option of basedCalendarList" dwValue="jack" dwLabel="Jack"></dw-option>
+      </dw-select>
+    </div>
+  </div> -->
+
+
+    <div class="calendar-item">
+      <div class="calendar-item-title">{{'dw-plan-calendar-is-public' | translate}}：</div>
+      <div class="calendar-item-content">
+        <dw-switch dwCheckedChildren="{{'dw-switch-checked' | translate}}"
+          dwUnCheckedChildren="{{'dw-switch-unchecked' | translate}}" [(ngModel)]="calendarInfo.open"
+          (ngModelChange)="openChange(calendarInfo.open)"></dw-switch>
+        <div class="calendar-open-extra" *ngIf="calendarInfo.open">
+          <span>{{'dw-plan-calendar-subscriber-permissions' | translate}}：&nbsp;</span>
+          <dw-select style="width: 200px;" [(ngModel)]="calendarInfo.subscriberPermission" dwPlaceHolder="Choose">
+            <dw-option dwValue="READ_DETAIL"
+              dwLabel="{{'dw-plan-calendar-coordination-view-all-event-details' | translate}}"></dw-option>
+            <dw-option dwValue="READ_ONLY" dwLabel="{{'dw-plan-calendar-coordination-see-busy-or-idle' | translate}}">
+            </dw-option>
+          </dw-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-item-title">{{'dw-plan-calendar-coordination' | translate}}：</div>
+      <div class="calendar-item-content">
+        <button dw-button dwType="primary" dwGhost (click)="addPartners()">
+          <i dw-icon dwType="plus" dwTheme="outline"></i>{{'dw-plan-calendar-add-collaborators' | translate}}
+        </button>
+        <div class="calendar-attendees-extra">
+          <div class="calendar-attendees-extra-item" *ngFor="let partner of calendarInfo.calAttendees">
+            <div class="calendar-attendees-extra-item-left">
+              <span>{{partner.name}}</span>
+              <!-- 参与者权限：READ_ONLY（只能看到忙碌空闲信息）-> READ_DETAIL（可查看所有活動详情）-> EDIT（可创建及修改活動）-> MANAGE（管理行事曆及共享设置） -->
+              <dw-select style="width: 200px;" [(ngModel)]="partner.attendeePermission" dwPlaceHolder="Choose">
+                <dw-option dwValue="READ_DETAIL"
+                  dwLabel="{{'dw-plan-calendar-coordination-view-all-event-details' | translate}}"></dw-option>
+                <dw-option dwValue="MANAGE"
+                  dwLabel="{{'dw-plan-calendar-coordination-manage-and-collaborators' | translate}}"></dw-option>
+                <dw-option dwValue="EDIT"
+                  dwLabel="{{'dw-plan-calendar-coordination-create-modify-events' | translate}}">
+                </dw-option>
+                <dw-option dwValue="READ_ONLY"
+                  dwLabel="{{'dw-plan-calendar-coordination-see-busy-or-idle' | translate}}">
+                </dw-option>
+              </dw-select>
+            </div>
+            <i dw-icon dwType="minus-circle" dwTheme="outline" (click)="removeAttend(partner)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="modal-hr" style="margin-top: 20px;" />
+  <div class="modal-btn">
+    <button dw-button dwType="default" (click)="handleCancel()">{{'dw-cancel' | translate}}</button>
+    <button dw-button dwType="primary" (click)="save()">{{'dw-save' | translate}}</button>
+  </div>
+
+</dw-modal>

@@ -1,0 +1,171 @@
+{
+  "response": [
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 0,
+      "y": 0,
+      "label": "每日產量與達成率",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/PRS/demoprsk04.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 2,
+      "y": 0,
+      "label": "能耗",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/EFF/demoeffk02.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 4,
+      "y": 0,
+      "label": "設備即時狀態與稼動率",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/EFF/demoeffk03.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 6,
+      "y": 0,
+      "label": "生產進度",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/PRS/demoprsk02.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 0,
+      "y": 2,
+      "label": "本月實際產量",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/PRS/demoprsk01.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 2,
+      "y": 2,
+      "label": "生產直通率",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/QTY/demoqtyk02.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 4,
+      "y": 2,
+      "label": "不良原因分析",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/QTY/demoqtyk01.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 6,
+      "y": 2,
+      "label": "報警信息",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "FineReport",
+      "url": "http://10.40.42.51:8081/digiwin/kanban/view/form?viewlet=/Standard/Demo/{{lang_code}}/QTY/demoqtyk03.frm"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 0,
+      "y": 4,
+      "label": "shinbashi",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "http://nipponcolors.com/#shinbashi"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 2,
+      "y": 4,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/search?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&q=record+stores+in+Seattle"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 4,
+      "y": 4,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&q=Eiffel+Tower,Paris+France"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 6,
+      "y": 4,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&q=Fairmont+Empress,Victoria+BC%20%20%20%20&attribution_source=Google+Maps+Embed+API%20%20%20%20&attribution_web_url=http://www.fairmont.com/empress-victoria/%20%20%20%20&attribution_ios_deep_link_id=comgooglemaps://?daddr=Fairmont+Empress,+Victoria,+BC"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 0,
+      "y": 6,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 2,
+      "y": 6,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/view?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&center=-33.8569,151.2152&zoom=18&maptype=satellite"
+    },
+    {
+      "cols": 2,
+      "rows": 2,
+      "x": 4,
+      "y": 6,
+      "label": "google map",
+      "minItemCols": 2,
+      "minItemRows": 2,
+      "type": "",
+      "url": "https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBsZrIoUEp3e_ekW2G2r3oz2yW1aGxymQg&location=46.414382,10.013988&pitch=10&heading=210&fov=35"
+    }
+
+  ]
+
+}

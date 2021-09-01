@@ -1,0 +1,284 @@
+<!-- <div [style.display]="!isView?'block':'none'"  style="background: #ffffff;z-index: 99;position:fixed;opacity:0.5;" #maskDiv></div> -->
+
+<dw-content class="dw-f-content-view" [ngClass]="{'view':isView}">
+  <form dw-form [formGroup]="validateForm" >
+  <!-- 單頭 -->
+  <div dw-row [dwType]="'flex'" [dwJustify]="'start'">
+    <div dw-col [dwSpan]="24" *ngIf="isView" class="dw-f-top-btn-bar">
+      <dw-form-item dw-row>
+        <div  dw-col [dwSpan]="12">
+            <button type="button" dw-button [dwType]="'default'" (click)="goList()">
+                <i dw-icon dwType="arrow-left" dwTheme="outline"></i><span translate>dw-asis-回列表</span>
+            </button>
+        </div>
+        <div dw-col [dwSpan]="12" class="dw-f-txt-right">
+            <button type="button" dw-button [dwType]="'default'" (click)="deleteMaster()" [dwLoading]="isDeleting">
+                <i dw-icon dwType="delete" dwTheme="outline"></i><span translate>dw-asis-刪除整筆</span>
+            </button>
+        </div>
+      </dw-form-item>
+    </div>
+    <div class="master-title" dw-col [dwSpan]="24">
+        <span translate>dw-asis-分析報表設定</span>
+        <span class="dw-f-btn-edit">
+            <a *ngIf="isView" (click)="masterModify()" translate><i dw-icon dwType="edit" dwTheme="outline" *ngIf="isView"></i>dw-asis-編輯</a></span>
+    </div>
+    <!-- 單頭 欄位 -->
+    <div dw-row [dwGutter]="10" class="dw-f-form-head">
+
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row *ngIf="isView">
+          <dw-form-label class="dw-f-label-title" dwRequired>
+            {{ 'dw-asis-分析編號' | translate }}
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+            {{ master.asisId }}
+          </dw-form-control>
+        </dw-form-item>
+        <dw-form-input *ngIf="!isView"
+          formControlName="masterAsisId"
+          dwLabel="{{'dw-asis-分析編號' | translate}}"
+          dwLabelSpan="6"
+          dwInputSpan="16"
+          [attr.disabled]="true"
+          [dwRequired]="true">
+        </dw-form-input>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row *ngIf="isView">
+          <dw-form-label class="dw-f-label-title" dwRequired>
+            {{ 'dw-asis-分析名稱' | translate }}
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+            {{ master.asisName }}
+          </dw-form-control>
+        </dw-form-item>
+        <dw-form-input *ngIf="!isView"
+          formControlName="masterAsisName"
+          dwLabel="{{'dw-asis-分析名稱' | translate}}"
+          dwLabelSpan="6"
+          dwInputSpan="16"
+          [dwRequired]="true">
+        </dw-form-input>
+      </div>
+
+      <div dw-col [dwSpan]="24">
+          <dw-form-item dw-row *ngIf="isView">
+            <dw-form-label class="dw-f-label-title">
+              {{ 'dw-asis-備註' | translate }}
+            </dw-form-label>
+            <dw-form-control class="dw-f-control-data">
+              {{ master.note }}
+            </dw-form-control>
+          </dw-form-item>
+          <dw-form-textarea *ngIf="!isView"
+            formControlName="masterNote"
+            dwLabel="{{'dw-asis-備註' | translate}}"
+            dwPlaceHolder="{{'dw-asis-請輸入備註內容'| translate}}"
+            dwLabelSpan="2"
+            dwInputSpan="22">
+          </dw-form-textarea>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+          <dw-form-item dw-row *ngIf="isView">
+            <dw-form-label class="dw-f-label-title" dwRequired>
+              {{ 'dw-asis-系統值' | translate }}
+            </dw-form-label>
+            <dw-form-control class="dw-f-control-data">
+              {{ asisService.showLabel(master.status,'searchStatusOptions') | async }}
+            </dw-form-control>
+          </dw-form-item>
+          <dw-form-select *ngIf="!isView"
+            [dwOptionList]="searchStatusOptions | async"
+            formControlName="masterStatus"
+            dwLabel="{{'dw-asis-系統值' | translate}}"
+            [dwPlaceHolder]="'dw-asis-請選擇' | translate"
+            [dwNotFoundContent]="'dw-asis-無選項' | translate"
+            dwLabelSpan="6"
+            dwInputSpan="16"
+            [dwRequired]="true">
+          </dw-form-select>
+        </div>
+  </div>
+    <!-- /. 單頭欄位 -->
+  </div>
+  <div dw-row [dwGutter]="20" [dwType]="'flex'" [dwJustify]="'start'">
+
+      <div dw-col [dwSpan]="24" *ngIf="!isView">
+        <div dw-form-item dw-row>
+          <div dw-form-control dw-col [dwSpan]="24">
+              <!-- 表單按鈕 -->
+            <button dw-button type="button" (click)="cancel()">{{ 'dw-cancel' | translate }}</button>
+            <button dw-button type="button" (click)="save()" [dwType]="'primary'" [disabled]="!validateForm.valid" [dwLoading]="isSaving">{{ 'dw-save' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  </form>
+
+<!-- 單身 -->
+<dw-div-mask [showMask]="!isView" [targetDiv]="detailDiv" [customStyle]="customStyle" [maskTriggers]="maskTriggers"> </dw-div-mask>
+<div #detailDiv class="dw-f-form-box">
+
+    <dw-card [dwBordered]="false" [dwTitle]="detailTitleTmp" class="dw-f-row-bottom-margin">
+        <ng-template #detailTitleTmp>
+          {{ 'dw-asis-單身設定' | translate }}
+        </ng-template>
+
+            <div class="dw-f-table">
+                <dw-table #dwTable [dwData]="detail" [dwShowPagination]="false" dwShowSizeChanger [dwLoading]="searchLoading">
+                  <thead>
+                    <tr>
+                      <th>
+                        <span translate>dw-asis-項目行序</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-項目編號</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-項目名稱</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-上層項目編號1</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-上層項目名稱1</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-上層項目編號2</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-上層項目名稱2</span>
+                      </th>
+                      <th>
+                        <span translate>dw-asis-操作</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody dw-tbody>
+                    <tr dw-tbody-tr *ngFor="let data of dwTable.data; let idx = index" [ngClass]="{'detailSelected':data.selected}" (click)="detailClick(data)">
+                      <td>
+                        {{data.seq}}
+                      </td>
+                      <td>
+                        {{data.itemId}}
+                      </td>
+                      <td>
+                        {{data.itemName}}
+                      </td>
+                      <td>
+                        {{data.upperId1}}
+                      </td>
+                      <td >
+                        {{data.upperName1}}
+                      </td>
+                      <td>
+                          {{data.upperId2}}
+                        </td>
+                        <td >
+                          {{data.upperName2}}
+                        </td>
+                      <td>
+                          <span class="dw-link-txt">
+                            <a (click)="detailModify(idx)">
+                              <i dw-icon dwType="edit" dwTheme="outline"></i>
+                              <span translate>dw-asis-修改</span>
+                            </a>
+                            <dw-divider dwType="vertical"></dw-divider>
+                            <a dw-popconfirm [dwPopconfirmTitle]="'dw-asis-是否刪除'| translate" (dwOnConfirm)="detailDelete(idx)"
+                              [dwOkText]="'dw-determine' | translate" [dwCancelText]="'dw-cancel' | translate" [dwPopconfirmPlacement]="'topRight'">
+                              <i dw-icon dwType="delete" dwTheme="outline"></i>
+                              <span translate>dw-asis-刪除</span>
+                            </a>
+                          </span>
+                        </td>
+                    </tr>
+                  </tbody>
+                </dw-table>
+              </div>
+              <div dw-row >
+                <div dw-col [dwSpan]="24">
+                    <button type="button" class="dw-f-btn-w100" dw-button [dwType]="'dashed'" [dwSize]="'large'" (click)="detailAdd()">
+                        <i dw-icon dwType="plus" dwTheme="outline"></i>
+                        <span translate>dw-asis-新增</span>
+                      </button>
+                </div>
+              </div>
+
+    </dw-card>
+
+
+      <dw-card [dwBordered]="false" [dwTitle]="childTitleTmp" class="dw-f-row-bottom-margin">
+          <ng-template #childTitleTmp>
+            {{'dw-asis-細部設定' | translate: { value: childTableTitle } }}
+          </ng-template>
+
+          <div class="dw-f-table">
+            <dw-table #dwTableChild [dwData]="detailChildList" [dwShowPagination]="false" dwShowSizeChanger [dwLoading]="searchLoading">
+              <thead>
+                <tr>
+                  <th>
+                    <span translate>dw-asis-BI財務類別編號</span>
+                  </th>
+                  <th>
+                    <span translate>dw-asis-BI財務類別名稱</span>
+                  </th>
+                  <th>
+                    <span translate>dw-asis-類別行序</span>
+                  </th>
+                  <th>
+                    <span translate>dw-asis-系統值</span>
+                  </th>
+                  <th>
+                    <span translate>dw-asis-操作</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of dwTableChild.data; let idx = index" >
+                  <td>
+                    {{data.biId}}
+                  </td>
+                  <td>
+                    {{data.biName}}
+                  </td>
+                  <td >
+                    {{data.seq}}
+                  </td>
+                  <td >
+                    {{data.status}}
+                  </td>
+                  <td>
+                    <span class="dw-link-txt">
+                        <a (click)="detailChildModify(idx)">
+                          <i dw-icon dwType="edit" dwTheme="outline"></i>
+                          <span translate>dw-asis-修改</span>
+                        </a>
+                        <dw-divider dwType="vertical"></dw-divider>
+                        <a dw-popconfirm [dwPopconfirmTitle]="'dw-asis-是否刪除'| translate" (dwOnConfirm)="detailChildDelete(idx)"
+                          [dwOkText]="'dw-determine' | translate" [dwCancelText]="'dw-cancel' | translate" [dwPopconfirmPlacement]="'topRight'">
+                          <i dw-icon dwType="delete" dwTheme="outline"></i>
+                          <span translate>dw-asis-刪除</span>
+                        </a>
+                      </span>
+                    </td>
+                </tr>
+              </tbody>
+            </dw-table>
+          </div>
+          <div dw-row *ngIf="detail.length" class="dw-btn-add">
+            <div dw-col [dwSpan]="24">
+                <button type="button" class="dw-f-btn-w100" dw-button [dwType]="'dashed'" [dwSize]="'large'" (click)="detailChildAdd($event)">
+                  <i dw-icon dwType="plus" dwTheme="outline"></i>
+                  <span translate>dw-asis-新增</span>
+                </button>
+            </div>
+          </div>
+
+      </dw-card>
+
+</div>
+<ng-template #modifyDetailTitle><span translate>dw-asis-編輯單身設定</span></ng-template>
+<ng-template #addDetailTitle><span translate>dw-asis-新增單身明細</span></ng-template>
+</dw-content>

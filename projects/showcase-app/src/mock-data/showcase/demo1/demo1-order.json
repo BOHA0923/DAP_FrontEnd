@@ -1,0 +1,816 @@
+{
+  "master": [
+    {
+      "orderId": "No_000001",
+      "status": "Y",
+      "orderDate": "2017/12/22",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 3903000,
+      "salesmanId": "1",
+      "salesmanName": "孙品品",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000002",
+      "status": "Y",
+      "orderDate": "2017/12/23",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 334000,
+      "salesmanId": "2",
+      "salesmanName": "周晓均",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000003",
+      "status": "Y",
+      "orderDate": "2017/12/24",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 16000,
+      "salesmanId": "3",
+      "salesmanName": "钱云妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000004",
+      "status": "Y",
+      "orderDate": "2017/12/25",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 16000,
+      "salesmanId": "4",
+      "salesmanName": "赵品均",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000005",
+      "status": "Y",
+      "orderDate": "2017/12/25",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 130000,
+      "salesmanId": "5",
+      "salesmanName": "钱品冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000006",
+      "status": "N",
+      "orderDate": "2017/12/25",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "6",
+      "salesmanName": "钱晓冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000007",
+      "status": "Y",
+      "orderDate": "2017/12/26",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "7",
+      "salesmanName": "周品均",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000008",
+      "status": "N",
+      "orderDate": "2017/12/27",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "8",
+      "salesmanName": "周云妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000009",
+      "status": "N",
+      "orderDate": "2017/12/28",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 22000,
+      "salesmanId": "9",
+      "salesmanName": "钱品柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000010",
+      "status": "N",
+      "orderDate": "2017/12/29",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 22000,
+      "salesmanId": "10",
+      "salesmanName": "周晓妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000011",
+      "status": "N",
+      "orderDate": "2017/12/30",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "11",
+      "salesmanName": "周品妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000012",
+      "status": "N",
+      "orderDate": "2017/12/31",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 3500,
+      "salesmanId": "12",
+      "salesmanName": "钱云柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000013",
+      "status": "Y",
+      "orderDate": "2017/12/31",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 3790,
+      "salesmanId": "13",
+      "salesmanName": "周国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000014",
+      "status": "Y",
+      "orderDate": "2018/01/01",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 10000,
+      "salesmanId": "14",
+      "salesmanName": "赵云均",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000015",
+      "status": "Y",
+      "orderDate": "2018/01/02",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "15",
+      "salesmanName": "孙国柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000016",
+      "status": "Y",
+      "orderDate": "2018/01/03",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 22000,
+      "salesmanId": "16",
+      "salesmanName": "赵云柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000017",
+      "status": "Y",
+      "orderDate": "2018/01/04",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 140000,
+      "salesmanId": "17",
+      "salesmanName": "李云冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000018",
+      "status": "Y",
+      "orderDate": "2018/01/05",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 150000,
+      "salesmanId": "18",
+      "salesmanName": "赵国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000019",
+      "status": "Y",
+      "orderDate": "2018/01/06",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 58000,
+      "salesmanId": "19",
+      "salesmanName": "周品柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000020",
+      "status": "Y",
+      "orderDate": "2018/01/07",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 3500,
+      "salesmanId": "20",
+      "salesmanName": "周国华",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000021",
+      "status": "Y",
+      "orderDate": "2018/01/08",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 10000,
+      "salesmanId": "21",
+      "salesmanName": "赵宥妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000022",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 16000,
+      "salesmanId": "22",
+      "salesmanName": "周宥妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000023",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 16000,
+      "salesmanId": "23",
+      "salesmanName": "李品冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000024",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 16000,
+      "salesmanId": "24",
+      "salesmanName": "钱晓均",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000025",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 130000,
+      "salesmanId": "25",
+      "salesmanName": "孙云妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000026",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "26",
+      "salesmanName": "赵品妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000027",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "27",
+      "salesmanName": "赵晓冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000028",
+      "status": "Y",
+      "orderDate": "2018/01/09",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "28",
+      "salesmanName": "周晓冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000029",
+      "status": "Y",
+      "orderDate": "2018/01/10",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 22000,
+      "salesmanId": "29",
+      "salesmanName": "钱国柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000030",
+      "status": "Y",
+      "orderDate": "2018/01/11",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 22000,
+      "salesmanId": "30",
+      "salesmanName": "钱国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000031",
+      "status": "Y",
+      "orderDate": "2018/01/12",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "31",
+      "salesmanName": "周国冲",
+      "gender": "male"
+    },
+    {
+      "orderId": "No_000032",
+      "status": "Y",
+      "orderDate": "2018/01/13",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 22000,
+      "salesmanId": "10",
+      "salesmanName": "周晓妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000033",
+      "status": "Y",
+      "orderDate": "2018/01/14",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 22000,
+      "salesmanId": "11",
+      "salesmanName": "周品妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000034",
+      "status": "Y",
+      "orderDate": "2018/01/15",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "12",
+      "salesmanName": "钱云柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000035",
+      "status": "Y",
+      "orderDate": "2018/01/16",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 3500,
+      "salesmanId": "13",
+      "salesmanName": "周国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000036",
+      "status": "Y",
+      "orderDate": "2018/01/17",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 3790,
+      "salesmanId": "15",
+      "salesmanName": "孙国柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000037",
+      "status": "Y",
+      "orderDate": "2018/01/18",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 10000,
+      "salesmanId": "16",
+      "salesmanName": "赵云柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000038",
+      "status": "Y",
+      "orderDate": "2018/01/19",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "18",
+      "salesmanName": "赵国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000039",
+      "status": "Y",
+      "orderDate": "2018/01/20",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 10000,
+      "salesmanId": "19",
+      "salesmanName": "周品柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000040",
+      "status": "Y",
+      "orderDate": "2018/01/21",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 22000,
+      "salesmanId": "21",
+      "salesmanName": "赵宥妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000041",
+      "status": "Y",
+      "orderDate": "2018/01/22",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 22000,
+      "salesmanId": "22",
+      "salesmanName": "周宥妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000042",
+      "status": "Y",
+      "orderDate": "2018/01/23",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "25",
+      "salesmanName": "孙云妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000043",
+      "status": "Y",
+      "orderDate": "2018/01/24",
+      "customerId": "C02",
+      "customerName": "國際服飾集團",
+      "orderAddr": "桃園市八德區建國路626號",
+      "total": 3500,
+      "salesmanId": "26",
+      "salesmanName": "赵品妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000044",
+      "status": "Y",
+      "orderDate": "2018/01/25",
+      "customerId": "C03",
+      "customerName": "急速貨運有限公司",
+      "orderAddr": "台北市內湖區民政里瑞光路七段8巷168號",
+      "total": 3790,
+      "salesmanId": "29",
+      "salesmanName": "钱国柔",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000045",
+      "status": "Y",
+      "orderDate": "2018/01/26",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 10000,
+      "salesmanId": "30",
+      "salesmanName": "钱国妤",
+      "gender": "female"
+    },
+    {
+      "orderId": "No_000046",
+      "status": "Y",
+      "orderDate": "2018/01/27",
+      "customerId": "C01",
+      "customerName": "櫃櫃傢俱股份有限公司",
+      "orderAddr": "台中市大里區中興路一段1號",
+      "total": 22000,
+      "salesmanId": "5",
+      "salesmanName": "钱品冲",
+      "gender": "male"
+    }
+  ],
+  "detail": [
+    {
+      "orderId": "No_000001",
+      "detail": [
+        {
+          "seq": 1,
+          "distributionStatus": "1",
+          "productCode": "Product000001",
+          "productName": "高級訂製歐式鄉村風格酒櫃",
+          "price": 230000,
+          "quantity": 3
+        },
+        {
+          "seq": 2,
+          "distributionStatus": "1",
+          "productCode": "Product000002",
+          "productName": "內崁式櫥櫃",
+          "price": 45000,
+          "quantity": 45
+        },
+        {
+          "seq": 3,
+          "distributionStatus": "2",
+          "productCode": "Product000003",
+          "productName": "皇家實木鏡面鑲鑽五層十門衣櫃組",
+          "price": 1000000,
+          "quantity": 1
+        },
+        {
+          "seq": 4,
+          "distributionStatus": "4",
+          "productCode": "Product000004",
+          "productName": "牛皮沙發",
+          "price": 88000,
+          "quantity": 2
+        },
+        {
+          "seq": 5,
+          "distributionStatus": "B",
+          "productCode": "Product000005",
+          "productName": "活動曬衣架",
+          "price": 7000,
+          "quantity": 1
+        },
+        {
+          "seq": 6,
+          "distributionStatus": "1",
+          "productCode": "Product000006",
+          "productName": "轉盤圓形餐桌",
+          "price": 5000,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderId": "No_000002",
+      "detail": [
+        {
+          "seq": 1,
+          "distributionStatus": "1",
+          "productCode": "Product000001",
+          "productName": "高級訂製歐式鄉村風格酒櫃",
+          "price": 230000,
+          "quantity": 1
+        },
+        {
+          "seq": 2,
+          "distributionStatus": "1",
+          "productCode": "Product000002",
+          "productName": "內崁式櫥櫃",
+          "price": 45000,
+          "quantity": 2
+        },
+        {
+          "seq": 5,
+          "distributionStatus": "1",
+          "productCode": "Product000005",
+          "productName": "活動曬衣架",
+          "price": 7000,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "orderId": "No_000003",
+      "detail": []
+    },
+    {
+      "orderId": "No_000004",
+      "detail": []
+    },
+    {
+      "orderId": "No_000005",
+      "detail": []
+    },
+    {
+      "orderId": "No_000006",
+      "detail": []
+    },
+    {
+      "orderId": "No_000007",
+      "detail": []
+    },
+    {
+      "orderId": "No_000008",
+      "detail": []
+    },
+    {
+      "orderId": "No_000009",
+      "detail": []
+    },
+    {
+      "orderId": "No_000010",
+      "detail": []
+    },
+    {
+      "orderId": "No_000011",
+      "detail": []
+    },
+    {
+      "orderId": "No_000012",
+      "detail": []
+    },
+    {
+      "orderId": "No_000013",
+      "detail": []
+    },
+    {
+      "orderId": "No_000014",
+      "detail": []
+    },
+    {
+      "orderId": "No_000015",
+      "detail": []
+    },
+    {
+      "orderId": "No_000016",
+      "detail": []
+    },
+    {
+      "orderId": "No_000017",
+      "detail": []
+    },
+    {
+      "orderId": "No_000018",
+      "detail": []
+    },
+    {
+      "orderId": "No_000019",
+      "detail": []
+    },
+    {
+      "orderId": "No_000020",
+      "detail": []
+    },
+    {
+      "orderId": "No_000021",
+      "detail": []
+    },
+    {
+      "orderId": "No_000022",
+      "detail": []
+    },
+    {
+      "orderId": "No_000023",
+      "detail": []
+    },
+    {
+      "orderId": "No_000024",
+      "detail": []
+    },
+    {
+      "orderId": "No_000025",
+      "detail": []
+    },
+    {
+      "orderId": "No_000026",
+      "detail": []
+    },
+    {
+      "orderId": "No_000027",
+      "detail": []
+    },
+    {
+      "orderId": "No_000028",
+      "detail": []
+    },
+    {
+      "orderId": "No_000029",
+      "detail": []
+    },
+    {
+      "orderId": "No_000030",
+      "detail": []
+    },
+    {
+      "orderId": "No_000031",
+      "detail": []
+    },
+    {
+      "orderId": "No_000032",
+      "detail": []
+    },
+    {
+      "orderId": "No_000033",
+      "detail": []
+    },
+    {
+      "orderId": "No_000034",
+      "detail": []
+    },
+    {
+      "orderId": "No_000035",
+      "detail": []
+    },
+    {
+      "orderId": "No_000036",
+      "detail": []
+    },
+    {
+      "orderId": "No_000037",
+      "detail": []
+    },
+    {
+      "orderId": "No_000038",
+      "detail": []
+    },
+    {
+      "orderId": "No_000039",
+      "detail": []
+    },
+    {
+      "orderId": "No_000040",
+      "detail": []
+    },
+    {
+      "orderId": "No_000041",
+      "detail": []
+    },
+    {
+      "orderId": "No_000042",
+      "detail": []
+    },
+    {
+      "orderId": "No_000043",
+      "detail": []
+    },
+    {
+      "orderId": "No_000044",
+      "detail": []
+    },
+    {
+      "orderId": "No_000045",
+      "detail": []
+    },
+    {
+      "orderId": "No_000046",
+      "detail": []
+    }
+  ]
+}

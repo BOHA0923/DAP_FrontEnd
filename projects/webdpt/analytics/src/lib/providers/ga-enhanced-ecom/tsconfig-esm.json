@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../../../dist/ga-enhanced-ecom/es5",
+    "declaration": false,
+    "removeComments": true
+  },
+  "files": ["analytics-ga-enhanced-ecom.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": false,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "analytics/ga-enhanced-ecom"
+  }
+}

@@ -1,0 +1,38 @@
+.login-bg {
+  background-color: rgba(0, 21, 41, 1);
+  min-height: 100vh;
+}
+
+.login-logo {
+  margin-bottom: 10px;
+  padding-top: 100px;
+}
+.login-form {
+  min-width: 250px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.login-copyright {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.login-copyright span {
+  font-size: 14px;
+  line-height: 24px;
+}
+span {
+  color: white;
+}
+.version{
+  border:solid 1px #ffffff;
+  border-radius:4px;
+  padding:2px;
+  margin-left:4px;
+}

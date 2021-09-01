@@ -1,0 +1,23 @@
+<!-- 修改活動開窗 -->
+<form [formGroup]="replaceFormGroup">
+  <dw-plan-calendar-event-modify [(dwVisible)]="isVisible" [dwTitle]="'【Demo】' + eventSid" [dwWidth]="dwWidth"
+    (dwOnCancel)="handleCancel($event)" (dwOnOk)="handleOk($event)" [calendarSid]="calendarSid" [eventSid]="eventSid"
+    [dwFormGroupInvalid]="replaceFormGroup.invalid" (saveData)="saveData($event)" (getDataInit)="getDataInit($event)"
+    (eventPermissionsChange)="eventPermissionsChange($event)">
+
+    <dw-form-item *dwReplace="'location-form-item'">
+      <dw-form-label [dwSpan]="6" dwRequired dwFor="location">【Demo】{{'dw-plan-calendar-location' | translate}}
+      </dw-form-label>
+      <dw-form-control [dwSpan]="18">
+        <dw-input-group dwSearch [dwAddOnAfter]="suffixIconButton">
+          <input dw-input formControlName="location" placeholder="{{'dw-plan-calendar-input' | translate}}" />
+        </dw-input-group>
+        <ng-template #suffixIconButton>
+          <button dw-button dwType="primary" type="button" dwSearch (click)="locationModal()">
+            <i dw-icon dwType="search" dwTheme="outline"></i>
+          </button>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+  </dw-plan-calendar-event-modify>
+</form>

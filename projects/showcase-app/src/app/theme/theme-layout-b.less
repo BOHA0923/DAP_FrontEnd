@@ -1,0 +1,120 @@
+// theme-layout-b logo 在 header
+// @import '~ng-quicksilver/src/ng-quicksilver.less';
+// @import '../../../ng-quicksilver/src/ng-quicksilver.less';
+// @import '../style.less';
+@import '../../styles.less';
+// 外層的寬高 定義
+// ---------------------------------------------------------
+// 選單寬度變數 凍結右移對應位置  可刪
+// ---------------------------------------------------------
+// @dw-f-siderWidth: 200px;
+// @dw-f-siderCollapsedWidt: 72px;
+
+// // 高度變數
+// @dw-f-header-h: 42px;
+// @dw-f-tabbar-h: 48px;
+// @dw-f-footer-h: 28px;
+
+// // 主題色系
+// @primary-color: @theme-color;
+// @lighten-color:lighten(@theme-color, 40%);
+// @dark-color:darken(@theme-color, 25%);
+
+@theme-color: rgb(32, 196, 236);
+
+// ---------------------------------------------------------
+// 選單寬度變數 凍結右移對應位置
+// ---------------------------------------------------------
+// .dw-f-wrapper{
+//   margin-top: @dw-f-header-h;
+//   min-height:  ~"calc(100vh - @{dw-f-header-h})"
+// }
+// .dw-fWp-tab-on .dw-f-wrapper{  //  頁籤凍結 內容下推的高度
+//   margin-top: @dw-f-header-h + @dw-f-tabbar-h;
+//   min-height:  ~"calc(100% - @{dw-f-header-h} - @{dw-f-tabbar-h})"
+// }
+
+  // 覆蓋原有,泡泡訊息才不會縮在一起
+  .ant-popover {
+    position: relative;
+  }
+.dw-f-header.ant-layout-header {
+  margin-left: 0;
+  // width: 100vw; // header 凍結 寬度變更
+
+  .dw-header-left {
+    // logo 位置
+    position: absolute;
+    // TODO:要寫在HTML才能隨著多語言轉換圖片路徑
+    background: url(./assets/img/i18n/zh_TW/logo/dwLogo.svg) no-repeat .4rem 0;
+    background-size: auto @dw-f-header-h;
+    min-width: @dw-f-siderWidth;
+    height: @dw-f-header-h;
+    left:20px;
+    top:-5px;
+    // bottom: 5px;
+
+    .dw-header-anticon {
+      position: absolute;
+      right: 0;
+      bottom: .25rem;
+    }
+  }
+}
+
+.dw-f-tabset-bar [dw-tabs-nav].ant-tabs-bar,
+.dw-f-tabset-bar [nz-tabs-nav].ant-tabs-bar {
+  // 頁籤凍結
+  left: @dw-f-siderWidth;
+}
+
+// 選單縮小 header 凍結 寬度變更
+.ant-layout-sider.ant-layout-sider-collapsed~.dw-f-wrapper .dw-f-header.ant-layout-header {
+  margin-left: 0;
+  width: 100vw;
+}
+
+.ant-layout-sider.ant-layout-sider-collapsed~.dw-f-wrapper .dw-f-tabset-bar [nz-tabs-nav].ant-tabs-bar {
+  left: @dw-f-siderCollapsedWidt;
+}
+
+// 左側 sider
+.dw-f-menusider.ant-layout-sider {
+  top: @dw-f-header-h;
+
+  .dw-layout-basic-side-logo {
+    display: none;
+  }
+
+  //  menu
+  .dw-f-menu-ul {
+    height:~"calc(100vh - @{dw-f-header-h})";
+  }
+}
+
+.ant-layout-sider.ant-layout-sider-collapsed {
+  .ant-menu-vertical .ant-menu-submenu-title {
+    // white-space: normal;
+    font-size: 1.25rem;
+    // padding: .25rem 0 3rem;
+    text-align: center;
+
+    .anticon {
+      margin-right: 0;
+    }
+
+    .ant-menu-submenu-arrow {
+      display: none;
+    }
+
+    span>span.nav-text {
+      font-size: .75rem;
+      text-align: center;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 1.5rem;
+      width: 100%;
+    }
+  }
+}

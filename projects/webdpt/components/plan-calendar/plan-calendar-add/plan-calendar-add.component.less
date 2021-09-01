@@ -1,0 +1,102 @@
+.has-error {
+    border-color: red;
+    box-shadow: none;
+}
+
+.calendar-item {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    &-title {
+        width: 120px;
+        text-align: right;
+    }
+
+    &-content {
+        padding-left: 5px;
+        flex: 1 1 auto;
+    }
+}
+
+.calendar-name-content {
+    display: flex;
+
+    input {
+        flex: 1 1 auto;
+        margin-right: 15px;
+    }
+
+    dw-select {
+        flex: 0 0 auto;
+    }
+}
+
+.calendar-open-extra {
+    padding-top: 10px;
+}
+
+.calendar-attendees-extra {
+    max-height: 300px;
+    overflow-y: scroll;
+
+    &-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #d8d8d8;
+        padding-bottom: 8px;
+        padding-top: 8px;
+
+        &-left {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        i {
+            flex: 0 0 auto;
+            margin-left: 20px;
+        }
+    }
+
+}
+
+.colorful {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.colorful-container {
+    margin: 0;
+    padding: 0;
+    background: #FFF;
+    padding: 0px;
+    width: 140px;
+    padding: 5px;
+    box-sizing: border-box;
+
+    li {
+        display: inline-block;
+        padding: 4px;
+    }
+}
+
+.modal-hr {
+    border: none;
+    height: 1px;
+    background: #d8d8d8;
+    margin-left: -24px;
+    margin-right: -24px;
+}
+
+.modal-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

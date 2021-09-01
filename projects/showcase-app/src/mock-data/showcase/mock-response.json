@@ -1,0 +1,25 @@
+{
+	"response": {
+    "datas": [],
+    "success": true,
+    "description": ""
+  },
+	"duration": 1000,
+	"profile": {
+		"OrgId": "10000",
+		"UserName": "管理員",
+		"primerKey": "10000",
+		"UserId": "10000",
+		"DeptUri": "drn:iam:org:my_org:org:10000:10000",
+		"OrgName": "總部",
+		"DeptName": "總部",
+		"OrgUri": "drn:iam:org:my_org:org:10000",
+		"DeptId": "10000",
+		"language": "tw"
+	},
+	"status": 200,
+	"statusDescription": "",
+	"debugInfo": {},
+	"errorMessage": "",
+	"errorType": ""
+}

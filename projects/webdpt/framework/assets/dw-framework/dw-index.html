@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="expires" content="0"> <!-- 設定成馬上就過期 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="ua-parser/ua-parser.min.js?v=0.7.19"></script>
+</head>
+
+<body>
+  <script>
+    /**
+     * 取得預設語言別
+     */
+    function getDefaultLang() {
+      // 可用語言清單靜態設定檔
+      var languageList = ['en_US', 'zh_CN', 'zh_TW'];
+
+      var language = navigator.language;
+
+      if (!language) { // IE8
+        language = navigator.browserLanguage;
+      }
+
+      if (language) {
+        language = language.replace('-', '_');
+      }
+
+      // 檢查語言別是否為可用語言
+      var check = false;
+      for (i = 0; i < languageList.length; i++) {
+        if (languageList[i] === language) {
+          check = true;
+          break;
+        }
+      }
+
+      if (!check && languageList[0]) {
+        language = languageList[0];
+      }
+
+      return language;
+    }
+
+    /**
+     * 是否為360瀏覽器
+     */
+    // function is360se(detectionUa360) {
+    //   var ret = false;
+    //   ua = detectionUa360.toLowerCase();
+    //   ret = (ua.indexOf('qqbrowser') > -1 || ua.indexOf(' se ') > -1 || ua.indexOf('360se') == -1) ? false : true
+    //   return ret;
+    // }
+
+    /**
+     * 檢查瀏覽器版本
+     * 支援的瀏覽器：
+     *   1.Chrome:49
+     *   2.Firefox:52.9
+     *   3.Edge:42 (EdgeHTML 17)
+     *   4.Safari:12.1
+     */
+    function browserDetection(language) {
+      // userAgent: 測試時把detectionUa傳入UAParser(detectionUa)
+      // var detectionUa = navigator.userAgent;
+      // detectionUa = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134'; // Edge 42 會判斷成Edge:17.17134
+      // detectionUa = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; ServiceUI 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362'; // Microsoft Edge 44.18362.1.0, Microsoft EdgeHTML 18.18362
+      // detectionUa = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; 360se)' // 360 被當作IE 6
+      // detectionUa = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; TencentTraveler 4.0; .NET CLR 2.0.50727)' // 訊騰 被當作IE 7
+      // detectionUa = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.1 Safari/605.1.15'  // Safari 12, Mac OS
+      // detectionUa = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0' // Firefox 56
+      // detectionUa = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; wbx 1.0.0)' // IE8
+
+      var parser = new UAParser();
+
+      var result = parser.getResult();
+      var browserName = result.browser.name;
+      var browserVersion = result.browser.version;
+      var chk = true;
+
+      switch (browserName) {
+        case 'IE':
+          chk = false;
+          break;
+        case 'Edge':
+          if (parseFloat(browserVersion) < 17) {
+            chk = false;
+          }
+          break;
+        case 'Chrome':
+          if (parseFloat(browserVersion) < 49) {
+            chk = false;
+          }
+          break;
+        case 'Firefox':
+          if (parseFloat(browserVersion) < 52.9) {
+            chk = false;
+          }
+          break;
+        case 'Safari':
+          if (parseFloat(browserVersion) < 12.1) {
+            chk = false;
+          }
+          break;
+        default:
+      }
+
+      // 檢查是否為不支援的瀏覽器
+      if (chk) {
+        // 關閉瀏覽器建議頁面
+        var dwIframeDiv = window.parent.document.getElementById('dwIframeDiv');
+        var dwIframe = window.parent.document.getElementById('dwIframe');
+
+        if (dwIframeDiv) {
+          try {
+            dwIframeDiv.style.width = '0px';
+            dwIframeDiv.style.height = '0px';
+            dwIframeDiv.style.display = 'none';
+          } catch (error) {
+            console.log(error);
+          }
+
+          if (dwIframe) {
+            try {
+              dwIframe.style.width = '0px';
+              dwIframe.style.height = '0px';
+              dwIframe.style.display = 'none';
+            } catch (error) {
+              console.log(error);
+            }
+          }
+        }
+      } else {
+        // 顯示瀏覽器建議頁面
+        location.href = 'browser-suggest/html/i18n/' + language + '/browser-suggest.html';
+      }
+    }
+
+    var language = getDefaultLang();
+    browserDetection(language);
+  </script>
+</body>
+
+</html>

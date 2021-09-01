@@ -1,0 +1,113 @@
+<dw-spin [dwSpinning]="loadingMask.spinning" [dwSize]="'default'" [dwTip]="loadingMask.tip"
+         [dwDelay]="loadingMask.delay">
+  <ng-container *ngIf="menuList !== null">
+    <ul dw-menu [dwTheme]="theme" [dwMode]="mode" [dwInlineCollapsed]="inlineCollapsed" [dwSelectable]="selectable"
+        [ngClass]="{'en_US':language==='en_US','zh_CN':language==='zh_CN'}" class="dw-f-menu-ul">
+
+      <ng-container *ngFor="let menuItem1 of menuList">
+        <li dw-menu-item *ngIf="menuItem1.child.length === 0" [dwPaddingLeft]="menuItem1.level * 24"
+            (click)="onClickItem($event, menuItem1)" [dwDisabled]="menuItem1.disabled" [dwSelected]="menuItem1.selected">
+          <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem1 }">
+          </ng-container>
+        </li>
+        <li dw-submenu *ngIf="menuItem1.child.length > 0" [dwPaddingLeft]="menuItem1.level * 24" [dwTitle]="titleTpl1"
+            [(dwOpen)]="menuItem1.open" (click)="onClickSubmenu($event, menuItem1)" [dwDisabled]="menuItem1.disabled">
+          <ul>
+            <!-- level 2 -->
+            <ng-container *ngFor="let menuItem2 of menuItem1.child">
+              <li dw-menu-item *ngIf="menuItem2.child.length === 0" [dwPaddingLeft]="menuItem2.level * 24"
+                  (click)="onClickItem($event, menuItem2)" [dwDisabled]="menuItem2.disabled"
+                  [dwSelected]="menuItem2.selected">
+                <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem2 }">
+                </ng-container>
+              </li>
+              <li dw-submenu *ngIf="menuItem2.child.length > 0" [dwPaddingLeft]="menuItem2.level * 24"
+                  [dwTitle]="titleTpl2" [(dwOpen)]="menuItem2.open" (click)="onClickSubmenu($event, menuItem2)"
+                  [dwDisabled]="menuItem2.disabled">
+                <ul>
+                  <!-- level 3 -->
+                  <ng-container *ngFor="let menuItem3 of menuItem2.child">
+                    <li dw-menu-item *ngIf="menuItem3.child.length === 0" [dwPaddingLeft]="inlineCollapsed?24:menuItem3.level * 24"
+                        (click)="onClickItem($event, menuItem3)" [dwDisabled]="menuItem3.disabled"
+                        [dwSelected]="menuItem3.selected">
+                      <ng-container
+                        *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem3 }">
+                      </ng-container>
+                    </li>
+                    <li dw-submenu *ngIf="menuItem3.child.length > 0" [dwPaddingLeft]="menuItem3.level * 24"
+                        [dwTitle]="titleTpl3" [(dwOpen)]="menuItem3.open" (click)="onClickSubmenu($event, menuItem3)"
+                        [dwDisabled]="menuItem3.disabled">
+                      <ul>
+                        <!-- level 4 -->
+                        <ng-container *ngFor="let menuItem4 of menuItem3.child">
+                          <li dw-menu-item *ngIf="menuItem4.child.length === 0" [dwPaddingLeft]="inlineCollapsed?24:menuItem4.level * 24"
+                              (click)="onClickItem($event, menuItem4)" [dwDisabled]="menuItem4.disabled"
+                              [dwSelected]="menuItem4.selected">
+                            <ng-container
+                              *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem4 }">
+                            </ng-container>
+                          </li>
+                          <!-- level END -->
+                        </ng-container>
+                      </ul>
+                    </li>
+                    <ng-template #titleTpl3>
+                      <ng-container
+                        *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem3 }">
+                      </ng-container>
+                    </ng-template>
+                  </ng-container>
+                </ul>
+              </li>
+              <ng-template #titleTpl2>
+                <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem2 }">
+                </ng-container>
+              </ng-template>
+            </ng-container>
+
+          </ul>
+        </li>
+        <ng-template #titleTpl1>
+          <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem1 }">
+          </ng-container>
+        </ng-template>
+      </ng-container>
+
+      <!--
+      递归生成菜单，需要手动指定 nzPaddingLeft，仅在 nzMode 为 inline 的模式，且 nzInlineCollapsed 为 false 的情况下有效。
+      問題：Menu收合時click，有時Menu殘留子選單cdk浮動層
+    -->
+      <!-- <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menuList }"></ng-container>
+    <ng-template #menuTpl let-menus>
+      <ng-container *ngFor="let menuItem of menus">
+        <li dw-menu-item *ngIf="menuItem.child.length === 0" [dwPaddingLeft]="menuItem.level * 24"
+          (click)="onClickItem($event, menuItem)" [dwDisabled]="menuItem.disabled" [dwSelected]="menuItem.selected">
+          <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem }">
+          </ng-container>
+        </li>
+        <li dw-submenu *ngIf="menuItem.child.length > 0" [dwPaddingLeft]="menuItem.level * 24" [dwTitle]="titleTpl"
+          [(dwOpen)]="menuItem.open" (click)="onClickSubmenu($event, menuList)" [dwDisabled]="menuItem.disabled">
+          <ul>
+            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menuItem.child }"></ng-container>
+          </ul>
+        </li>
+        <ng-template #titleTpl>
+          <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context: { $implicit: menuItem }">
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </ng-template> -->
+
+      <ng-template #dwRecursiveMenuItemSpanTemplate let-menuItem>
+        <div class="dw-f-menu-title">
+          <dw-icon-element [dwIconClass]="menuItem.iconClass"></dw-icon-element>
+          <i *ngIf="!menuItem.iconClass" [ngClass]="'dw-non-icon'"></i>
+          <span>
+            <dw-program-title [titleKey]="menuPre + menuItem.id" [programId]="menuItem.programId"></dw-program-title>
+            <!-- <dw-program-title [titleKey]="menuPre + menuItem.id" [programId]="menuItem.programId" [dwShowTooltip]="(dwMenuBaseService.mode$ | async) === 'inline'"></dw-program-title> -->
+          </span>
+        </div>
+      </ng-template>
+    </ul>
+  </ng-container>
+</dw-spin>

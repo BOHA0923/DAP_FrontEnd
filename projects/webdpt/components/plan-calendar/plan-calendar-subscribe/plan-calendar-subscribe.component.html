@@ -1,0 +1,30 @@
+<dw-modal [(dwVisible)]="isVisible" [dwTitle]="title" (dwOnCancel)="handleCancel()" (dwOnOk)="handleOk()"
+  [dwWidth]="dwWidth" [dwMaskClosable]="false" [dwFooter]="null">
+
+<ng-container *ngIf="calendars.length > 0, else noneSubscribeCalendar">
+  <div class="calendar-subscribe-container">
+    <div dw-row>
+      <label class="calendar-subscribe-item" dw-col [dwSpan]="12" *ngFor="let calendar of calendars" dw-checkbox
+        [(ngModel)]="calendar.subscribed">{{calendar.name}}</label>
+
+    </div>
+  </div>
+  <hr class="modal-hr" style="margin-top: 20px;" />
+  <div class="modal-btn">
+    <button dw-button dwType="default" (click)="handleCancel()">{{'dw-cancel' | translate}}</button>
+    <button dw-button dwType="primary" (click)="save()">{{'dw-plan-calendar-subscribe' | translate}}</button>
+  </div>
+</ng-container>
+
+<ng-template #noneSubscribeCalendar>
+  <div class="noneCalendar">
+    <i dw-icon dwType="meh" dwTheme="outline"></i>
+    {{'dw-plan-no-subscribe-calendar' | translate}}
+  </div>
+  <hr class="modal-hr" style="margin-top: 20px;" />
+  <div class="modal-btn">
+    <button dw-button dwType="default" (click)="handleCancel()">{{'dw-cancel' | translate}}</button>
+  </div>
+</ng-template>
+
+</dw-modal>

@@ -1,0 +1,132 @@
+<ng-template #emptyText>
+  <div style="text-align: left; color: #000;">
+    dwShowTime 中当前支持的 TimePicker 参数有：dwFormat, dwHourStep, dwMinuteStep, dwSecondStep, dwDisabledHours, dwDisabledMinutes, dwDisabledSeconds, dwHideDisabledOptions, dwDefaultOpenValue, dwAddOn
+  </div>
+</ng-template>
+
+<dw-table [dwNoResult]="emptyText" dwTitle="屬性說明">
+  <thead>
+  <tr>
+    <th>名稱</th>
+    <th>說明</th>
+    <th>類型</th>
+    <th>範默认</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>dwAllowClear</td>
+    <td>是否显示清除按钮</td>
+    <td>boolean</td>
+    <td>TRUE</td>
+  </tr>
+  <tr>
+    <td>dwAutoFocus</td>
+    <td>自动获取焦点</td>
+    <td>boolean</td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td>dwClassName</td>
+    <td>选择器 className</td>
+    <td>string | string[] | Set&lt;string&gt; | {{ [klass: string]: any; }</td>
+    <td>''</td>
+  </tr>
+  <tr>
+    <td>dwDateRender</td>
+    <td>自定义日期单元格的内容（dw-month-picker不支持）</td>
+    <td>TemplateRef&lt;Date&gt; / string or (d: Date) =&gt; TemplateRef&lt;Date&gt; / string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwDisabled</td>
+    <td>禁用</td>
+    <td>boolean</td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td>dwDisabledDate</td>
+    <td>不可选择的日期</td>
+    <td>(current: Date) =&gt; boolean</td>
+    <td>无</td>
+  </tr>
+  <tr>
+    <td>dwLocale</td>
+    <td>国际化配置</td>
+    <td>object</td>
+    <td>默认配置</td>
+  </tr>
+  <tr>
+    <td>dwOpen</td>
+    <td>控制弹层是否展开</td>
+    <td>boolean</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwPlaceHolder</td>
+    <td>输入框提示文字</td>
+    <td>string / string[]</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwPopupStyle</td>
+    <td>额外的弹出日历样式</td>
+    <td>object</td>
+    <td>{{'{'}}}}</td>
+  </tr>
+  <tr>
+    <td>dwDropdownClassName</td>
+    <td>额外的弹出日历 className</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwSize</td>
+    <td>输入框大小，large&nbsp;高度为 40px，small&nbsp;为 24px，默认是 32px</td>
+    <td>string</td>
+    <td>无</td>
+  </tr>
+  <tr>
+    <td>dwOnOpenChange</td>
+    <td>弹出日历和关闭日历的回调</td>
+    <td>EventEmitter&lt;boolean&gt;</td>
+    <td>无</td>
+  </tr>
+  <tr>
+    <td>dwDisabledTime</td>
+    <td>不可选择的时间</td>
+    <td>(current: Date, partial: 'start' / 'end') =&gt; {{'{'}}} dwDisabledHours, dwDisabledMinutes, dwDisabledSeconds }</td>
+    <td>无</td>
+  </tr>
+  <tr>
+    <td>dwFormat</td>
+    <td>展示的日期格式</td>
+    <td>string</td>
+    <td>"yyyy-MM-dd"</td>
+  </tr>
+  <tr>
+    <td>dwRanges</td>
+    <td>预设时间范围快捷选择</td>
+    <td>{{'{'}}} [ key: string ]: Date[] }</td>
+    <td>无</td>
+  </tr>
+  <tr>
+    <td>dwRenderExtraFooter</td>
+    <td>在面板中添加额外的页脚</td>
+    <td>TemplateRef / string or () =&gt; TemplateRef / string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwShowTime</td>
+    <td>增加时间选择功能</td>
+    <td>object / boolean</td>
+    <td>TimePicker Options</td>
+  </tr>
+  <tr>
+    <td>dwOnOk</td>
+    <td>点击确定按钮的回调</td>
+    <td>EventEmitter&lt;Date[]&gt;</td>
+    <td>-</td>
+  </tr>
+  </tbody>
+</dw-table>

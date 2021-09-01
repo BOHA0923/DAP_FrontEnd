@@ -1,0 +1,22 @@
+<div class="toolbar">
+
+  <dw-button-group class="flex-col view-buttons">
+    <button dw-button dwType="default" (click)="onGotoPreviousClick()"><i dw-icon dwType="left" dwTheme="outline"
+        class="arrow"></i></button>
+    <button dw-button dwType="default" (click)="onGotoNextClick()"><i dw-icon dwType="right" dwTheme="outline"
+        class="arrow"></i></button>
+    <button dw-button dwType="default"
+      (click)="onGotoTodayClick()">{{'dw-plan-calendar-view-today' | translate}}</button>
+  </dw-button-group>
+
+  <div class="flex-col today">
+    {{title}}
+  </div>
+
+  <dw-button-group class="flex-col view-buttons flex-col-right">
+    <ng-container *ngFor="let view of views">
+      <button dw-button [dwType]="viewType === view ? 'primary': 'default'"
+        (click)="changeViewType(view)">{{ ('dw-plan-calendar-' + view) | translate }}</button>
+    </ng-container>
+  </dw-button-group>
+</div>

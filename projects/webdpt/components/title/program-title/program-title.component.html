@@ -1,0 +1,13 @@
+<ng-template #programTemplate>
+  {{(transProgramId | translate).indexOf(programPre) === -1  && transProgramId ? (transProgramId | translate):
+    programIdSpan}}
+</ng-template>
+<ng-template #dwProgramTitleTpl>
+  <ng-container *ngIf="titleKey && (titleKey | translate).indexOf(menuPre) === -1; else programTemplate">
+    {{(titleKey | translate)}}
+  </ng-container>
+</ng-template>
+
+<span class="nav-text" dw-tooltip dwTooltipPlacement="top" [dwTooltipTitle]="tooltipTitle">
+  <ng-container *ngTemplateOutlet="dwProgramTitleTpl"></ng-container>
+</span>

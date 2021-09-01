@@ -1,0 +1,52 @@
+{
+  "name": "analytics",
+  "version": "0.0.0-placeholder",
+  "description": "Vendor-agnostic web analytics for Angular2 applications, based on angulartics2",
+  "homepage": "",
+  "author": "Gert Pellin <pellingert@gmail.com> (http://github.com/switch87)",
+  "release": {
+    "branch": "master"
+  },
+  "bugs": {
+    "url": "http://github.com/SnakeByteDevelopment/ngx-analytics/issues"
+  },
+  "repository": "SnakeByteDevelopment/ngx-analytics",
+  "main": "./bundles/core.umd.js",
+  "module": "./index.js",
+  "es2015": "./es2015/index.js",
+  "typings": "./index.d.ts",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.9.0"
+  },
+  "dependencies": {
+    "tslib": "^1.7.1"
+  },
+  "keywords": [
+    "angular4",
+    "angular5",
+    "angularx",
+    "ng4",
+    "ng5",
+    "ngx",
+    "angular",
+    "analytics",
+    "tracking",
+    "google analytics",
+    "google tag manager",
+    "woopra",
+    "splunk",
+    "piwik",
+    "page tracking",
+    "event tracking",
+    "scroll tracking",
+    "inspectlet"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">= 4.4.0 <=6.0.0",
+    "@angular/core": ">= 4.4.0 <=6.0.0",
+    "@angular/router": ">= 4.4.0 <=6.0.0",
+    "rxjs": "^5.5.0"
+  }
+}
+

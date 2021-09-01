@@ -1,0 +1,40 @@
+<div dw-row class="login-bg">
+  <div dw-col dwSpan="24" class="login-content">
+    <div dw-row class="login-main-block">
+      <div dw-col [dwXs]="'8'" [dwSm]="'8'" [dwMd]="'9'" [dwLg]="'9'">
+      </div>
+      <div dw-col [dwXs]="'8'" [dwSm]="'8'" [dwMd]="'6'" [dwLg]="'6'" style="z-index: 1">
+        <img class="login-logo" src="{{dwLogoPath | translate}}">
+        <dw-login-block [showRemember]="true" [showLanguage]="true"></dw-login-block>
+      </div>
+      <div dw-col [dwXs]="'8'" [dwSm]="'8'" [dwMd]="'9'" [dwLg]="'9'">
+      </div>
+    </div>
+    <div dw-row class="login-copyright-block">
+      <div dw-col dwSpan="24" class="login-copyright">
+        <span>© Data Systems Consulting Co., Ltd. All rights reserved.<span class="version">v{{dwVersion}}</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RWD試驗， .login-form { min-width: 360px } 會造成阻礙
+<div dw-row class="login-bg">
+  <div dw-col dwSpan="24" class="login-content">
+    <div dw-row class="login-main-block">
+      <div dw-col [dwXs]="'0'" [dwSm]="'4'" [dwMd]="'6'" [dwLg]="'8'" style="border: 1px solid red;">
+      </div>
+      <div dw-col [dwXs]="'24'" [dwSm]="'16'" [dwMd]="'12'" [dwLg]="'8'" style="border: 1px solid yellow;">
+        <img class="login-logo" src="{{dwLogoPath | translate}}">
+        <dw-login-block [showRemember]="true" [showLanguage]="true"></dw-login-block>
+      </div>
+      <div dw-col [dwXs]="'0'" [dwSm]="'4'" [dwMd]="'6'" [dwLg]="'8'" style="border: 1px solid white;">
+      </div>
+    </div>
+    <div dw-row class="login-copyright-block">
+      <div dw-col dwSpan="24" class="login-copyright">
+        <span>© Data Systems Consulting Co., Ltd. All rights reserved.<span class="version">v{{dwVersion}}</span></span>
+      </div>
+    </div>
+  </div>
+</div>-->

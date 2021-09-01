@@ -1,0 +1,15 @@
+{
+  "name": "analytics/intercom",
+  "description": "The intercom module",
+  "homepage": "https://angulartics.github.io/ngx-analytics/",
+  "author": "João Ribeiro <jonnybgod@gmail.com> (http://github.com/JonnyBGod)",
+  "bugs": {
+    "url": "http://github.com/angulartics/ngx-analytics/issues"
+  },
+  "repository": "angulartics/ngx-analytics",
+  "main": "../bundles/intercom.umd.js",
+  "module": "intercom.es5.js",
+  "es2015": "intercom.es2015.js",
+  "typings": "index.d.ts",
+  "license": "MIT"
+}

@@ -1,0 +1,20 @@
+{
+  "apiUrl": "//10.40.41.222",
+  "iamUrl": "//172.16.2.141:32511",
+  "emcUrl": "//172.16.2.141:22612",
+  "omUrl": "//10.40.41.222:2285",
+  "consoleUrl": "//10.40.41.143/console",
+  "marketUrl": "//10.40.41.143/market",
+  "cmcUrl": "//172.16.2.141:22613",
+  "omcUrl": "@OMC_SERVICE_URL@",
+  "gmcUrl": "@GMC_SERVICE_URL@",
+  "cacUrl": "@CAC_SERVICE_URL@",
+  "frUrl": "//10.40.42.51:19301",
+  "dmcUrl": "//172.16.2.141:31725",
+  "screenUrl": "//10.40.40.171:8080",
+  "analytics": {
+    "gtm": "@ANALYTICS_GTM@",
+    "baidu": "@ANALYTICS_BAIDU@"
+  },
+  "multiTenant": "true"
+}

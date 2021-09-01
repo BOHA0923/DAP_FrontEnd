@@ -1,0 +1,6 @@
+::ng-deep .ant-menu-vertical>.ant-menu-submenu>.ant-menu-submenu-title>.dw-f-menu-title>span,
+.ant-menu-vertical>.ant-menu-item>.dw-f-menu-title>span {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+}

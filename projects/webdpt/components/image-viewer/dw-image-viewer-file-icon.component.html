@@ -1,0 +1,72 @@
+<div class="file-icon-container" >
+  <ng-container [ngSwitch]="fileIcon">
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-image'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#A1A3B4'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'video-camera'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'customer-service'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#3200AA'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-pdf'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#D80000'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-word'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#1C69D5'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-excel'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#157B40'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-ppt'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#DF3A11'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-zip'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#A1A3B4'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchCase="'file-text'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon [dwType]="fileIcon" dwTheme="fill" *ngSwitchDefault [ngStyle]="{'color':fileIconColor?fileIconColor:'#A1A3B4'}"></i>
+  </ng-container>
+  <!-- <ng-container [ngSwitch]="mimeType" *ngIf="mimeType">
+    <i dw-icon dwType="file-pdf" dwTheme="fill" *ngSwitchCase="'application/pdf'"></i>
+    <i dw-icon dwType="file-ppt" dwTheme="fill" *ngSwitchCase="'application/vnd.openxmlformats-officedocument.presentationml.presentation'"></i>
+    <i dw-icon dwType="file-excel" dwTheme="fill" *ngSwitchCase="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"></i>
+    <i dw-icon dwType="file-word" dwTheme="fill" *ngSwitchCase="'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'text/plain'"></i>
+    <i dw-icon dwType="customer-service" dwTheme="fill" *ngSwitchCase="'audio/mpeg'"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'video/mp4'"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'video/webm'"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'video/ogg'"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'video/x-ms-wmv'"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'video/avi'"></i>
+
+    <i dw-icon dwType="file" dwTheme="fill" *ngSwitchDefault></i>
+  </ng-container> -->
+  <!-- 兩個都傳值以mimeType優先 -->
+
+  <!-- <ng-container [ngSwitch]="finalTypeExtension">
+    <i dw-icon dwType="file-pdf" dwTheme="fill" *ngSwitchCase="'pdf'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#D80000'}"></i>
+    <i dw-icon dwType="file-ppt" dwTheme="fill" *ngSwitchCase="'ppt'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#DF3A11'}"></i>
+    <i dw-icon dwType="file-ppt" dwTheme="fill" *ngSwitchCase="'pptx'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#DF3A11'}"></i>
+    <i dw-icon dwType="file-excel" dwTheme="fill" *ngSwitchCase="'xls'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#157B40'}"></i>
+    <i dw-icon dwType="file-excel" dwTheme="fill" *ngSwitchCase="'xlsx'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#157B40'}"></i>
+    <i dw-icon dwType="file-excel" dwTheme="fill" *ngSwitchCase="'xlsm'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#157B40'}"></i>
+    <i dw-icon dwType="file-word" dwTheme="fill" *ngSwitchCase="'docx'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#1C69D5'}"></i>
+    <i dw-icon dwType="file-word" dwTheme="fill" *ngSwitchCase="'doc'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#1C69D5'}"></i>
+
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'text'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'txt'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'css'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'csv'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'html'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'htm'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'ics'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'js'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+    <i dw-icon dwType="file-text" dwTheme="fill" *ngSwitchCase="'xml'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#00A8FF'}"></i>
+
+    <i dw-icon dwType="customer-service" dwTheme="fill" *ngSwitchCase="'mp3'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#3200AA'}"></i>
+    <i dw-icon dwType="customer-service" dwTheme="fill" *ngSwitchCase="'wav'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#3200AA'}"></i>
+
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'mpeg'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'mp4'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'webm'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'ogg'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'ogv'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'flv'"[ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'avi'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'quicktime'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'ts'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'3gp'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+    <i dw-icon dwType="video-camera" dwTheme="fill" *ngSwitchCase="'3gp2'" [ngStyle]="{'color':fileIconColor?fileIconColor:'#000000'}"></i>
+
+    <i dw-icon dwType="file" dwTheme="fill" *ngSwitchDefault [ngStyle]="{'color':fileIconColor?fileIconColor:'#A1A3B4'}"></i>
+  </ng-container> -->
+  <!-- mimeType/extension 都沒傳值 -->
+  <!-- <ng-container *ngIf="!extension&&!mimeType">
+    <i dw-icon dwType="file" dwTheme="fill"></i>
+  </ng-container> -->
+</div>

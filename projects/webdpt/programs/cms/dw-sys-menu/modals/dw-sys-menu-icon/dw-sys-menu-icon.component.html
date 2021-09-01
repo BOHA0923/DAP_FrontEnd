@@ -1,0 +1,17 @@
+<dw-content>
+  <div>
+    <div dw-row dwGutter="3">
+      <div dw-col [dwSpan]="3" class="list-item" *ngFor="let item of iconList; let idx = index" (click)="selected(item)">
+        <div>
+          <!-- <i class="{{item}}"></i> -->
+          <dw-icon-element [dwIconClass]="item"></dw-icon-element>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="customize-footer">
+    <button dw-button type="button" [dwType]="'default'" (click)="handleCancel($event)" translate>
+      {{ 'dw-cancel' | translate }}
+    </button>
+  </div>
+</dw-content>

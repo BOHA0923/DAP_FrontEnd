@@ -1,0 +1,85 @@
+<ng-template #emptyText></ng-template>
+<dw-table [dwNoResult]="emptyText" dwTitle="屬性說明">
+  <thead>
+  <tr>
+    <th>名稱</th>
+    <th>說明</th>
+    <th>類型</th>
+    <th>範默认</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>dwAddOnAfter</td>
+    <td>带标签的 input，设置后置标签</td>
+    <td>string | TemplateRef&lt;void&gt;</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dwAddOnAfterIcon</td>
+    <td>后置标签按钮，dwAddOnAfter的快捷使用方式</td>
+    <td>string | string[] | Set&lt;string&gt; | {{'{'}}[klass: string]: any;}</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwAddOnBefore</td>
+    <td>带标签的 input，设置前置标签</td>
+    <td>string | TemplateRef&lt;void&gt;</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dwAddOnBeforeIcon</td>
+    <td>前置标签按钮，dwAddOnBefore的快捷使用方式</td>
+    <td>string | string[] | Set&lt;string&gt; | {{'{'}}[klass: string]: any;}</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwPrefix</td>
+    <td>带有前缀图标的 input</td>
+    <td>string | TemplateRef&lt;void&gt;</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dwPrefixIcon</td>
+    <td>前缀图标，dwPrefix的快捷使用方式</td>
+    <td>string | string[] | Set&lt;string&gt; | {{'{'}}[klass: string]: any;}</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwSuffix</td>
+    <td>带有后缀图标的 input</td>
+    <td>string | TemplateRef&lt;void&gt;</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dwSuffixIcon</td>
+    <td>后缀图标，dwSuffix的快捷使用方式</td>
+    <td>string | string[] | Set&lt;string&gt; | {{'{'}}[klass: string]: any;}</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwCompact</td>
+    <td>是否用紧凑模式</td>
+    <td>boolean</td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td>dwSearch</td>
+    <td>是否用搜索框</td>
+    <td>boolean</td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td>dwSize</td>
+    <td>nz-input-group&nbsp;中所有的&nbsp;nz-input&nbsp;的大小</td>
+    <td>'large'&nbsp;|&nbsp;'small'&nbsp;|&nbsp;'default'</td>
+    <td>'default'</td>
+  </tr>
+  <tr>
+    <td>dwPlaceHolder</td>
+    <td>提示文字</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  </tbody>
+</dw-table>

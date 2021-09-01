@@ -1,0 +1,127 @@
+<form dw-form [formGroup]="forgetForm" class="forget-form">
+
+  <div class="inputBlock">
+
+    <dw-form-item dw-row>
+      <dw-select formControlName="selectVerification" (ngModelChange)="switVerification()">
+        <dw-option *ngFor="let item of optionList" [dwLabel]="item.label" [dwValue]="item.value"></dw-option>
+      </dw-select>
+    </dw-form-item>
+
+    <dw-form-item dw-row *ngIf="forgetForm.get('selectVerification').value === 'email'">
+      <dw-form-control dw-col [dwSpan]="24" [dwErrorTip]="emailErrorTpl">
+        <input dw-input [placeholder]="'dw-forget-enterEmailReceive' | translate" formControlName="email">
+        <ng-template #emailErrorTpl>
+          <ng-container *ngIf="forgetForm.get('email').dirty && forgetForm.get('email').errors">
+            <ng-container *ngIf="forgetForm.get('email').hasError('required')">{{ 'required' | translate }}</ng-container>
+            <ng-container *ngIf="forgetForm.get('email').hasError('email')">{{ 'dw-forget-enterCorrectEmail' | translate }}
+            </ng-container>
+            <ng-container *ngIf="forgetForm.get('email').hasError('emailNotExist')">{{ 'dw-forget-emailNotExist' | translate }}
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+
+
+    <dw-form-item dw-row *ngIf="forgetForm.get('selectVerification').value === 'mobilephone'">
+      <dw-form-control dw-col [dwSpan]="24" [dwValidateStatus]="checkMobilephoneError()" [dwErrorTip]="mobilephoneErrorTpl">
+        <dw-input-group [dwAddOnBefore]="addOnBeforeTemplate">
+          <ng-template #addOnBeforeTemplate>
+            <dw-select formControlName="mobilephonePrefix" style="width: 70px;">
+              <dw-option dwLabel="+86" dwValue="+86"></dw-option>
+            </dw-select>
+          </ng-template>
+          <input dw-input [placeholder]="'dw-forget-enterCellphone' | translate" formControlName="mobilephone">
+        </dw-input-group>
+        <ng-template #mobilephoneErrorTpl>
+          <ng-container *ngIf="forgetForm.get('mobilephone').dirty && forgetForm.get('mobilephone').errors">
+            <ng-container *ngIf="forgetForm.get('mobilephone').hasError('required')">{{ 'required' | translate }}</ng-container>
+            <ng-container *ngIf="forgetForm.get('mobilephone').hasError('minlength')">{{ 'dw-forget-needsDigits' | translate }}
+            </ng-container>
+            <ng-container *ngIf="forgetForm.get('mobilephone').hasError('maxlength')">{{ 'dw-forget-needsDigits' | translate }}
+            </ng-container>
+            <ng-container *ngIf="forgetForm.get('mobilephone').hasError('userMobilephoneNumeric')">
+              {{ 'dw-forget-needAllNumbers' | translate }}</ng-container>
+            <ng-container *ngIf="forgetForm.get('mobilephone').hasError('mobilephoneNotExist')">
+              {{ 'dw-forget-cellphoneNotExist' | translate }}</ng-container>
+          </ng-container>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+
+
+
+    <dw-form-item dw-row class="verification-block" dwGutter="8">
+      <dw-form-control dw-col [dwSpan]="12">
+        <button dw-button [dwType]="'primary'" style="width:100%" [disabled]="checkGetCodeDisabled()" (click)="getCode()">{{ ((!iscountDown) ? ('dw-forget-getCode' | translate) : ('dw-forget-countDown'| translate: {'current': countDown})) }}</button>
+      </dw-form-control>
+      <dw-form-control dw-col [dwSpan]="12" [dwErrorTip]="verificationCodeErrorTpl">
+        <input dw-input [placeholder]="'dw-forget-enterCode' | translate" formControlName="verificationCode">
+        <ng-template #verificationCodeErrorTpl>
+          <ng-container *ngIf="forgetForm.get('verificationCode').dirty && forgetForm.get('verificationCode').errors">
+            <ng-container *ngIf="forgetForm.get('verificationCode').hasError('required')">{{ 'required' | translate }}
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+
+    <dw-form-item dw-row class="dw-f-newpassword">
+      <dw-form-label dw-col [dwSpan]="7">
+        <span>{{'dw-forget-newPassword'|translate}}</span>
+      </dw-form-label>
+      <dw-form-control dw-col [dwSpan]="17" [dwErrorTip]="passwordErrorTpl">
+        <div>
+          <input dw-input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="{{'dw-forget-enterNewPassword'|translate}}">
+          <i dw-icon [dwType]="showPassword ? 'eye-invisible' : 'eye'" dwTheme="outline" (click)="showPassword = !showPassword"></i>
+        </div>
+        <ng-template #passwordErrorTpl>
+          <ng-container *ngIf="forgetForm.get('password').dirty && forgetForm.get('password').errors">
+            <ng-container *ngIf="forgetForm.get('password').hasError('maxlength')">
+              {{ 'maxlength' | translate:{
+                            'requiredLength':forgetForm.get('password').errors.maxlength.requiredLength,
+                            'actualLength':forgetForm.get('password').errors.maxlength.actualLength} }}
+            </ng-container>
+            <ng-container *ngIf="forgetForm.get('password').hasError('minlength')">
+              {{ 'minlength' | translate:{
+                            'requiredLength':forgetForm.get('password').errors.minlength.requiredLength,
+                            'actualLength':forgetForm.get('password').errors.minlength.actualLength} }}
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+
+    <dw-form-item dw-row class="dw-f-confnewpassword">
+      <dw-form-label dw-col [dwSpan]="7">
+        <span>{{'dw-forget-confirmNewPassword'|translate}}</span>
+      </dw-form-label>
+      <dw-form-control dw-col [dwSpan]="17" [dwErrorTip]="repasswordTpl">
+        <div>
+          <input dw-input [type]="showPassword ? 'text' : 'password' " formControlName="repassword" placeholder="{{'dw-forget-enterNewPasswordAgain'|translate}}">
+        </div>
+        <ng-template #repasswordTpl>
+          <ng-container *ngIf="forgetForm.get('repassword').dirty && forgetForm.get('repassword').errors">
+            <ng-container *ngIf="forgetForm.get('repassword').hasError('required')">{{'required' | translate}}</ng-container>
+            <ng-container *ngIf="forgetForm.get('repassword').hasError('userPasswordEqual')">
+              {{'dw-forget-passwordMismatch' | translate}}</ng-container>
+          </ng-container>
+        </ng-template>
+      </dw-form-control>
+    </dw-form-item>
+
+    <dw-form-item dw-row class="dw-f-loginagain">
+      <dw-form-label dw-col [dwSpan]="24">
+        <span>{{'dw-forget-logInAgain' | translate}}</span>
+      </dw-form-label>
+    </dw-form-item>
+    <dw-form-item dw-row class="customize-footer">
+      <dw-form-control dw-col [dwSpan]="24">
+        <button dw-button type="button" [dwType]="'primary'" [disabled]="!forgetForm.valid" [dwLoading]="isButtLoading" (click)="emitDataOutside()">{{'dw-determine' | translate}}</button>
+        <button dw-button type="button" [dwType]="'default'" (click)="cancel($event)">{{ 'dw-cancel' | translate}}</button>
+      </dw-form-control>
+    </dw-form-item>
+  </div>
+
+</form>

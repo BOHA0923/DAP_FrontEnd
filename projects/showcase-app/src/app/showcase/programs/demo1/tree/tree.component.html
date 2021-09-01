@@ -1,0 +1,108 @@
+
+  <dw-content class="dw-f-content-list dwTree">
+    <dw-card [dwBordered]="false" [dwTitle]="title">
+      <ng-template #title>
+        {{ 'dw-tree-樹狀列表' | translate }}
+      </ng-template>
+        <div dw-row class="dw-f-btn-bar-action">
+          <div dw-col [dwSpan]="12">
+            <button dw-button type="button" [dwType]="'primary'" dwActionAuthorized [dwActionId]="'add'" [dwDefaultAuthorized]="'disabled'" (dwClick)="addDataModal()">
+              <i dw-icon dwType="plus" dwTheme="outline"></i>
+              <span translate>dw-tree-新建</span>
+            </button>
+
+            <button dw-button type="button" [dwType]="'primary'" dw-dropdown [dwDropdownMenu]="menu" [dwTrigger]="'click'"
+              [dwPlacement]="'bottomCenter'" [disabled]="disabledButton" [dwLoading]="operating">
+              <span translate>dw-tree-批量操作</span>
+            </button>
+            <dw-dropdown-menu #menu="dwDropdownMenu">
+              <ul dw-menu>
+                <li dw-menu-item dwActionAuthorized [dwActionId]="'delete'" [dwDefaultAuthorized]="'disabled'"
+                  (dwClick)="operateData('delete')" translate>
+                  dw-tree-刪除
+                </li>
+                <li dw-menu-item dwActionAuthorized [dwActionId]="'export'" [dwDefaultAuthorized]="'disabled'"
+                  (dwClick)="showLoading()" translate>
+                  dw-tree-loading-mask
+                </li>
+              </ul>
+            </dw-dropdown-menu>
+          </div>
+          <div dw-col [dwSpan]="6">
+
+          </div>
+          <div dw-col [dwSpan]="6">
+            <div class="dw-f-search-box">
+              <input dw-input [type]="'search'" [placeholder]="'dw-tree-請輸入組織名稱'|translate" [(ngModel)]="value" (ngModelChange)="term$.next($event)">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="checkedNumber">
+          <dw-alert [dwType]="'info'" [dwMessage]="checkedDescription" dwShowIcon class="dw-f-row-bottom"></dw-alert>
+        </div>
+        <div class="dw-f-table">
+        <dw-table #dwTable [dwData]="originData" [dwFrontPagination]="false">
+          <thead>
+            <tr>
+              <th [dwWidth]="'40%'"  dwShowCheckbox [dwChecked]="allChecked" [dwIndeterminate]="indeterminate" (dwCheckedChange)="checkAll($event)" style="text-align: left">
+                <span translate>dw-tree-組織</span>
+              </th>
+              <th [dwWidth]="'20%'">
+                <span translate>dw-tree-地址</span>
+              </th>
+              <th>
+                <span translate>dw-tree-月營業額</span>
+              </th>
+              <th>
+                <span translate>dw-tree-狀態</span>
+              </th>
+              <th>
+                <span translate>dw-tree-更新時間</span>
+              </th>
+              <th>
+                <span translate>dw-tree-操作</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="dwTable.data">
+              <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]|ShowcaseTreeSearchPipe:value">
+                <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+                  <td dwShowCheckbox [(dwChecked)]="item.checked" (dwCheckedChange)="changeParentChildStatus(item);refreshStatus($event)"
+                   [dwIndentSize]="item.level*20" [dwShowExpand]="!!item.children" [(dwExpand)]="item.expand" (dwExpandChange)="collapse(expandDataCache[data.key],item,$event)">
+                    ({{item.key}}) {{item.name}}
+                  </td>
+                  <td>{{item.address}}</td>
+                  <td>{{item.amount}}</td>
+                  <td>
+                    <i [class.circle-run]="item.status" [class.circle-stop]="!item.status"></i>
+                    {{item.status?'運行中':'關閉'}}
+                  </td>
+                  <td>{{item.update}}</td>
+                  <td>
+                    <span class="dw-link-txt">
+                      <a dwActionAuthorized [dwActionId]="'modify'" [dwDefaultAuthorized]="'disabled'" (dwClick)="editDataModal(item)"
+                        translate>dw-tree-編輯</a>
+                      <a dw-dropdown [dwDropdownMenu]="menu" [dwPlacement]="'bottomCenter'" [dwTrigger]="'click'" translate>dw-tree-更多</a>
+                      <dw-dropdown-menu #menu="dwDropdownMenu">
+                        <ul dw-menu>
+                          <li dw-menu-item>
+                            <a dwActionAuthorized [dwActionId]="'delete'" [dwDefaultAuthorized]="'disabled'" (dwClick)="showConfirm(item)"
+                              translate>dw-tree-刪除</a>
+                          </li>
+                          <li dw-menu-item>
+                            <a translate>dw-tree-loading-mask</a>
+                          </li>
+                        </ul>
+                      </dw-dropdown-menu>
+                    </span>
+                  </td>
+                </tr>
+              </ng-template>
+            </ng-template>
+          </tbody>
+        </dw-table>
+      </div>
+    </dw-card>
+  </dw-content>
+

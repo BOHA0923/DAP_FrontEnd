@@ -1,0 +1,10 @@
+{
+  "datas": [
+    {
+      "userId": "u001",
+      "userName": "王明明"
+    }
+  ],
+  "success": true,
+  "description": "取得使用者資訊"
+}

@@ -1,0 +1,323 @@
+{
+  "master": [
+    {
+      "groupId": "1",
+      "groupName":  "Layer-1",
+      "currencyId":  "CNY",
+      "currencyName":  "人民幣",
+      "sourceId": "123",
+      "exchangeWay": "auto",
+      "exchangeSource": "1",
+      "exchangeClass": "1",
+      "status": "Y",
+      "groupDate":"2017/12/23"
+    },
+    {
+      "groupId": "11",
+      "groupName":  "Layer-1-1",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "12",
+      "groupName":  "Layer-1-2",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "121",
+      "groupName":  "Layer-1-2-1",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "13",
+      "groupName":  "Layer-1-3",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "131",
+      "groupName":  "Layer-1-3-1",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "1311",
+      "groupName":  "Layer-1-3-1-1",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "1312",
+      "groupName":  "Layer-1-3-1-2",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    },
+    {
+      "groupId": "2",
+      "groupName":  "Layer-2",
+      "currencyId":  "NTD",
+      "currencyName":  "新台幣",
+      "sourceId": "456",
+      "exchangeWay": "custom",
+      "exchangeSource": "2",
+      "exchangeClass": "2",
+      "status": "Y",
+      "groupDate":"2017/12/31"
+    }
+  ],
+  "detail": [
+    {
+      "groupId": "1",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1111",
+          "companyName": "鼎新電腦",
+          "currencyId": "NTD",
+          "currencyName":  "新台幣",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2222",
+          "companyName": "鼎新電腦2",
+          "currencyId": "NTD",
+          "currencyName":  "新台幣",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "11",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦11-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦11-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "12",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦12-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦12-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "121",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦121-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦121-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "13",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦13-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦13-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "131",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦131-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦131-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "1311",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦1311-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦1311-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "1312",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦1312-4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦1312-5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    },
+    {
+      "groupId": "2",
+      "detail": [
+        {
+          "seq": 1,
+          "companyId": "1",
+          "companyName": "鼎新電腦4",
+          "currencyId": "NTD",
+          "status": "N",
+          "startDate": "2017/10/31",
+          "endDate": "2017/12/31"
+        },
+        {
+          "seq": 2,
+          "companyId": "2",
+          "companyName": "鼎新電腦5",
+          "currencyId": "CNY",
+          "status": "Y",
+          "startDate": "2016/10/31",
+          "endDate": "2016/12/31"
+        }
+      ]
+    }
+  ]
+}

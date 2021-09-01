@@ -1,0 +1,12 @@
+{
+  "select-modal-demo-order-modalTitle": "订单明细",
+  "select-modal-demo-order-orderId": "订单编号",
+  "select-modal-demo-order-orderDate": "订单日期",
+  "select-modal-demo-order-status": "状态码",
+  "select-modal-demo-order-customerId": "客户编号",
+  "select-modal-demo-order-customerName": "客户名称",
+  "select-modal-demo-order-orderAddr": "送货地址",
+  "select-modal-demo-order-total": "订单总额",
+  "select-modal-demo-order-salesmanName": "业务员姓名",
+  "select-modal-demo-order-gender": "业务员性别"
+}

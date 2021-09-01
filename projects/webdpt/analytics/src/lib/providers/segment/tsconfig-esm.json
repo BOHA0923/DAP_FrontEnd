@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../../../../dist/segment/es5",
+    "declaration": false,
+    "removeComments": true
+  },
+  "files": ["analytics-segment.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": false,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "analytics/segment"
+  }
+}

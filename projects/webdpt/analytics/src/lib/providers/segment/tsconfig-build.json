@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "esnext",
+    "target": "es5",
+    "noImplicitAny": false,
+    "outDir": "../../../../dist/segment/es2015",
+    "rootDir": ".",
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "removeComments": false,
+    "lib": ["es2018", "dom"],
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "paths": {
+      "analytics": ["../../../../dist/es2015/index"]
+    }
+  },
+  "files": ["ngx-analytics-segment.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "analytics/segment"
+  }
+}

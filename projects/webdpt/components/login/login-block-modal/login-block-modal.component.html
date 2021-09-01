@@ -1,0 +1,13 @@
+<div>
+  <div class="moadl-body">
+    <i dw-icon dwType="exclamation-circle" class="warning" [dwTheme]="'twotone'" [dwTwotoneColor]="'#faad14'"></i>
+    <div class="content">
+      <div class="title" *ngIf="title">{{title}}</div>
+      <div class="description" [innerHtml]="description"></div>
+    </div>
+    <div class="btns">
+      <button dw-button dwType="primary" (click)="close()">{{btnTitle}}</button>
+    </div>
+  </div>
+</div>
+

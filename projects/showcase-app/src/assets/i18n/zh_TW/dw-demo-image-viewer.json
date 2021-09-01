@@ -1,0 +1,12 @@
+{
+  "dw-demo-image-viewer-case1": "圖片瀏覽列表",
+  "dw-demo-image-viewer-case2": "圖片瀏覽與上傳",
+  "dw-demo-image-viewer-upload": "上傳檔案",
+  "dw-demo-image-viewer-batch-audit": "批次審核",
+  "dw-demo-image-viewer-audit": "審核",
+  "dw-demo-image-viewer-cancel-uploading": "全部取消上傳中檔案",
+  "dw-demo-image-viewer-my-action": "應用功能",
+  "set-image-width": "自訂圖片寬度",
+  "default-no-need": "預設不用設定",
+  "set-style": "自訂樣式"
+}

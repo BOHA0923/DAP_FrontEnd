@@ -1,0 +1,14 @@
+{
+  "select-modal-enum-modalTitle": "訂單明細",
+  "select-modal-enum-orderId": "訂單編號",
+  "select-modal-enum-orderDate": "訂單日期",
+  "select-modal-enum-status": "狀態碼",
+  "select-modal-enum-customerId": "客戶編號",
+  "select-modal-enum-customerName": "客戶名稱",
+  "select-modal-enum-orderAddr": "送貨地址",
+  "select-modal-enum-total": "訂單總額",
+  "select-modal-enum-salesmanName": "業務員姓名",
+  "select-modal-enum-gender": "業務員性別",
+  "select-modal-enum-gender-male": "男",
+  "select-modal-enum-gender-female": "女"
+}

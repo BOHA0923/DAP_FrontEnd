@@ -1,0 +1,63 @@
+<dw-content>
+  <form dw-form [formGroup]="menuEditNameForm" (ngSubmit)="menuEditNameFormSave()">
+    <div>
+      <div dw-row class="dw-modals-menu-edit-name">
+        <div dw-col [dwSpan]="24">
+          <!-- 單頭 -->
+          <div dw-row formArrayName="editMenuLanguage">
+            <div dw-col [dwSpan]="24" *ngFor="let menuNameGroup of editMenuLanguage.controls; let idx = index"
+              formGroupName="{{idx}}">
+              <div dw-row [dwGutter]="4" class="dw-f-add-name">
+                <div dw-col [dwSpan]="8">
+                  <dw-form-item>
+                    <dw-form-control [dwErrorTip]="languageErrorTpl">
+                      <dw-select formControlName="language">
+                        <dw-option *ngFor="let language of languageList" [dwLabel]="language.label" [dwValue]="language.value">
+                        </dw-option>
+                      </dw-select>
+                      <ng-template #languageErrorTpl>
+                        <ng-container
+                          *ngIf="!menuNameGroup.controls['language'].errors?.required && menuNameGroup.controls['language'].errors?.languageValidator">
+                          {{ 'dw-sys-menu-msg-exist' | translate }}
+                        </ng-container>
+                      </ng-template>
+                    </dw-form-control>
+                  </dw-form-item>
+                </div>
+                <div dw-col [dwSpan]="14">
+                  <dw-form-item>
+                    <dw-form-control>
+                      <input dw-input formControlName="name">
+                    </dw-form-control>
+                  </dw-form-item>
+                </div>
+                <div dw-col [dwSpan]="2" class="dw-f-btn-icons">
+                  <i dw-icon dwType="minus-circle" dwTheme="outline" class="dw-f-sysmenu-dynamic-delete" (click)="editMenuLanguageDelete(idx)"
+                    *ngIf="idx > 0"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <dw-form-item>
+            <dw-form-control [dwSpan]="22">
+              <button dw-button type="button" dwType="dashed" style="width:100%" (click)="editMenuLanguageAdd()">
+                <i dw-icon dwType="plus" dwTheme="outline"></i>
+                {{ 'dw-sys-menu-increase' | translate }}
+              </button>
+            </dw-form-control>
+          </dw-form-item>
+        </div>
+      </div>
+    </div>
+    <div dw-row>
+      <div dw-col [dwSpan]="24" style="text-align: right;">
+        <button dw-button type="button" [dwType]="'default'" (click)="handleCancel($event)" translate>
+          {{ 'dw-sys-menu-cancel' | translate }}
+        </button>
+        <button dw-button dwType="primary" class="dw-f-sysmenu-edit-button" [disabled]="!menuEditNameForm.valid">
+          {{ 'dw-sys-menu-save' | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</dw-content>

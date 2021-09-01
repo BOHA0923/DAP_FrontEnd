@@ -1,0 +1,21 @@
+<form dw-form [formGroup]="validateForm">
+  <dw-form-item dw-row>
+    <dw-form-label dw-col [dwSm]="6" [dwXs]="24" for="email" dwRequired>{{'dw-messages-訊息'| translate}}</dw-form-label>
+    <dw-form-control dw-col [dwSm]="14" [dwXs]="24" dwHasFeedback [dwErrorTip]="messageErrorTpl">
+      <input dw-input formControlName="message" *dwId="'message'">
+      <ng-template #messageErrorTpl>
+        <ng-container *ngIf="getFormControl('message').dirty && getFormControl('message').errors?.required">
+          {{'dw-messages-請輸入訊息'| translate}}
+        </ng-container>
+      </ng-template>
+    </dw-form-control>
+    <div dw-col>
+      <button dw-button [dwSize]="'small'" (click)="addMessage()">{{'dw-messages-加'| translate}}</button>
+    </div>
+  </dw-form-item>
+  <dw-form-item dw-row style="margin-bottom:8px;">
+    <dw-form-control dw-col [dwOffset]="6">
+      <button dw-button [dwType]="'primary'" (click)="_submitForm()" [disabled]="messages.length === 0">{{'dw-messages-發送'| translate}}</button>
+    </dw-form-control>
+  </dw-form-item>
+</form>

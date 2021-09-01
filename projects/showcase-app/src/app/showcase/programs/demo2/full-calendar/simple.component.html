@@ -1,0 +1,63 @@
+<!--               [deepChangeDetection]="true"-->
+<div style="display: flex; flex: 1; height: -webkit-fill-available;">
+  <div>
+    <table>
+      <tr>
+        <th>編號</th>
+        <th>開始</th>
+        <th>結束</th>
+      </tr>
+      <tr *ngFor="let event of calendarEvents">
+        <td nowrap>{{event.id}}</td>
+        <td nowrap>{{event.start | date:'yyyy-M-d HH:mm:ss'}}</td>
+        <td nowrap>{{event.end | date:'yyyy-M-d HH:mm:ss'}}</td>
+      </tr>
+    </table>
+  </div>
+  <full-calendar [events]="calendarEvents" #fullCalendar
+                 [editable]="true"
+                 [eventAllow]="allowEvent"
+                 (eventClick)="handleEventClick($event)"
+                 (eventDragStart)="startDrag($event)"
+                 (eventDrop)="drop($event)"
+                 (eventResize)="eventResized($event)"
+                 (eventRender)="eventRender($event)"
+                 (dayRender)="doubleClickRender($event)"
+                 (eventMouseEnter)="appendDeleteButton($event)"
+                 (eventMouseLeave)="removeDeleteButton($event)"
+                 [header]="{
+                 left: 'prev,next today',
+                 center: 'title',
+                 right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth,listWeek,listDay setting'
+               }"
+                 [customButtons]="settingButton"
+                 [buttonText]="buttonText"
+                 [navLinks]="false"
+                 height="parent"
+                 defaultView="dayGridMonth"
+                 (dateClick)="handleDateClick($event)"
+                 [plugins]="calendarPlugins"></full-calendar>
+</div>
+
+<ng-template #editModalFooter>
+  <div dw-row>
+    <div dw-col [dwSpan]="8" dwJustify="start">
+      <button dw-button>刪除</button>
+    </div>
+    <div dw-col [dwSpan]="16">
+      <button dw-button>取消</button>
+      <button dw-button dwType="primary">確認</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #settingButtons>
+  <ul dw-menu>
+    <li dw-menu-item>
+      <a>用戶時區設定</a>
+    </li>
+    <li dw-menu-item>
+      每週第一天-週一
+    </li>
+  </ul>
+</ng-template>

@@ -1,0 +1,14 @@
+<div style="padding: 8px;">
+  {{'set-image-width' | translate}}：[dwItemImageWidth]="{{singleValue}}"
+  <dw-tag [dwColor]="'orange'">{{'default-no-need' | translate}} [dwItemImageWidth]</dw-tag>
+  <dw-slider [dwMin]="104" [dwMax]="250" [(ngModel)]="singleValue" (ngModelChange)="onSizeChange($event)">
+  </dw-slider>
+</div>
+
+<div class="ant-upload-list ant-upload-list-picture-card">
+  <ng-container *ngFor="let file of thumbnailList1; trackBy: trackByUid">
+    <dw-image-viewer-list-item [dwListType]="'picture-card'" [dwFile]="file" [dwItemAction]="listAction1"
+      [onPreview]="handlePreview1" [onRemove]="handleRemove1" [dwItemImageWidth]="itemImageWidth">
+    </dw-image-viewer-list-item>
+  </ng-container>
+</div>

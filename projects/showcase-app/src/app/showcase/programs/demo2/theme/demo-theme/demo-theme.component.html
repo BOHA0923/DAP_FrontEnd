@@ -1,0 +1,250 @@
+<dw-layout>
+  <dw-content class="dw-demo-theme-wp">   
+    <h1 class="title-h1">佈景主題</h1>
+    <div class="theme-info">
+      <div dw-row dwGutter="15">
+        
+        <div dw-col class="theme-info-row" dwSpan="24">
+          <div class="theme-info-box info-box-col2">
+            <ul>
+              <li>應用開發自訂樣式位置 /implementation/style/index.less。 (預設樣式)</li>
+              <li>所有自訂的主題樣式放置於 app/theme 資料夾, (/app/theme/theme-XXX.less)
+                <br>主題樣式命名規則：
+                <br>「theme-樣式名稱.less」
+                <br>Ex: theme-red.less  (theme-紅色系.less)
+              </li>
+              <li>編譯產生的 css 放置於
+                <br>src/assets/themes/theme-樣式名稱.css
+                <br>Ex: src/assets/themes/theme-red.css
+              </li>              
+              <li>整體的UI主色變數 @theme-color: 自訂顏色;
+                <br>下方列出常用的變數, 可快速變更基本畫面編排</li>
+              <li>新增自訂樣式選擇器命名規則：
+                <br> 「應用開發單位 - 類別/位置 - 功能/屬性」
+                <br> Ex: dap-btn-add (開發單位dap-按鈕-新增)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- demo-style -->
+    <div class="theme-info demo-style">
+      <div dw-row dwGutter="15">
+        <div dw-col class="theme-info-row" dwSpan="6">
+          <div class="demo-style-box" [ngClass]="{'active': nowThemeStyleId==='theme-red'}" (click)="changeTheme({id:'theme-red',path:'assets/themes/theme-red.css'})">
+            <img src="assets/img/showcase/demo-theme/theme-red.jpg" alt="佈景主題樣式-red">
+            <div class="demo-style-txt">
+              <p class="name">佈景主題樣式-red</p>
+              <i dw-icon dwType="check-circle" dwTheme="fill"></i>
+            </div>
+          </div>
+        </div>
+        <div dw-col class="theme-info-row" dwSpan="6">
+          <div class="demo-style-box" [ngClass]="{'active': nowThemeStyleId==='theme-green'}" (click)="changeTheme({id:'theme-green',path:'assets/themes/theme-green.css'})">
+            <img src="assets/img/showcase/demo-theme/theme-green.jpg" alt="佈景主題樣式-green">
+            <div class="demo-style-txt">
+              <p class="name">佈景主題樣式-green</p>
+              <i dw-icon dwType="check-circle" dwTheme="fill"></i>
+            </div>
+          </div>
+        </div>
+        <div dw-col class="theme-info-row" dwSpan="6">
+          <div class="demo-style-box" [ngClass]="{'active': nowThemeStyleId==='theme-yellow'}"  (click)="changeTheme({id:'theme-yellow',path:'assets/themes/theme-yellow.css'})">
+            <img src="assets/img/showcase/demo-theme/theme-yellow.jpg" alt="佈景主題樣式-yellow">
+            <div class="demo-style-txt">
+              <p class="name">佈景主題樣式-yellow</p>
+              <i dw-icon dwType="check-circle" dwTheme="fill"></i>
+            </div>
+          </div>
+        </div>
+        <div dw-col class="theme-info-row" dwSpan="6">
+          <div class="demo-style-box" [ngClass]="{'active': nowThemeStyleId==='default'}" (click)="changeTheme({id:'default',path:'default'})">
+            <img src="assets/img/showcase/demo-theme/theme-bule.jpg" alt="預設樣式">
+            <div class="demo-style-txt">
+              <p class="name">預設樣式</p>
+              <i dw-icon dwType="check-circle" dwTheme="fill"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /. demo-style -->
+    <!--  dw-theme-popover -->
+    <h1 class="title-h1">佈景主題樣式-元件</h1>
+    <div class="theme-info dw-theme-popover">
+        <div dw-row dwGutter="15">
+            <div dw-col class="theme-info-row" dwSpan="12" dwXXl="8">
+              <div class="theme-info-box">
+                  <!-- <div >
+                    <dw-card [dwTitle]="'基礎'" [attr.id]="'example'">
+                      <dw-tabset>
+                        <dw-tab dwTitle="範例">
+                          <ng-container *ngComponentOutlet="themeBase"></ng-container>
+                        </dw-tab>
+                        <dw-tab dwTitle="代碼">
+                          <pre><code highlight [code]="themeBaseCodeString" [language]="['typescript']"></code></pre>
+                        </dw-tab>
+                      </dw-tabset>
+                     </dw-card>                    
+                  </div>
+                  <div >
+                      <dw-card [dwTitle]="'自訂Button'" [attr.id]="'tmpExample'">
+                        <dw-tabset>
+                          <dw-tab dwTitle="範例">
+                            <ng-container *ngComponentOutlet="themeTmp"></ng-container>
+                          </dw-tab>
+                          <dw-tab dwTitle="代碼">
+                            <pre><code highlight [code]="themeTmpCodeString" [language]="['typescript']"></code></pre>
+                          </dw-tab>
+                        </dw-tabset>
+                       </dw-card>                    
+                    </div>  -->
+                  <div >
+                      <dw-card [dwTitle]="'demo'" [attr.id]="'popExample'">
+                        <dw-tabset>
+                          <dw-tab dwTitle="範例">
+                            <ng-container *ngComponentOutlet="themePop"></ng-container>
+                          </dw-tab>
+                          <dw-tab dwTitle="代碼">
+                            <pre><code highlight [code]="themePopCodeString" [language]="['typescript']"></code></pre>
+                          </dw-tab>
+                        </dw-tabset>
+                        </dw-card>                    
+                    </div>                     
+              </div>       
+            </div>
+            <div dw-col class="theme-info-row" dwSpan="12" dwXXl="16">
+              <div class="theme-info-box">
+                <ul>
+                  <li>放置於app/theme 資料夾,(/app/theme/theme-XXX.less)自訂的主題樣式,如果有新增或修改,
+                      需重新執行npm run buildCss指令,以重新建立src/assets/themes/*.css檔案。
+                  </li>
+                  <li>在標籤上放入dwThemeDirective,即可產生pop型式的佈景選項,設定參數如下</li>
+                  <!-- <li>
+                    npm run buildCss同時會於src/assets/themes資料夾內產生themeJson.json,此檔記錄產生的css檔id(file name)及path(路徑)。
+                  </li>               -->
+                  <!-- <li>
+                    以GET方式取得src/assets/themes/themeJson.json取得css佈景資料,注入dw-theme-button元件資料屬性themeList,即產生佈景元件;也可利用css佈景資料自行撰寫程式
+                    切換佈景。(descripiton屬性為自訂新增,用來外顯說明用,不加description預設則取用id)
+                  </li>
+                  <li>
+                      {{ defaultTheme | json }}為預設樣式,除description屬性可以修改外,其餘請勿修改。
+                    </li> -->
+                </ul>
+              </div>
+            </div>
+    
+          </div> 
+
+      <ng-template #emptyText></ng-template>
+       <dw-table [dwNoResult]="emptyText" dwTitle="屬性說明">
+        <thead>
+        <tr>
+          <th>名稱</th>
+          <th>說明</th>
+          <th>類型</th>
+          <th>默认值</th>
+        </tr>
+        </thead>
+        <tbody>
+       <!-- <tr>
+          <td>dwTitle</td>
+          <td>提示文字</td>
+          <td>string</td>
+          <td>-</td>
+        </tr> -->
+       <tr>
+          <td>dwReference</td>
+          <td>提示文字</td>
+          <td>string</td>
+          <td>-</td>
+        </tr>        
+       <tr>
+          <td>dwPlacement</td>
+          <td>位置有十二个方向topLeft, top, topRight, leftTop, left, leftBottom, rightTop, right, rightBottom, bottomLeft, bottom, bottomRight</td>
+          <td>string</td>
+          <td>bottom</td>
+        </tr>
+        <tr>
+          <td>dwTrigger</td>
+          <td>三种触发方式click, hover, focus</td>
+          <td>string</td>
+          <td>click</td>
+        </tr>                        
+        <!-- <tr>
+          <td>themeList</td>
+          <td>佈景主題資料;例:{{sampleTheme | json }}</td>
+          <td>object[]</td>
+          <td>{{ defaultTheme | json }}</td>
+        </tr>
+
+        <tr>
+          <td>dwShape</td>
+          <td>设置按钮形状，可选值为 circle 或者不设</td>
+          <td>string</td>
+          <td>circle</td>
+        </tr> 
+        <tr>
+          <td>dwType</td>
+          <td>设置按钮类型，可选值为 primary, dashed, danger 或者不设</td>
+          <td>string</td>
+          <td>primary</td>
+        </tr>
+        <tr>
+          <td>dwSize</td>
+          <td>设置按钮大小，可选值为 small, large 或者不设</td>
+          <td>string</td>
+          <td>default</td>
+        </tr>
+
+        <tr>
+          <td>dwPopWidth</td>
+          <td>pop開啟寬度</td>
+          <td>number</td>
+          <td>350</td>
+        </tr>  
+        <tr>
+          <td>dwColorColSplit</td>
+          <td>每排顏色數</td>
+          <td>number</td>
+          <td>2</td>
+        </tr>  
+        <tr>
+          <td>dwShowDesc</td>
+          <td>顯示description</td>
+          <td>boolean</td>
+          <td>true</td>
+        </tr> -->
+                                                                           
+        </tbody>
+      </dw-table>         
+  
+</div>
+  <!-- /. dw-theme-popover -->    
+    
+
+    <h1 class="title-h1">常用變數
+      <span class="link-txt">
+        <a target="_blank" href="https://github.com/NG-ZORRO/ng-zorro-antd/blob/1.6.0/site_scripts/_site/src/theme.less">查看全部變數</a>
+      </span>
+    </h1>
+    <dw-table class="dw-common-var" #dwCommonVarTable [dwData]="dataSet2" [dwFrontPagination]="false" [dwShowPagination]="false">
+      <thead>
+        <tr>
+          <th>樣式變數 / class 選擇器</th>
+          <th>預設值</th>
+          <th>用途描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dwCommonVarTable.data">
+          <td>{{data.dwCommonvarName}}</td>
+          <td>{{data.dwCommonInitial}}</td>
+          <td>{{data.dwCommonDescription}}</td>
+        </tr>
+      </tbody>
+    </dw-table>
+  </dw-content>
+
+</dw-layout>
+<!--  -->

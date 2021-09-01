@@ -1,0 +1,23 @@
+.ant-table-row-collapsed:after {
+  /* content: '+'; */
+  content: '';
+}
+.ant-table-row-expanded:after {
+  /* content: '-'; */
+  content: '';
+}
+.ant-table-thead > tr > th.ant-table-selection-column, .ant-table-tbody > tr > td.ant-table-selection-column{
+  text-align: left;
+}
+.circle-run:before {
+  content: ' \25CF';
+  font-size: 15px;
+  color:#00ff00;
+  padding-right:3px;
+}
+.circle-stop:before {
+  content: ' \25CF';
+  font-size: 15px;
+  color:#ff0000;
+  padding-right:3px;
+}

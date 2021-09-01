@@ -1,0 +1,27 @@
+.ant-table-row .ant-row.ant-form-item {
+  margin-bottom: auto;
+}
+.view .ant-form-item{
+  margin-bottom: 12px;
+}
+.master-title{
+  margin-bottom: 24px;
+}
+.master-title >span{
+  color:#000000;
+  font-size: 16px;
+  font-weight: 600;
+}
+.action-row {
+  padding-bottom: 15px;
+}
+.view .ant-form-item-label{
+ text-align: left
+}
+.detailSelected{
+  background: #fbfbfb
+}
+
+
+
+

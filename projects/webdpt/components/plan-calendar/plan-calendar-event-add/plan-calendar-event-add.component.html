@@ -1,0 +1,141 @@
+<dw-modal [(dwVisible)]="isVisible" [dwTitle]="title" (dwOnCancel)="handleCancel()" (dwOnOk)="handleOk()"
+  [dwWidth]="dwWidth" [dwMaskClosable]="false" [dwFooter]="null">
+
+  <form [formGroup]="mainFormGroup" (ngSubmit)="save()">
+    <div dw-row [dwGutter]="32" class="plan-calendar-event-container">
+      <div dw-col [dwSpan]="16">
+
+        <dw-form-item>
+          <dw-form-label [dwSpan]="6" dwRequired dwFor="summary">{{'dw-plan-calendar-title' | translate}}
+          </dw-form-label>
+          <dw-form-control [dwSpan]="18">
+            <input dw-input formControlName="summary" placeholder="{{'dw-plan-calendar-input' | translate}}" />
+          </dw-form-control>
+        </dw-form-item>
+
+        <div dw-row>
+          <div dw-col [dwSpan]="6" *dwId="'time-label-form-col'">
+            <dw-form-label dwRequired style="display: block;">{{'dw-plan-calendar-time' | translate}}</dw-form-label>
+          </div>
+          <div dw-col [dwSpan]="18" *dwId="'time-form-col'">
+            <div dw-row>
+              <div dw-col [dwSpan]="11">
+                <dw-form-item>
+                  <dw-form-control>
+                    <dw-date-picker formControlName="startDatetime" dwShowTime dwFormat="yyyy-MM-dd HH:mm:ss">
+                    </dw-date-picker>
+                  </dw-form-control>
+                </dw-form-item>
+              </div>
+
+              <div dw-col [dwSpan]="2" class="inline-center">
+              {{'dw-plan-calendar-to' | translate}}
+              </div>
+              <div dw-col [dwSpan]="11">
+                <dw-form-item>
+                  <dw-form-control>
+                    <dw-date-picker formControlName="endDatetime" dwShowTime dwFormat="yyyy-MM-dd HH:mm:ss">
+                    </dw-date-picker>
+                  </dw-form-control>
+                </dw-form-item>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <dw-form-item>
+          <div dw-col [dwSpan]="6"></div>
+          <dw-form-control [dwSpan]="18" *dwId="'allDay-form-control'">
+            <label dw-checkbox formControlName="allDay"
+              [dwDisabled]="mainFormGroup.controls['allDay'].disabled">{{'dw-plan-calendar-allDay' | translate}}</label>
+          </dw-form-control>
+        </dw-form-item>
+
+
+        <dw-form-item>
+          <dw-form-label [dwSpan]="6" dwRequired dwFor="calendarSid">
+            {{'dw-plan-calendar-subordinate-calendar' | translate}}</dw-form-label>
+          <dw-form-control [dwSpan]="18">
+            <div dw-row dwGutter="16">
+              <div dw-col [dwSpan]="20">
+                <dw-select style="width: 100%;" formControlName="calendarSid">
+                  <dw-option *ngFor="let calendar of calendarList" [dwValue]="calendar.sid" [dwLabel]="calendar.name">
+                  </dw-option>
+                </dw-select>
+              </div>
+              <div dw-col [dwSpan]="4">
+                <button dw-button dw-dropdown [dwDropdownMenu]="menu" [dwPlacement]="'bottomLeft'"
+                  [dwDisabled]="!eventPermissions.modifyDetail" type="button">
+                  <i class="colorful" [ngStyle]="{'background-color': mainFormGroup.controls['color'].value}"></i>
+                </button>
+                <dw-dropdown-menu #menu="dwDropdownMenu">
+                  <ul dw-menu class="colorful-container">
+                    <li dw-menu-item (click)="mainFormGroup.controls['color'].value = color" *ngFor="let color of colorList">
+                      <div class="colorful" [ngStyle]="{'background-color': color}">
+                        <i dw-icon dwType="check" dwTheme="outline" *ngIf="color === mainFormGroup.controls['color'].value"></i>
+                      </div>
+                    </li>
+                  </ul>
+                </dw-dropdown-menu>
+              </div>
+            </div>
+          </dw-form-control>
+        </dw-form-item>
+
+        <div *dwId="'location-form-row'">
+          <dw-form-item *dwId="'location-form-item'">
+            <dw-form-label [dwSpan]="6" dwFor="location" *dwId="'location-form-label'">
+              {{'dw-plan-calendar-location' | translate}}</dw-form-label>
+            <dw-form-control [dwSpan]="18">
+              <input dw-input formControlName="location" *dwId="'location-form-control'"
+                placeholder="{{'dw-plan-calendar-input' | translate}}" />
+            </dw-form-control>
+          </dw-form-item>
+        </div>
+        <div *dwId="'description-form-row'">
+          <dw-form-item>
+            <dw-form-label [dwSpan]="6" dwFor="description">{{'dw-description' | translate}}</dw-form-label>
+            <dw-form-control [dwSpan]="18">
+              <textarea dw-input rows="4" formControlName="description"
+                placeholder="{{'dw-plan-calendar-input' | translate}}"></textarea>
+            </dw-form-control>
+          </dw-form-item>
+        </div>
+      </div>
+      <div dw-col [dwSpan]="8" *dwId="'permissions-form-col'">
+        <button dw-button dwType="primary" type="button" dwGhost (click)="addAttendence()"
+          *dwId="'add-attendence-form-button'" [disabled]="!eventPermissions.modifyAttendee">
+          <i dw-icon dwType="plus" dwTheme="outline"></i>{{'dw-plan-calendar-add-participants' | translate}}
+        </button>
+        <div class="attendence" *dwId="'attendees-list'">
+          <div class="title">{{'dw-plan-calendar-participants' | translate}}</div>
+          <div class="content">
+            <span *ngFor="let attend of attendees">{{attend.attendeeName}}
+              <i dw-icon dwType="close" dwTheme="outline" (click)="removeAttendees(attend)"
+                *ngIf="eventPermissions.modifyAttendee"></i>
+            </span>
+          </div>
+        </div>
+        <div class="attendence" *dwId="'attendee-permission'">
+          <div class="title">{{'dw-plan-calendar-participants-permissions' | translate}}</div>
+          <div formArrayName="attendeePermission">
+            <dw-form-control *ngFor="let attendeePermissionGroup of attendeePermission.controls; let idx = index"
+              formGroupName="{{idx}}">
+              <label dw-checkbox formControlName="hasPermission"
+                [dwDisabled]="!eventPermissions.modifyDetail || attendeePermissionGroup.controls['hasPermission'].disabled">
+                {{attendeePermissionGroup.controls['titleKey'].value | translate}}
+              </label>
+            </dw-form-control>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="modal-hr" style="margin-top: 20px;" />
+    <div class="modal-btn">
+      <button dw-button dwType="default" type="button" (click)="handleCancel()">{{'dw-cancel' | translate}}</button>
+      <button dw-button dwType="primary" *dwId="'save-form-button'"
+        [disabled]="mainFormGroup.invalid || dwFormGroupInvalid">{{'dw-save' | translate}}</button>
+    </div>
+  </form>
+
+</dw-modal>

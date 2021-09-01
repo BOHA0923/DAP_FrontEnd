@@ -1,0 +1,23 @@
+{
+  "name": "@webdpt/components",
+  "version": "3.0.0+LTS.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11",
+    "web-animations-js": "^2.3.2",
+    "classlist.js": "^1.1.20150312"
+  },
+  "main": "bundles/components.umd.js",
+  "module": "./fesm5/components.js",
+  "es2015": "./fesm2015/components.js",
+  "esm5": "./esm5/components.js",
+  "esm2015": "./esm2015/components.js",
+  "fesm5": "./fesm5/components.js",
+  "fesm2015": "./fesm2015/components.js",
+  "typings": "components.d.ts",
+  "metadata": "components.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

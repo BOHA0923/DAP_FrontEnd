@@ -1,0 +1,52 @@
+<dw-layout>
+  <dw-content class="dw-lag-wp">
+      <h1 class="title-h1">語系樣式</h1>
+    <div dw-row class="info-block">
+      <div dw-col dwSpan="14" dwXXl="12" class="txt-a">
+      針對不同語系進行樣式的調整<br>
+      平台預設樣式為繁中，目前平台在 layout 框架已經放置各別語系相關的 class<br>
+      切換到簡中增加 "zh_CN" ，英文語系則有 "en_US" 相對應的 class 在開發的時候做應用調整。<br>
+      請在 <span class="color-02"> /implementation/style/index.less </span> 新增，載入 en_US.less 或 zh_CN.less
+      沒有另外設計樣式則不需要載入
+<pre class="code-black"><code>@import 'en_US.less';  <span class="color-11">//  英文語系微調</span>
+@import 'zh_CN.less';  <span class="color-11">//  簡中語系微調</span></code></pre>
+<div style="margin:16px 0;">
+    另外也可以自己放置在作業任何需要區別語系樣式的地方，再依樣式層級設定該語系專屬的樣式。<br>
+    參考: 英文語系的條件搜尋區塊 /  modal 彈窗。<br>
+<pre class="code-black"><code>[ngClass]=" '' | dwLanguage "</code>
+<br>
+<code>ex: ＜form dw-form [formGroup]="validateForm" <span class="color-07">[ngClass]=" '' | dwLanguage "</span>＞＜/form＞</code></pre>
+    </div>
+<!--  -->
+      </div>
+
+<div dw-col dwSpan="10" dwXXl="12" class="pic-001">
+  <i dw-icon dwType="eye" dwTheme="outline"><img class="pic-b" src="/assets/img/showcase/language-style/pic-001.jpg" alt=""></i>
+  <img class="pic-s" src="/assets/img/showcase/language-style/pic-001.jpg" alt="">
+</div>
+<!-- /. -->
+<div dw-col dwSpan="24" class="txt-b">
+    目前平台有放置各別語系相關的 class 如下，再依據需求按層級往下設定即可
+    <dw-table class="dw-common-var" #dwCommonVarTable [dwData]="dataSet2" [dwFrontPagination]="false" [dwShowPagination]="false">
+        <thead>
+          <tr>
+            <th>英文 class 選擇器</th>
+            <th>簡中 class 選擇器</th>
+            <th>用途描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of dwCommonVarTable.data">
+            <td>{{data.dwCommonvarName}}</td>
+            <td>{{data.dwCommonInitial}}</td>
+            <td>{{data.dwCommonDescription}}</td>
+          </tr>
+        </tbody>
+      </dw-table>
+</div>
+<!--  -->
+
+
+  </div>
+  </dw-content>
+</dw-layout>

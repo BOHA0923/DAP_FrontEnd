@@ -1,0 +1,116 @@
+{
+  "master": [{
+      "asisId": "No_000001",
+      "asisName": "標準資產負債分析",
+      "note": "這是備註這是備註這是備註",
+      "status": "Y",
+      "asisDate": "2017/12/23"
+    },
+    {
+      "asisId": "No_000002",
+      "asisName": "標準損益分析",
+      "note": "這是備註這是備註這是備註2222",
+      "status": "N",
+      "asisDate": "2017/12/23"
+    }
+
+  ],
+  "detail": [{
+      "asisId": "No_000001",
+      "detail": [{
+          "seq": 1,
+          "itemId": "A100",
+          "itemName": "流動資產-現金及約當現金單身",
+          "upperId1": "AB00",
+          "upperName1": "資產",
+          "upperId2": "A000",
+          "upperName2": "流動資產",
+          "status": "N"
+        },
+        {
+          "seq": 2,
+          "itemId": "A110",
+          "itemName": "流動資產-金融資產單身",
+          "upperId1": "AB00",
+          "upperName1": "資產",
+          "upperId2": "A000",
+          "upperName2": "流動資產",
+          "status": "Y"
+        }
+      ]
+    },
+    {
+      "asisId": "No_000002",
+      "detail": [{
+          "seq": 1,
+          "itemId": "B100",
+          "itemName": "流動資產-應收票據單身",
+          "upperId1": "AB00",
+          "upperName1": "資產",
+          "upperId2": "A000",
+          "upperName2": "流動資產",
+          "status": "N"
+        },
+        {
+          "seq": 2,
+          "itemId": "B110",
+          "itemName": "流動資產-金融資產單身",
+          "upperId1": "AB00",
+          "upperName1": "資產",
+          "upperId2": "A000",
+          "upperName2": "流動資產",
+          "status": "Y"
+        }
+      ]
+    }
+  ],
+  "detailChildren": [{
+      "itemId": "A100",
+      "detail": [{
+            "seq": 1,
+            "biId": "100",
+            "biName": "流動資產A-現金及約當現金細目",
+            "status": "N"
+          },
+          {
+            "seq": 2,
+            "biId": "102",
+            "biName": "流動資產A-現金及約當現金細目2",
+            "status": "Y"
+          }
+        ]
+    },
+    {
+      "itemId": "A110",
+      "detail": [{
+            "seq": 11,
+            "biId": "1001",
+            "biName": "流動資產AA-現金及約當現金細目",
+            "status": "N"
+          },
+          {
+            "seq": 22,
+            "biId": "1002",
+            "biName": "流動資產AA-現金及約當現金細目2",
+            "status": "Y"
+          }
+        ]
+    },    
+    {
+      "itemId": "B100",
+      "detail": [{
+            "seq": 1,
+            "biId": "100",
+            "biName": "流動資產B-現金及約當現金細目",
+            "status": "N"
+          },
+          {
+            "seq": 2,
+            "biId": "102",
+            "biName": "流動資產B-現金及約當現金細目2",
+            "status": "Y"
+          }
+        ]
+    }
+  ]
+}

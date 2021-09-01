@@ -1,0 +1,9 @@
+<!-- 需要條件來控制 <dw-account-info> 的初始化 -->
+<div *ngIf="isShowForm">
+  <dw-account-info
+    [formOption$]="formOption"
+    [isUseHeadImage]="isUseHeadImage"
+    [isUseUpdatePassword]="isUseUpdatePassword"
+    (userInfoValue)="getUserInfoValue($event)"
+  ></dw-account-info>
+</div>

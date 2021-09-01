@@ -1,0 +1,30 @@
+<div dw-row [dwGutter]="24" *ngIf="treeConfig.enableSearch">
+  <div dw-col [dwSpan]="24">
+    <dw-input-group dwSearch [dwAddOnAfter]="suffixSearch">
+      <input type="text" dw-input placeholder="Search" [(ngModel)]="searchValue">
+    </dw-input-group>
+    <ng-template #suffixSearch>
+      <button dw-button dwType="primary" dwSearch>
+        <i dw-icon dwType="search" dwTheme="outline"></i>
+      </button>
+    </ng-template>
+  </div>
+</div>
+
+<dw-tree
+  #treeCom
+  class="dw-organize-tree"
+  [(dwData)]="nodes"
+  [dwCheckable]="treeConfig.checkable"
+  [dwMultiple]="treeConfig.multiple"
+  [dwExpandAll]="treeConfig.expandAll"
+  [dwAsyncData]="true"
+  [dwCheckedKeys]="defaultCheckedKeys"
+  [dwExpandedKeys]="defaultExpandedKeys"
+  (dwExpandChange)="expandChange($event)"
+  [dwSelectedKeys]="defaultSelectedKeys"
+  [dwSearchValue]="searchValue"
+  dwShowIcon
+  >
+</dw-tree>
+<button dw-button dwType="primary" (click)="reloadCache()"><span translate>dw-organize-tree-modal-reload</span></button>

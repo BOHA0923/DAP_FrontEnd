@@ -1,0 +1,11 @@
+// https://github.com/NG-ZORRO/ng-zorro-antd/issues/3841
+// 1. nzAddOnAfter 只能和 nzAddOnBefore 混用，和nzSuffix混用會導致按鈕位置跑版
+// 2. 解決dw-select後面放大鏡按鈕跑版問題
+.ant-input-group-addon:last-child {
+  padding: 0;
+  border: 0;
+  &>.ant-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "select-modal-mock-data-modalTitle": "订单明细",
+  "select-modal-mock-data-orderId": "订单编号",
+  "select-modal-mock-data-orderDate": "订单日期",
+  "select-modal-mock-data-status": "状态码",
+  "select-modal-mock-data-customerId": "客户编号",
+  "select-modal-mock-data-customerName": "客户名称",
+  "select-modal-mock-data-orderAddr": "送货地址",
+  "select-modal-mock-data-total": "订单总额",
+  "select-modal-mock-data-salesmanName": "业务员姓名",
+  "select-modal-mock-data-gender": "业务员性别"
+}

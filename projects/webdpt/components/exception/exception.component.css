@@ -1,0 +1,139 @@
+.error-col {
+  background: url(../../framework/assets/exception/p404-01.gif) 0 0 no-repeat #ececec;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80%;
+  min-width: 600px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.info-box {
+  margin-left: 160px;
+  font-family: \5FAE\8EDF\6B63\9ED1\9AD4, Arial;
+  position: relative;
+  /* top: -60px; */
+  top: -10px;
+}
+
+.msg {
+  font-family: sans-serif;
+  font-size: 16rem;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  font-size: 12rem;
+  letter-spacing: 14px;
+}
+/* chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .msg {
+    font-family: monospace;
+    font-size: 16rem;
+    font-weight: bold;
+    text-align: center;
+    background: rgb(151, 151, 151);
+    background: -moz-linear-gradient(top, rgba(151, 151, 151, 1) 0%, rgba(7, 7, 7, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(151, 151, 151, 1) 0%, rgba(7, 7, 7, 1) 100%);
+    background: linear-gradient(to bottom, rgba(151, 151, 151, 1) 0%, rgba(7, 7, 7, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#979797', endColorstr='#070707', GradientType=0);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: rgba(255, 255, 255, 0.1) 0px 6px 3px;
+  }
+  }
+/* ie
+_:-ms-lang(x),.msg {
+  color: #000;
+  background: #eee;
+  font-family: fantasy;
+    font-size: 12rem;
+    letter-spacing: 14px;
+}
+.msg {
+  color: #000\9;
+  background: #eee\9;
+  font-family: fantasy\9;
+    font-size: 12rem\9;
+    letter-spacing: 14px\9;
+}  */
+
+/* .msg::first-letter {
+  font-size: 18rem;
+} */
+
+.execption-content {
+  position: relative;
+  top: -80px;
+}
+.btn-home {
+  text-align: center;
+  position: relative;
+  padding-bottom: 8px;
+  /* top: -30px;
+  z-index: 99; */
+}
+
+/* .btn-home a {
+  background-color: #108ee9;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  font-size: .88rem;
+  padding: .25rem;
+  margin: auto;
+}
+
+.btn-home a img {
+  margin-right: .25rem;
+  vertical-align: bottom;
+}
+
+.btn-home a:hover {
+  background-color: #1b7bc0;
+} */
+
+.desc {
+  color: #333;
+  font-size: 1.13rem;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.txt-box {
+  color: #666;
+  font-size: .75rem;
+  overflow: auto;
+  width: 100%;
+  max-height: 150px;
+}
+
+.txt-box::-webkit-scrollbar {
+  width: .6rem;
+  height: .6rem;
+}
+
+.txt-box::-webkit-scrollbar-thumb {
+  border-radius: 1.88rem;
+  box-shadow: 0 0 .19rem .06rem rgba(255, 255, 255, .3), inset 0 -.06rem 0 .06rem rgba(0, 0, 0, .2);
+  border: .06rem solid #c5c5c5;
+}
+@media (max-width: 1025px){
+  .error-col {
+    width: 100%;
+  }
+  .execption-content {
+    top: -50px;
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    .msg {
+      font-size: 12rem;
+    }
+    }
+}

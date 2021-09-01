@@ -1,0 +1,56 @@
+<form dw-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <!-- <dw-form-item class="login-username" *ngIf="dwMultiTenant">
+    <dw-input-group dwPrefixIcon="user">
+      <input dw-input formControlName="tenantId" [placeholder]="'dw-login-tenant' | translate" [dwSize]="'large'">
+    </dw-input-group>
+  </dw-form-item> -->
+  <dw-form-item class="login-username">
+    <dw-input-group [dwPrefix]="prefixTemplateUserId">
+      <input dw-input formControlName="userId" [placeholder]="'dw-login-account' | translate" [dwSize]="'large'">
+    </dw-input-group>
+    <ng-template #prefixTemplateUserId><i dw-icon dwType="user"></i></ng-template>
+  </dw-form-item>
+  <dw-form-item class="login-password">
+    <dw-input-group [dwPrefix]="prefixTemplatePassword">
+      <input dw-input formControlName="password" [type]="'password'" [placeholder]="'dw-login-password' | translate"
+        [dwSize]="'large'">
+    </dw-input-group>
+    <ng-template #prefixTemplatePassword><i dw-icon dwType="lock"></i></ng-template>
+  </dw-form-item>
+  <dw-form-item class="login-remember" [ngClass]="{'en_US':language==='en_US','zh_CN':language==='zh_CN'}">
+    <dw-form-control>
+      <div dw-row>
+        <div dw-col dwSpan="12" class="dw-f-remeber-block">
+          <label dw-checkbox formControlName="remember" *ngIf="showRemember">
+            <span [translate]="'dw-login-rememberMe'"></span>
+          </label>
+        </div>
+        <div dw-col dwSpan="12" class="dw-f-forgerpassword" *ngIf="dwMultiTenant">
+          <label>
+            <a (click)="forget()"><span [translate]="'dw-login-forgetPassword'"></span></a>
+          </label>
+        </div>
+      </div>
+    </dw-form-control>
+  </dw-form-item>
+  <dw-form-item class="login-btn">
+    <dw-form-control>
+      <button type="submit" dw-button [disabled]="validateForm.invalid || isDisabled" class="login-form-button"
+        [dwType]="'primary'" (click)="login()" [dwLoading]="dwLoading">{{ 'dw-login-signIn' | translate}}</button>
+      <div class="login-form-forgot" dw-col [dwSpan]="8" *ngIf="showLanguage">
+        <dw-language [template]="'dropdown'"></dw-language>
+      </div>
+    </dw-form-control>
+  </dw-form-item>
+</form>
+
+<ng-template #tenantModalTemp>
+  <dw-list [dwDataSource]="currTenantList" dwBordered [dwRenderItem]="listTemp" dwSize="large">
+    <ng-template #listTemp let-tenantItem>
+      <dw-list-item [dwContent]="contentTemp"></dw-list-item>
+      <ng-template #contentTemp>
+        <a (click)="changeTenant(tenantItem.tenantSid)">{{tenantItem.tenantName}}</a>
+      </ng-template>
+    </ng-template>
+  </dw-list>
+</ng-template>

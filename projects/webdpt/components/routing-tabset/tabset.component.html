@@ -1,0 +1,54 @@
+<!--<div style="float: left">
+<span>
+    current: {{ currentTabInfo?.id }},
+    TYPE:{{currentTabInfo?.type}}
+  RELOAD: {{currentTabInfo?.reload}}
+  path: {{currentTabInfo?.lastPath}}
+  </span>
+<button (click)="showKeys()">Keys</button>
+</div>-->
+<ng-container *ngIf="routeInfos.length > 0">
+<div>
+  <dw-tabset [dwType]="'card'" [dwSelectedIndex]="selectedIndex" [dwTabBarExtraContent]="tabBarExtraContent"
+    class="dw-f-tabset-bar">
+    <ng-container *ngFor="let info of routeInfos; trackBy: trackByTabId; index as i">
+      <dw-tab [dwTitle]="titleTemplate" (dwClick)="tabClick(i)" (dwSelect)="tabSelected(info)">
+        <ng-template #titleTemplate>
+          <div>
+            <!-- <i dw-icon [ngClass]="info.iconClass" *ngIf="!!info.iconClass"></i> -->
+            <dw-icon-element [dwIconClass]="info.iconClass"></dw-icon-element>
+            <dw-program-title [titleKey]="info.title" [programId]="info.code ? info.code : info.id">
+            </dw-program-title>
+            <i dw-icon dwType="close" class="tab-close" title="{{'dw-tab-close' | translate}}"
+              *ngIf="info.canClose||info.canClose!==false" (click)="closeTab(i, $event)"></i>
+          </div>
+        </ng-template>
+      </dw-tab>
+    </ng-container>
+  </dw-tabset>
+</div>
+
+<div class="dw-f-layout-content">
+  <div class="dw-f-tab-info-wp">
+    <router-outlet *ngIf="routeInfos.length > 0"></router-outlet>
+
+    <ng-container *ngFor="let info of routeInfos; trackBy: trackByTabId; index as i">
+      <ng-container *ngIf="info && (info?.type === 'fineReport' || info?.type === 'externalUrl')">
+        <!--<ng-container *ngTemplateOutlet="iframe; context: {$implicit: getIframeItem(info)}"></ng-container>-->
+        <dw-base-iframe *ngIf="info?.reload === undefined || info?.reload === false" [item]="info['item']"
+          [style.display]="info?.tabId === currentTabInfo?.tabId ? 'block': 'none'">
+        </dw-base-iframe>
+        <dw-base-iframe
+          *ngIf="(info?.reload !== undefined && info?.reload === true) && (info?.tabId === currentTabInfo?.tabId)"
+          [item]="info['item']">
+        </dw-base-iframe>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+</ng-container>
+
+<ng-template #tabBarExtraContent>
+  <i dw-icon dwType="" class="closeall" (click)="closeAll()" title="{{'dw-tab-close-all' | translate}}"></i>
+</ng-template>

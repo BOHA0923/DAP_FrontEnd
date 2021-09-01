@@ -1,0 +1,64 @@
+<dw-layout>
+  <dw-layout>
+    <dw-content>
+      <div dw-row dwType="flex" dwJustify="center">
+        <div dw-col dwSpan="22">
+
+          <div dw-row [dwGutter]="20">
+
+          </div>
+
+          <div dw-row dwType="flex" dwJustify="left" [dwGutter]="20" *ngFor="let component of demoComponents"
+               style="padding-bottom: 20px;">
+            <div dw-col dwSpan="24">
+              <dw-divider [dwText]="text"></dw-divider>
+              <ng-template #text>
+                <h1 [attr.id]="component.selector">{{component.title}}</h1>
+              </ng-template>
+            </div>
+
+            <div dw-col dwSpan="24" *ngFor="let example of component.examples"
+                 style="padding: 10px;">
+              <dw-card [dwTitle]="example.title" [attr.id]="example.id">
+                <dw-tabset>
+                  <dw-tab dwTitle="范例">
+                    <ng-container *ngComponentOutlet="example.type"></ng-container>
+                  </dw-tab>
+                  <dw-tab dwTitle="代码">
+                    <pre><code highlight [code]="example.code" [language]="['typescript']"></code></pre>
+                  </dw-tab>
+                </dw-tabset>
+              </dw-card>
+            </div>
+
+            <div dw-col dwSpan="24" *ngIf="component.doc">
+              <ng-container *ngComponentOutlet="component.doc"></ng-container>
+            </div>
+          </div>
+
+          <!--<div dw-row dwType="flex" dwJustify="left" [dwGutter]="20">
+            <div dw-col dwSpan="20">
+              <dw-form-items-common-doc></dw-form-items-common-doc>
+            </div>
+          </div>-->
+
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </dw-content>
+    <dw-sider style="background-color: #fff">
+
+        <dw-anchor dwOffsetTop="42" [dwContainer]="'.dw-f-layout-content'">
+          <dw-link *ngFor="let component of demoComponents"
+                   [dwHref]="'#'+component.selector"
+                   [dwTitle]="component.title">
+            <dw-link *ngFor="let example of component.examples"
+                     [dwHref]="'#'+example.id"
+                     [dwTitle]="example.title"></dw-link>
+          </dw-link>
+        </dw-anchor>
+
+    </dw-sider>
+  </dw-layout>
+</dw-layout>
+<br/><br/><br/>

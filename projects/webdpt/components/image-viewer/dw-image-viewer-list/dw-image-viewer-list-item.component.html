@@ -1,0 +1,102 @@
+<div
+  class="dw-f-image-viewer-list-item dw-f-image-viewer-list-item-type-{{ dwViewerListType }} dw-f-image-viewer-list-item-{{viewerFile.status}}">
+  <ng-template #noThumbTpl>
+    <dw-image-viewer-file-icon [mimeType]="viewerFileType" class="dw-f-image-viewer-list-item-fileicon"
+      [ngStyle]="dwItemFileiconStyle">
+    </dw-image-viewer-file-icon>
+  </ng-template>
+  <ng-template #thumbTpl>
+    <div class="dw-f-image-viewer-list-item-thumbnail">
+      <img *ngIf="isViewImageType && (viewerFile.thumbUrl || viewerFile.url); else noThumbTpl"
+        [src]="viewerFile.thumbUrl || viewerFile.url" [attr.alt]="viewerFile.name" />
+    </div>
+  </ng-template>
+  <ng-template #itemActions>
+    <span *ngIf="isShowItemAction" class="dw-f-image-viewer-list-item-actions" [ngStyle]="dwItemActionsStyle">
+      <i *ngIf="icons.dwPreview.show && viewerFile.status === 'done'" (click)="handlePreview(viewerFile, $event)"
+        dw-icon dwType="eye-o" title="{{icons.dwPreview.title}}" class="action-icon"
+        [ngClass]="{'dw-f-image-viewer-list-item-actions-disabled': icons.dwPreview.disabled}"></i>
+      <i *ngIf="icons.dwRemove.show" (click)="handleRemove(viewerFile, $event)" dw-icon dwType="delete"
+        title="{{icons.dwRemove.title}}" class="action-icon"
+        [ngClass]="{'dw-f-image-viewer-list-item-actions-disabled': icons.dwRemove.disabled}"></i>
+      <i *ngIf="icons.dwDownload.show && viewerFile.status === 'done' && !dwDownloadToOtherCfg"
+        (click)="handleDownload(viewerFile, $event)" dw-icon dwType="download" title="{{icons.dwDownload.title}}"
+        class="action-icon" [ngClass]="{'dw-f-image-viewer-list-item-actions-disabled': icons.dwDownload.disabled}"></i>
+      <i>
+        <i *ngIf="otherActionCfg.show && viewerFile.status === 'done'" dw-icon dwType="setting" class="action-icon"
+          [ngClass]="{'dw-f-image-viewer-list-item-actions-disabled': otherActionCfg.disabled}" dw-popover
+          [dwPopoverContent]="otherActionTpl" dwPopoverPlacement="bottomRight">
+        </i>
+        <ng-template #otherActionTpl>
+          <div class="dw-f-image-viewer-list-item-other-dialog">
+            <div>
+              <a *ngIf="icons.dwDownload.show && viewerFile.status === 'done' && dwDownloadToOtherCfg"
+                (click)="handleDownload(viewerFile, $event)" [attr.disabled]="icons.dwDownload.disabled ? true : null">
+                {{icons.dwDownload.title}}
+              </a>
+            </div>
+            <ng-container *ngFor="let otherAction of icons.otherAction">
+              <ng-container *ngFor="let otherItem of otherAction | keyvalue">
+                <div>
+                  <a *ngIf="otherAction[otherItem.key].show"
+                    (click)="handleOtherAction(viewerFile, otherItem.key, $event)"
+                    [attr.disabled]="otherAction[otherItem.key].disabled ? true : null">
+                    {{otherAction[otherItem.key]['title'] ? otherAction[otherItem.key]['title'] : otherItem.key}}
+                  </a>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-template>
+      </i>
+    </span>
+  </ng-template>
+  <ng-template #imageInfo>
+    <div class="dw-f-image-viewer-list-item-image-info dw-f-image-viewer-list-item-image-info-{{viewerFile.status}}"
+      [ngStyle]="dwItemImageStyle" dw-tooltip
+      [dwTooltipTitle]="viewerFile.status === 'error' ? viewerFile.message : null">
+      <div class="dw-f-image-viewer-list-item-image-info-contain"
+        [ngClass]="{'actions-mask': isShowItemAction && !icons.dwCheck.show }">
+        <ng-container *ngIf="viewerFile.status === 'uploading'; else thumbTpl">
+          <div class="dw-f-image-viewer-list-item-progress">
+            <div class="dw-f-image-viewer-list-item-uploading-text">
+              {{'dw-uploading' | translate}} {{viewerFile.percent?viewerFile.percent+'%':''}}
+            </div>
+            <div class="dw-f-image-viewer-list-item-progress-bar">
+              <dw-progress *ngIf="viewerFile.percent&&viewerFile.percent!==100" [dwPercent]="viewerFile.percent"
+                [dwShowInfo]="false" [dwStrokeWidth]="2"></dw-progress>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!icons.dwCheck.show">
+          <ng-template [ngTemplateOutlet]="itemActions"></ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #itemTitle>
+    <div class="dw-f-image-viewer-list-item-title" [ngStyle]="dwItemTitleStyle">
+      <ng-container *ngIf="dwTitleTpl ; else titleDefaultTpl">
+        <ng-container *ngTemplateOutlet="dwTitleTpl; context:{$implicit:viewerFile}"></ng-container>
+      </ng-container>
+      <ng-template #titleDefaultTpl>
+        {{viewerFile.title ? viewerFile.title : viewerFile.name}}
+      </ng-template>
+    </div>
+  </ng-template>
+  <ng-container *ngIf="dwViewerListType === 'picture-card'">
+    <ng-template [ngTemplateOutlet]="imageInfo"></ng-template>
+    <ng-container *ngIf="icons.dwCheck.show">
+      <div (click)="handleCheck(viewerFile, $event)" class="dw-f-image-viewer-list-item-checkBox"
+        [ngSwitch]="viewerFile.check">
+        <img *ngSwitchCase="true" src="./assets/dw-framework/img/icon/checked.svg" />
+        <img *ngSwitchCase="false" src="./assets/dw-framework/img/icon/unchecked.svg" />
+        <img *ngSwitchDefault src="./assets/dw-framework/img/icon/unchecked.svg" />
+      </div>
+    </ng-container>
+    <ng-template [ngTemplateOutlet]="itemTitle"></ng-template>
+    <ng-container *ngIf="dwDesignTpl">
+      <ng-container *ngTemplateOutlet="dwDesignTpl; context:{$implicit:viewerFile}"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>

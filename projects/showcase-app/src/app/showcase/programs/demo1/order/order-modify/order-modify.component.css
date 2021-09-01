@@ -1,0 +1,33 @@
+.ant-table-row .ant-row.ant-form-item {
+  margin-bottom: auto;
+}
+
+/* 配送狀態 */
+.distributionStatus {
+  border-radius: 30px;
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-danger {
+  background-color: rgb(255, 102, 0);
+}
+
+.status-notice {
+  background-color:rgb(249, 200, 6);
+}
+
+.status-success {
+  background-color: #15d6ba;
+}
+
+.status-primary {
+  background-color:rgb(16, 141, 233);
+}
+
+

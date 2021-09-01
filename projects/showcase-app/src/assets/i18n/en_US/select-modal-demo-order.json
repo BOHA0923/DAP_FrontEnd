@@ -1,0 +1,12 @@
+{
+  "select-modal-demo-order-modalTitle": "Order Details",
+  "select-modal-demo-order-orderId": "Order ID",
+  "select-modal-demo-order-orderDate": "Order date",
+  "select-modal-demo-order-status": "Status code",
+  "select-modal-demo-order-customerId": "Customer ID",
+  "select-modal-demo-order-customerName": "Customer name",
+  "select-modal-demo-order-orderAddr": "Delivery address",
+  "select-modal-demo-order-total": "Order total",
+  "select-modal-demo-order-salesmanName": "Salesman Name",
+  "select-modal-demo-order-gender": "Salesman Gender"
+}

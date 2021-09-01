@@ -1,0 +1,11 @@
+<!--<button (click)="debugger()">Debug</button>-->
+<full-calendar [plugins]="calendarPlugins"
+               [header]="calendarToolbar"
+               [events]="events"
+               [defaultView]="defaultViewType"
+               (dateClick)="clickDate($event)"
+               (eventClick)="clickEvent($event)"
+               (eventRender)="eventRender($event)"
+               height="parent"
+               [handleWindowResize]="handleWindowResize"
+               #fullCalendar></full-calendar>

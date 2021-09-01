@@ -1,0 +1,20 @@
+<!-- 基本样板：左右切换 + 下拉清单 -->
+<dw-button-group *ngIf="template === 'basic'">
+  <button dw-button (click)="previous()">
+    <i dw-icon dwType="left" dwTheme="outline"></i>
+  </button>
+  <dw-select [dwPlaceHolder]="'搜尋..'" [(ngModel)]="languageOption" (ngModelChange)="switchLanguage(languageOption)"
+    [dwShowSearch]="true">
+    <dw-option *ngFor="let language of languageList" [dwLabel]="language.label" [dwValue]="language.value">
+    </dw-option>
+  </dw-select>
+  <button dw-button (click)="next()">
+    <i dw-icon dwType="right" dwTheme="outline"></i>
+  </button>
+</dw-button-group>
+<!-- 下拉样板：下拉清单 -->
+<dw-select *ngIf="template === 'dropdown'" [(ngModel)]="languageOption"
+  (ngModelChange)="switchLanguage(languageOption)" [dwShowSearch]="false">
+  <dw-option *ngFor="let language of languageList" [dwLabel]="language.label" [dwValue]="language.value">
+  </dw-option>
+</dw-select>

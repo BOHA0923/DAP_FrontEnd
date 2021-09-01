@@ -1,0 +1,107 @@
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.small-calendar {
+  max-height: 300px;
+}
+
+.panel {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.main-panel {
+  display: flex;
+  flex: 1;
+}
+
+.plan-calendar-default-header {
+  display: flex;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.plan-calendar-default-header-left {
+  display: flex;
+  min-width: 200px;
+  padding: 8px;
+}
+
+.plan-calendar-default-header-title {
+  padding-left: 8px;
+}
+
+.left-panel {
+  overflow: auto;
+  width: 255px;
+}
+
+::ng-deep {
+  // 小行事曆今日、選擇的日期小圓圈
+  .ant-fullcalendar-value:hover,
+  .ant-fullcalendar-selected-day .ant-fullcalendar-value,
+  .ant-fullcalendar-today .ant-fullcalendar-value {
+    border-radius: 50%;
+  }
+  .tentative {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    color: #333333;
+  } // 行事曆列表的checkbox
+  .left-panel .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: unset;
+  }
+}
+
+.calendar-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 16px;
+  i {
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+ul.calendar-add {
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: auto;
+  background: #FFF;
+  list-style: none;
+  border-radius: 4px;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  li {
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #e6f7ff;
+    }
+  }
+}
+
+.calendar-list {
+  position: relative;
+  padding: 0 8px;
+}
+
+.flex-col {
+  display: flex;
+  flex: 1;
+}

@@ -1,0 +1,310 @@
+<dw-content class="dw-f-menu-list-wp">
+  <!-- 左 -->
+  <div class="dw-f-left-block" [ngClass]=" '' | dwLanguage ">
+    <!--  新增項目選項 -->
+    <div dw-row class="dw-f-padding-bottom dw-f-list-menu">
+      <!--  新增項目選項 A -->
+      <div dw-col [dwSpan]="19" class="dw-f-list-menu-a">
+        <div dw-row>
+          <div dw-col [dwXs]="0" [dwSm]="0" [dwLg]="0" [dwXl]="24" [dwXXl]="24" style="line-height: 30px;">
+            <label style="padding-left: 8px; padding-right: 8px;">{{'dw-sys-menu-addItem' | translate}}：</label>
+            <dw-radio-group [(ngModel)]="addMenuType" (ngModelChange)="addMenuTypeChange(addMenuType, $event)">
+              <label dw-radio dwValue="category">{{'dw-sys-menu-category' | translate}}</label>
+              <label dw-radio dwValue="program">{{'dw-sys-menu-program' | translate}}</label>
+              <!-- <label dw-radio dwValue="fineReport">{{'dw-sys-menu-report' | translate}}</label> -->
+              <label dw-radio dwValue="externalUrl">{{'dw-sys-menu-externalLink' | translate}}</label>
+            </dw-radio-group>
+          </div>
+          <div dw-col [dwXs]="24" [dwSm]="24" [dwLg]="24" [dwXl]="0" [dwXXl]="0">
+            <label style="padding-left: 8px; padding-right: 8px;">{{'dw-sys-menu-addItem' | translate}}：</label>
+            <dw-select [(ngModel)]="addMenuType" style="width: 150px;" (ngModelChange)="addMenuTypeChange(addMenuType, $event)">
+              <dw-option [dwValue]="'category'" [dwLabel]="'dw-sys-menu-category' | translate"></dw-option>
+              <dw-option [dwValue]="'program'" [dwLabel]="'dw-sys-menu-program' | translate"></dw-option>
+              <!-- <dw-option [dwValue]="'fineReport'" [dwLabel]="'dw-sys-menu-report' | translate"></dw-option> -->
+              <dw-option [dwValue]="'externalUrl'" [dwLabel]="'dw-sys-menu-externalLink' | translate"></dw-option>
+            </dw-select>
+          </div>
+        </div>
+      </div>
+      <!--  新增項目選項 B -->
+      <div dw-col [dwSpan]="5" class="dw-f-list-menu-b">
+        <div dw-row [dwGutter]="{ xs: 1, sm: 3, md: 5, lg: 8, xl: 8, xxl: 8 }" class="dw-f-bottom-btn-bar">
+          <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  /. 新增項目選項 -->
+    <!-- 類型：目錄 -->
+    <div dw-row [hidden]="addMenuType !== 'category'">
+      <form dw-form [formGroup]="addCategoryForm" (ngSubmit)="addCategorySave()" class="dw-f-addmenu-block">
+        <div dw-col [dwSpan]="19" class="dw-f-menu-card">
+          <dw-card>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-name' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24">
+                <input dw-input formControlName="addCategoryName">
+              </dw-form-control>
+            </dw-form-item>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-iconClass' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24">
+                <div dw-row>
+                  <div dw-col [dwSpan]="21">
+                    <dw-input-group [dwSuffix]="addCategoryIconClassSuffixButton">
+                      <input dw-input formControlName="addCategoryIconClass">
+                    </dw-input-group>
+                    <ng-template #addCategoryIconClassSuffixButton>
+                      <a *ngIf="addCategoryForm.controls['addCategoryIconClass'].value && addCategoryForm.controls['addCategoryIconClass'].value !== ''"
+                        (click)="iconClassDelete(addCategoryForm.controls['addCategoryIconClass'])">
+                        <i dw-icon dwType="close" dwTheme="outline"></i>
+                      </a>
+                    </ng-template>
+                  </div>
+                  <div dw-col [dwSpan]="3">
+                    <div class="dw-f-sysmenu-iconpreview" (click)="iconClassSelect(addCategoryForm.controls['addCategoryIconClass'])">
+                      <!-- <i class="{{addCategoryForm.controls['addCategoryIconClass'].value}}"></i> -->
+                      <dw-icon-element [dwIconClass]="addCategoryForm.controls['addCategoryIconClass'].value"></dw-icon-element>
+                    </div>
+                  </div>
+                </div>
+              </dw-form-control>
+            </dw-form-item>
+            <dw-form-item>
+              <dw-form-control [dwSpan]="24">
+                <label dw-checkbox formControlName="addCategoryDefaultExpand">
+                  <span>{{ 'dw-sys-menu-defaultExpand' | translate }}</span>
+                </label>
+              </dw-form-control>
+            </dw-form-item>
+          </dw-card>
+        </div>
+        <div dw-col [dwSpan]="5">
+          <div dw-row>
+            <div dw-col [dwSpan]="24" class="dw-f-btn-box">
+              <!-- 表單按鈕 -->
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button dwType="primary" class="dw-f-sysmenu-edit-button" [disabled]="!addCategoryForm.valid">
+                    {{ 'dw-sys-menu-add' | translate }} <i dw-icon dwType="plus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button type="button" class="dw-f-sysmenu-edit-button" [disabled]="checkedNodeList.length===0"
+                    (click)="treeDelete()">
+                    {{ 'dw-sys-menu-delete' | translate }} <i dw-icon dwType="minus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+              <!-- <br>
+                    <dw-form-item dw-row [dwGutter]="{ xs: 1, sm: 3, md: 5, lg: 8, xl: 8, xxl: 8 }" class="dw-f-bottom-btn-bar">
+                      <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                        <button dw-button dwType="primary" class="dw-f-sysmenu-edit-button"><i dw-icon dwType="arrow-up" dwTheme="outline"></i></button>
+                      </div>
+                    </dw-form-item>
+                    <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                      <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                        <button dw-button dwType="primary" class="dw-f-sysmenu-edit-button"><i dw-icon dwType="arrow-down" dwTheme="outline"></i></button>
+                      </div>
+                    </dw-form-item> -->
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- 類型：作業 -->
+    <div dw-row [hidden]="addMenuType !== 'program'">
+      <div class="dw-f-addmenu-block">
+        <div dw-col [dwSpan]="19" class="dw-f-menu-card">
+          <dw-card>
+            <div class="dw-f-program-search">
+              <dw-input-group dwSearch [dwAddOnAfter]="programSearchButton">
+                <input type="text" dw-input [(ngModel)]="programSearchValue">
+              </dw-input-group>
+            </div>
+            <ng-template #programSearchButton>
+              <button dw-button dwType="primary" dwSearch (click)="programSearch()">
+                <i dw-icon dwType="search" dwTheme="outline"></i>
+              </button>
+            </ng-template>
+
+            <dw-checkbox-wrapper (dwOnChange)="programOptionChecked($event)" class="dw-f-checkbox-list">
+              <div dw-row *ngFor="let programOption of programOptions; let idx = index" class="dw-f-checkbox-list-li">
+                <div dw-col [dwSpan]="24" *ngIf="programOption.isMatched">
+                  <label dw-checkbox dwValue="{{programOption.key}}" [ngModel]="programOption.check">
+                    {{programOption.name}}
+                  </label>
+                </div>
+              </div>
+            </dw-checkbox-wrapper>
+          </dw-card>
+        </div>
+        <div dw-col [dwSpan]="5">
+          <div dw-row>
+            <div dw-col [dwSpan]="24" class="dw-f-btn-box">
+              <!-- 表單按鈕 -->
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button dwType="primary" class="dw-f-sysmenu-edit-button" [disabled]="checkedProgramOption.length===0"
+                    (click)="addProgramSave()">
+                    {{ 'dw-sys-menu-add' | translate }} <i dw-icon dwType="plus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button type="button" class="dw-f-sysmenu-edit-button" [disabled]="checkedNodeList.length===0"
+                    (click)="treeDelete()">
+                    {{ 'dw-sys-menu-delete' | translate }} <i dw-icon dwType="minus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 類型：外部連結 -->
+    <div dw-row [hidden]="addMenuType !== 'externalUrl'">
+      <form dw-form [formGroup]="addExternalUrlForm" (ngSubmit)="addExternalUrlSave()" class="dw-f-addmenu-block">
+        <div dw-col [dwSpan]="19" class="dw-f-menu-card">
+          <dw-card>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-name' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24">
+                <input dw-input formControlName="addExternalUrlName">
+              </dw-form-control>
+            </dw-form-item>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-linkURL' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24" [dwErrorTip]="addExternalUrlUrlErrorTpl">
+                <input dw-input formControlName="addExternalUrlUrl" pattern="https?://.+" placeholder="http://, https://">
+                <ng-template #addExternalUrlUrlErrorTpl>
+                  <ng-container
+                    *ngIf="(addExternalUrlForm.get('addExternalUrlUrl').touched || addExternalUrlForm.get('addExternalUrlUrl').dirty) && !addExternalUrlForm.get('addExternalUrlUrl').errors?.required && addExternalUrlForm.get('addExternalUrlUrl').errors?.pattern">
+                    {{ 'dw-sys-menu-linkURL' | translate }} http://, https://
+                  </ng-container>
+                </ng-template>
+              </dw-form-control>
+            </dw-form-item>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-openMode' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24">
+                <dw-select style="width: 100%" formControlName="addExternalUrlOpenMode">
+                  <dw-option *ngFor="let option of openModeOptions" [dwLabel]="('dw-sys-menu-openMode-' + option) | translate"
+                    [dwValue]="option"></dw-option>
+                </dw-select>
+              </dw-form-control>
+            </dw-form-item>
+            <dw-form-item>
+              <dw-form-label class="dw-f-sysmenu-label-left" [dwSpan]="24">
+                {{ 'dw-sys-menu-iconClass' | translate }}
+              </dw-form-label>
+              <dw-form-control [dwSpan]="24">
+                <div dw-row>
+                  <div dw-col [dwSpan]="21">
+                    <dw-input-group [dwSuffix]="addExternalUrlIconClassSuffixButton">
+                      <input dw-input formControlName="addExternalUrlIconClass">
+                    </dw-input-group>
+                    <ng-template #addExternalUrlIconClassSuffixButton>
+                      <a *ngIf="addExternalUrlForm.controls['addExternalUrlIconClass'].value && addExternalUrlForm.controls['addExternalUrlIconClass'].value !== ''"
+                        (click)="iconClassDelete(addExternalUrlForm.controls['addExternalUrlIconClass'])">
+                        <i dw-icon dwType="close" dwTheme="outline"></i>
+                      </a>
+                    </ng-template>
+                  </div>
+                  <div dw-col [dwSpan]="3">
+                    <div class="dw-f-sysmenu-iconpreview" (click)="iconClassSelect(addExternalUrlForm.controls['addExternalUrlIconClass'])">
+                      <!-- <i class="{{addExternalUrlForm.controls['addExternalUrlIconClass'].value}}"></i> -->
+                      <dw-icon-element [dwIconClass]="addExternalUrlForm.controls['addExternalUrlIconClass'].value"></dw-icon-element>
+                    </div>
+                  </div>
+                </div>
+              </dw-form-control>
+            </dw-form-item>
+          </dw-card>
+        </div>
+
+        <div dw-col [dwSpan]="5">
+          <div dw-row>
+            <div dw-col [dwSpan]="24" class="dw-f-btn-box">
+              <!-- 表單按鈕 -->
+
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button dwType="'primary'" class="dw-f-sysmenu-edit-button" [disabled]="!addExternalUrlForm.valid">
+                    {{ 'dw-sys-menu-add' | translate }} <i dw-icon dwType="plus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+              <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+                <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+                  <button dw-button type="button" class="dw-f-sysmenu-edit-button" [disabled]="checkedNodeList.length===0"
+                    (click)="treeDelete()">
+                    {{ 'dw-sys-menu-delete' | translate }} <i dw-icon dwType="minus" dwTheme="outline"></i>
+                  </button>
+                </div>
+              </dw-form-item>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- /. 左 -->
+  <!-- 右 -->
+  <div class="dw-f-right-block">
+    <div dw-row class="dw-f-padding-bottom">
+      <!-- 語系選項 -->
+      <div dw-col [dwSpan]="24">
+        <label style="padding-left: 8px; padding-right: 8px;">{{'dw-sys-menu-menuPreview' | translate}}：</label>
+        <dw-select [(ngModel)]="languageOption" (ngModelChange)="switchLanguage()">
+          <dw-option *ngFor="let language of languageList" [dwLabel]="language.label" [dwValue]="language.value">
+          </dw-option>
+        </dw-select>
+      </div>
+    </div>
+    <!-- 新選單項目 -->
+    <div dw-row>
+      <div dw-col [dwSpan]="24" class="dw-f-new-menu">
+        <dw-card>
+          <dw-tree #menuTreeView [(dwData)]="menuTreeNodes" [dwSearchValue]="searchValue" [dwCheckable]="true"
+            [dwBeforeDrop]="menuTreeBeforeDrop" [dwExpandAll]="true" (dwOnSearchNode)="mouseAction('search',$event)"
+            (dwCheckBoxChange)="menuTreeCheckBoxChange()" (dwClick)="menuTreeOnClick($event)" (dwDblClick)="mouseAction('dblclick',$event)"
+            (dwExpandChange)="mouseAction('expand',$event)" [dwDraggable]="true" (dwOnDragStart)="menuTreeOnDragStart($event)"
+            (dwOnDragEnter)="mouseAction('enter',$event)" (dwOnDragLeave)="mouseAction('leave', $event)" (dwOnDrop)="menuTreeOnDrop($event)"
+            (dwOnDragEnd)="mouseAction('end', $event)">
+            <ng-template #dwTreeTemplate let-node>
+              <span class="dw-f-sysmenu-node" draggable="true" aria-grabbed="true" [class.dw-f-sysmenu-node-active]="activedNode?.key===node.key">
+                <span class="dw-f-menu-name">
+                  <!-- <i class="{{node?.origin?.iconClass}} dw-f-sysmenu-treeicon"></i> -->
+                  <dw-icon-element [dwIconClass]="node?.origin?.iconClass + ' dw-f-sysmenu-treeicon'"></dw-icon-element>
+                  <span>{{node.origin?.name}}</span>
+                </span>
+                <div class="dw-f-menu-edit">
+                  <a (click)="menuTreeNodeEdit(node)">{{'dw-sys-menu-edit' | translate}}</a>
+                  <dw-divider dwType="vertical"></dw-divider>
+                  <a (click)="treeDelete(node)">{{'dw-sys-menu-delete' | translate}}</a>
+                </div>
+              </span>
+            </ng-template>
+          </dw-tree>
+        </dw-card>
+      </div>
+    </div>
+    <!-- /. 新選單項目 -->
+  </div>
+  <!-- /. 右 -->
+</dw-content>

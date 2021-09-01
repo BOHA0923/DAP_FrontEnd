@@ -1,0 +1,12 @@
+{
+  "select-modal-mock-data-modalTitle": "訂單明細",
+  "select-modal-mock-data-orderId": "訂單編號",
+  "select-modal-mock-data-orderDate": "訂單日期",
+  "select-modal-mock-data-status": "狀態碼",
+  "select-modal-mock-data-customerId": "客戶編號",
+  "select-modal-mock-data-customerName": "客戶名稱",
+  "select-modal-mock-data-orderAddr": "送貨地址",
+  "select-modal-mock-data-total": "訂單總額",
+  "select-modal-mock-data-salesmanName": "業務員姓名",
+  "select-modal-mock-data-gender": "業務員性別"
+}

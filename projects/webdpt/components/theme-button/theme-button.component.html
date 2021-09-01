@@ -1,0 +1,40 @@
+<ng-template #contentTemplate>
+    <div class="theme-group"  [style.width.px]="dwPopWidth">
+      <ul dw-menu class="theme-list" >
+          <li [style.width.px]="listWidth"  *ngFor="let theme of themeList" [ngClass]="{'active': nowThemeStyleId===theme.id}" (click)="changeTheme(theme)" title={{theme.description||theme.id}}>
+            <span *ngIf="(theme.id==='default')" class="theme-default"><div *ngIf="dwShowDesc">{{(theme.description||theme.id)}}</div></span>
+            <span *ngIf="(theme.id!=='default')" class={{theme.id}}><div *ngIf="dwShowDesc">{{(theme.description||theme.id)}}</div></span>
+            <i dw-icon dwType="check-circle" dwTheme="outline" *ngIf="nowThemeStyleId!==theme.id"></i>
+            <i dw-icon dwType="check-circle" dwTheme="fill" *ngIf="nowThemeStyleId===theme.id"></i>
+          </li>
+    </ul>
+    </div>
+  </ng-template>
+  <button
+    *ngIf="!componentTemplate"
+    dw-button
+    dw-popover
+    [dwLoading]="dwLoading"
+    [dwGhost]="dwGhost"
+    [dwType]="dwType"
+    [dwShape]="dwShape"
+    [title]="dwTitle"
+    [dwPopoverPlacement]="dwPlacement"
+    [dwPopoverTrigger]="dwTrigger"
+    [dwPopoverContent]="contentTemplate"
+    [dwSize]="dwSize"
+    [dwBlock]="dwBlock"
+  >
+     <i dw-icon dwType="skin" dwTheme="outline"></i>
+  </button>
+  <div
+    *ngIf="componentTemplate"
+    dw-popover
+    [attr.title]="dwTitle"
+    [dwPopoverPlacement]="dwPlacement"
+    [dwPopoverTrigger]="dwTrigger"
+    [dwPopoverContent]="contentTemplate"
+    style="cursor: pointer;"
+    >
+    <ng-container *ngTemplateOutlet="componentTemplate"></ng-container>
+  </div>

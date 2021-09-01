@@ -1,0 +1,45 @@
+// 字型 v9.2.2
+@font-family: -apple-system,
+BlinkMacSystemFont,
+'Segoe UI',
+Roboto,
+'Helvetica Neue',
+Arial,
+'Noto Sans',
+sans-serif,
+'Apple Color Emoji',
+'Segoe UI Emoji',
+'Segoe UI Symbol',
+'Noto Color Emoji',
+'PingFang SC', // 平台再加回舊字型
+'Hiragino Sans GB', // 平台再加回舊字型
+'Microsoft YaHei', // 平台再加回舊字型
+Helvetica; // 平台再加回舊字型
+// ---------------------------------------------------------
+// 顏色
+// ---------------------------------------------------------
+@theme-color: #1890ff;
+@iframe-finereport-background-color: unset; // 帆軟報表預設背景色
+@color-link: @theme-color;
+@color-hover: darken(@color-link, 20%);
+@color-tip: #c00;
+// ---------------------------------------------------------
+// treemenu
+// ---------------------------------------------------------
+@dw-treemenu-left-block: 11.25rem; // treemenu 定義左邊樹狀選單寬度
+// ---------------------------------------------------------
+// Layout選單寬度變數 凍結右移對應位置
+// ---------------------------------------------------------
+@dw-f-siderWidth: 200px;
+@dw-f-siderCollapsedWidt: 72px;
+@menu-collapsed-width: 72px;
+// 高度變數
+@dw-f-header-h: 42px;
+@dw-f-tabbar-h: 48px;
+// @dw-f-footer-h: 28px;
+// ---------------------------------------------------------
+//  主題色系  |   //  變更主題色 變數 @theme-color: 自訂色;
+// ---------------------------------------------------------
+@primary-color: @theme-color;
+@lighten-color: lighten(@theme-color, 40%);
+@dark-color: darken(@theme-color, 25%);

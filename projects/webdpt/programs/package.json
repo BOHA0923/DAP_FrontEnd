@@ -1,0 +1,23 @@
+{
+  "name": "@webdpt/programs",
+  "version": "3.0.0+LTS.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11",
+    "web-animations-js": "^2.3.2",
+    "classlist.js": "^1.1.20150312"
+  },
+  "main": "bundles/programs.umd.js",
+  "module": "./fesm5/programs.js",
+  "es2015": "./fesm2015/programs.js",
+  "esm5": "./esm5/programs.js",
+  "esm2015": "./esm2015/programs.js",
+  "fesm5": "./fesm5/programs.js",
+  "fesm2015": "./fesm2015/programs.js",
+  "typings": "programs.d.ts",
+  "metadata": "programs.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

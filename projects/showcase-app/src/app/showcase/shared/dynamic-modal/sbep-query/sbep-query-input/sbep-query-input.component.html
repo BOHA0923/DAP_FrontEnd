@@ -1,0 +1,11 @@
+<dw-input-group dwSearch [dwAddOnAfter]="iconSearch">
+  <dw-select style="width: 100%" [(ngModel)]="selected" dwMode="multiple" [compareWith]="compareWith" (ngModelChange)="ngModelChange($event)">
+    <dw-option *ngFor="let items of selected" [dwLabel]="items.name" [dwValue]="items"></dw-option>
+  </dw-select>
+</dw-input-group>
+
+<ng-template #iconSearch>
+  <button dw-button type="button" dwType="primary" dwSearch (click)="openWin()">
+    <i dw-icon dwType="search" dwTheme="outline"></i>
+  </button>
+</ng-template>

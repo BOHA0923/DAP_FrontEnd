@@ -1,0 +1,114 @@
+<dw-content class="dw-f-input-listwin">
+<form dw-form>
+  <div dw-row [dwGutter]="24">
+    <!-- 接後端 - 服務控制分頁 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-input-listwin-title-1</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-input</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixDemoOrder">
+            <dw-select style="width: 100%" [(ngModel)]="demoOrder" dwMode="multiple" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of demoOrder" [dwLabel]="option" [dwValue]="option"></dw-option>
+            </dw-select>
+            <!-- <input dw-input placeholder="input search text" [(ngModel)]="demoOrder" name="demoOrder"> -->
+          </dw-input-group>
+          <ng-template #suffixDemoOrder>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openDemoOrderWin($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-selected</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          {{demoOrder| json}}
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+    <!--  資料一次全帶入: ng-zrror 的 Table 控制分頁 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-input-listwin-title-2</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-input</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixMockData">
+            <dw-select style="width: 100%" [(ngModel)]="mockData" dwMode="multiple" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of mockData" [dwLabel]="option" [dwValue]="option"></dw-option>
+            </dw-select>
+            <!-- <input dw-input placeholder="input search text" [(ngModel)]="mockData" name="mockData"> -->
+          </dw-input-group>
+          <ng-template #suffixMockData>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openMockDataWin($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-selected</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          {{mockData| json}}
+        </dw-form-control>
+      </dw-form-item>
+
+    </div>
+  </div>
+
+  <div dw-row [dwGutter]="24">
+    <!-- 開窗元件枚舉呈現值(標準開窗，無法定制字段的格式化，例如布爾值字段，數據為枚舉值的字段，需要進行一些簡單的格式化) -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-input-listwin-title-3</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-input</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixEnumData">
+            <dw-select style="width: 100%" [(ngModel)]="enumData" dwMode="multiple" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of enumData" [dwLabel]="option" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixEnumData>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openEnumDataWin($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+          <span translate>dw-input-listwin-selected</span>
+        </dw-form-label>
+        <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+          {{enumData| json}}
+        </dw-form-control>
+      </dw-form-item>
+
+    </div>
+
+  </div>
+
+</form>
+</dw-content>

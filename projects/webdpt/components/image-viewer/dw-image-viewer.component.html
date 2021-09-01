@@ -1,0 +1,37 @@
+<div class="view-package">
+  <div class="view-tooltip" [ngStyle]="toolbarStyle" *ngIf="fileSrcDataUrl">
+    <a *ngIf="viewerAction.dwPrevious.show" [ngClass]="{'disabled':viewerAction.dwPrevious.disabled}" (click)="!viewerAction.dwPrevious.disabled && previous()" title="{{viewerAction.dwPrevious.title}}"><i dw-icon dwType="left" dwTheme="outline" ></i></a>
+    <a *ngIf="viewerAction.dwNext.show" [ngClass]="{'disabled':viewerAction.dwNext.disabled}" (click)="!viewerAction.dwNext.disabled && next()" title="{{viewerAction.dwNext.title}}"><i dw-icon dwType="right" dwTheme="outline" ></i></a>
+    <a *ngIf="viewerAction.dwZoomIn.show" [ngClass]="{'disabled':viewerAction.dwZoomIn.disabled}" (click)="!viewerAction.dwZoomIn.disabled && zoomIn()"  title="{{viewerAction.dwZoomIn.title}}"><i dw-icon dwType="zoom-in" dwTheme="outline"></i> </a>
+    <a *ngIf="viewerAction.dwZoomOut.show" [ngClass]="{'disabled':viewerAction.dwZoomOut.disabled}" (click)="!viewerAction.dwZoomOut.disabled && zoomOut()"  title="{{viewerAction.dwZoomOut.title}}"><i dw-icon dwType="zoom-out" dwTheme="outline"></i> </a>
+    <a *ngIf="viewerAction.dwRotateRight.show" [ngClass]="{'disabled':viewerAction.dwRotateRight.disabled}" (click)="!viewerAction.dwRotateRight.disabled && rotateRight()"  title="{{viewerAction.dwRotateRight.title}}"><i dw-icon dwType="redo" dwTheme="outline"></i> </a>
+    <a *ngIf="viewerAction.dwRotateLeft.show" [ngClass]="{'disabled':viewerAction.dwRotateLeft.disabled}" (click)="!viewerAction.dwRotateLeft.disabled && rotateLeft()"  title="{{viewerAction.dwRotateLeft.title}}"><i dw-icon dwType="undo" dwTheme="outline"></i> </a>
+    <a *ngIf="viewerAction.dwResetZoom.show" [ngClass]="{'disabled':viewerAction.dwResetZoom.disabled}" (click)="!viewerAction.dwResetZoom.disabled && resetZoom()"  title="{{viewerAction.dwResetZoom.title}}"><i dw-icon dwType="column-width" dwTheme="outline"></i> </a>
+    <a *ngIf="viewerAction.dwOriginalSize.show" [ngClass]="{'disabled':viewerAction.dwOriginalSize.disabled}" (click)="!viewerAction.dwOriginalSize.disabled && originalSize()"  title="{{viewerAction.dwOriginalSize.title}}" style="padding-top:-5px">
+      <div class="icon-div"></div>
+    </a>
+    <a *ngIf="viewerAction.dwFullScreen.show" [ngClass]="{'disabled':viewerAction.dwFullScreen.disabled}" (click)="!viewerAction.dwFullScreen.disabled && fullScreen()" title="{{viewerAction.dwFullScreen.title}}"><i dw-icon dwType="fullscreen" dwTheme="outline"></i></a>
+    <a *ngIf=false title="{{'dw-sys-menu-edit'|translate}}" ><i dw-icon dwType="edit" dwTheme="fill" ></i></a>
+    <a *ngIf="viewerAction.dwDownload.show" [ngClass]="{'disabled':viewerAction.dwDownload.disabled || isDownLoad}"  (click)="!viewerAction.dwDownload.disabled && !isDownLoad && download()" title="{{viewerAction.dwDownload.title}}"  >
+      <i dw-icon dwType="download" dwTheme="outline" *ngIf="!isDownLoad"></i>
+      <i dw-icon dwType="loading" dwTheme="outline" *ngIf="isDownLoad"></i>
+    </a>
+  </div>
+  <div class="description" [ngStyle]="titleStyle">
+    <span>{{title ? title: (name ? name : fileSrcDataUrl)}}</span>
+  </div>
+  <div class="view-container" #viewContainer [ngStyle]="dwContainerStyle">
+    <div class="other-file" *ngIf="!isImage&&!isVideo">
+      <dw-image-viewer-file-icon [mimeType]="type" [fileIconColor]="fileIconColor?fileIconColor:null"></dw-image-viewer-file-icon>
+    </div>
+    <div *ngIf='isVideo && type' class="video-type">
+      <video controls [src]="fileSrcDataUrl">
+        <!-- <source [src]="fileSrc" [type]="videoMimeType"> -->
+        Your browser does not support HTML video.
+      </video>
+    </div>
+    <!-- <div class="arrow">
+      <a class="prev" (click)="prevImage()"><i dw-icon dwType="left" dwTheme="outline" ></i></a>
+      <a class="next" (click)="nextImage()"><i dw-icon dwType="right" dwTheme="outline" ></i></a>
+    </div> -->
+</div>

@@ -1,0 +1,60 @@
+<dw-spin [dwSpinning]="loadingMask.spinning" [dwSize]="'default'" [dwTip]="loadingMask.tip"
+  [dwDelay]="loadingMask.delay">
+
+  <div class="dw-f-menu-drawer">
+    <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{$implicit:menuList}"></ng-container>
+  </div>
+
+  <ng-template #recursiveListTmpl let-list>
+    <ng-container *ngFor="let menuItem of list">
+      <ng-container *ngIf="menuItem.level === 1">
+        <div class="dw-f-menu-drawer-item">
+          <div *ngIf="menuItem.child.length === 0" (click)="onClickItem(menuItem)">
+            <a [ngClass]="{'dw-f-action-disable': menuItem.disabled}" class="dw-f-menu-drawer-title">
+              <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context:{$implicit:menuItem}">
+              </ng-container>
+            </a>
+          </div>
+          <div *ngIf="menuItem.child.length > 0">
+            <div [ngClass]="{'dw-f-action-disable': menuItem.disabled}" class="dw-f-menu-drawer-title"
+              [ngStyle]="{'padding-left': menuItem.level >= 3 ? '24px' : '0px'}">
+              <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context:{$implicit:menuItem}">
+              </ng-container>
+            </div>
+            <ul>
+              <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{$implicit:menuItem.child}"></ng-container>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="menuItem.level !== 1">
+        <li *ngIf="menuItem.child.length === 0" (click)="onClickItem(menuItem)">
+          <a [ngClass]="{'dw-f-action-disable': menuItem.disabled}">
+            <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context:{$implicit:menuItem}">
+            </ng-container>
+          </a>
+        </li>
+        <li *ngIf="menuItem.child.length > 0">
+          <a [ngClass]="{'dw-f-action-disable': menuItem.disabled}" title
+            [ngStyle]="{'padding-left': menuItem.level >= 3 ? '24px' : '0px'}">
+            <ng-container *ngTemplateOutlet="dwRecursiveMenuItemSpanTemplate; context:{$implicit:menuItem}">
+            </ng-container>
+          </a>
+          <ul>
+            <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{$implicit:menuItem.child}"></ng-container>
+          </ul>
+        </li>
+      </ng-container>
+
+    </ng-container>
+  </ng-template>
+
+  <ng-template #dwRecursiveMenuItemSpanTemplate let-item>
+    <dw-icon-element [dwIconClass]="item.iconClass"></dw-icon-element>
+    <i *ngIf="!item.iconClass" [ngClass]="'dw-non-icon'"></i>
+    <span class="dw-f-menu-drawer-item-span">
+      <dw-program-title [titleKey]="menuPre + item.id" [programId]="item.programId"></dw-program-title>
+    </span>
+  </ng-template>
+</dw-spin>

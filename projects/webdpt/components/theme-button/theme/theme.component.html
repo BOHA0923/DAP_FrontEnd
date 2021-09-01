@@ -1,0 +1,44 @@
+<!-- 複製ng-quickSilver dw-popover.component.html -->
+<ng-content></ng-content>
+<ng-template #overlay="cdkConnectedOverlay" cdkConnectedOverlay [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayHasBackdrop]="_hasBackdrop" (backdropClick)="hide()" (detach)="hide()" (positionChange)="onPositionChange($event)"
+  [cdkConnectedOverlayPositions]="_positions" [cdkConnectedOverlayOpen]="visible$ | async">
+  <div class="ant-popover" [ngClass]="_classMap" [ngStyle]="dwOverlayStyle" [@fadeAnimation]="''+(visible$ | async)"
+    (@fadeAnimation.done)="_afterVisibilityAnimation($event)">
+    <div class="ant-popover-content">
+      <div class="ant-popover-arrow"></div>
+      <div class="ant-popover-inner">
+        <div class="ant-popover-title" *ngIf="dwTitle">
+          <ng-container *ngIf="isTitleString; else titleTemplate">{{ dwTitle }}</ng-container>
+          <ng-template #titleTemplate>
+            <ng-template [ngTemplateOutlet]="dwTitle"></ng-template>
+          </ng-template>
+        </div>
+        <div class="ant-popover-inner-content">
+          <!-- <ng-container *ngIf="isContentString; else contentTemplate">{{ dwContent }}</ng-container>
+          <ng-template #contentTemplate>
+            <ng-template [ngTemplateOutlet]="dwContent"></ng-template>
+          </ng-template> -->
+          <div class="theme-group" [style.width.px]="dwPopWidth">
+            <ul dw-menu class="theme-list">
+              <!-- <li [style.width.px]="listWidth" *ngFor="let theme of themeList" [ngClass]="{'active': nowThemeStyleId===theme.id}"
+                (click)="changeTheme(theme)" title={{theme.description||theme.id}}> -->
+                <li [style.width.px]="listWidth" *ngFor="let theme of themeList" [ngClass]="{'active': nowThemeStyleId===theme.id}"
+                (click)="changeTheme(theme)" >
+                <span *ngIf="(theme.id==='default')" class="theme-default">
+                  <div *ngIf="dwShowDesc">{{(theme.description||theme.id)}}</div>
+                </span>
+                <span *ngIf="(theme.id!=='default')" class={{theme.id}}>
+                  <div *ngIf="dwShowDesc">{{(theme.description||theme.id)}}</div>
+                </span>
+                <i dw-icon dwType="check-circle" dwTheme="outline" *ngIf="nowThemeStyleId!==theme.id"></i>
+                <i dw-icon dwType="check-circle" dwTheme="fill" *ngIf="nowThemeStyleId===theme.id"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

@@ -1,0 +1,55 @@
+<dw-form-item [dwGutter]="12">
+  <dw-form-label [dwSpan]="4">編號</dw-form-label>
+  <dw-form-control [dwSpan]="8">
+    <input dw-input readonly [(ngModel)]="id"/>
+  </dw-form-control>
+
+  <dw-form-label [dwSpan]="4">背景色</dw-form-label>
+  <dw-form-control [dwSpan]="8">
+    <input type="color" dw-input readonly [(ngModel)]="backgroundColor"/>
+  </dw-form-control>
+</dw-form-item>
+
+<dw-form-item [dwGutter]="12">
+  <dw-form-label [dwSpan]="4">主旨</dw-form-label>
+  <dw-form-control [dwSpan]="20">
+    <input dw-input [(ngModel)]="title"/>
+  </dw-form-control>
+</dw-form-item>
+
+<dw-form-item [dwGutter]="12">
+  <dw-form-label [dwSpan]="4">開始日期</dw-form-label>
+  <dw-form-control [dwSpan]="6">
+    <dw-date-picker dwShowTime dwFormat="yyyy-MM-dd HH:mm" [(ngModel)]="start"></dw-date-picker>
+  </dw-form-control>
+
+  <dw-form-label [dwSpan]="3">結束日期</dw-form-label>
+  <dw-form-control [dwSpan]="6">
+    <dw-date-picker dwShowTime dwFormat="yyyy-MM-dd HH:mm" [(ngModel)]="end"></dw-date-picker>
+  </dw-form-control>
+
+  <dw-form-control [dwSpan]="3" style="margin-left: 10px;">
+    <label dw-checkbox [(ngModel)]="allDay">整天</label>
+  </dw-form-control>
+</dw-form-item>
+
+<dw-form-item [dwGutter]="12">
+  <dw-form-label [dwSpan]="4">描述</dw-form-label>
+  <dw-form-control [dwSpan]="20">
+    <textarea [(ngModel)]="description" dw-input [dwAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+  </dw-form-control>
+</dw-form-item>
+
+<dw-form-item [dwGutter]="12">
+  <div dw-col [dwSpan]="4"></div>
+  <dw-form-control [dwSpan]="20">
+    <label dw-checkbox [(ngModel)]="recursiveSetting">週期性設定</label>
+  </dw-form-control>
+</dw-form-item>
+
+<dw-form-item [dwGutter]="12" *ngIf="recursiveSetting === true">
+  <!--  <dw-form-label [dwSpan]="4">週期性設定</dw-form-label>-->
+  <dw-form-control [dwSpan]="24">
+    <dw-job-time-setting dwJobType="RRULE" [(ngModel)]="rruleSetting"></dw-job-time-setting>
+  </dw-form-control>
+</dw-form-item>

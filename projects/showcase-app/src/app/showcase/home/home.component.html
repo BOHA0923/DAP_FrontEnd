@@ -1,0 +1,30 @@
+<!-- 竹寫的 -->
+<div style="padding-right: 24px; padding-left: 24px;">
+  <div dw-row [dwGutter]="{ xs: 0, sm: 0, md: 0, lg: 8, xl: 16, xxl: 16 }">
+    <div dw-col class="gutter-row" dwXs="0" dwSm="0" dwMd="24" dwLg="24" dwXl="24">
+      <dw-card style="padding:0px ; border: 0px; background-color: unset;">
+        <img style="width: 100%; " src="./assets/img/showcase/testbg.svg" />
+      </dw-card>
+    </div>
+    <div dw-col class="gutter-row" dwXs="24" dwSm="24" dwMd="0" dwLg="0" dwXl="0">
+      <dw-card style="padding:0px ; border: 0px; background-color: unset;">
+        <img style="width: 100%; " src="./assets/img/showcase/dapbg.svg" />
+      </dw-card>
+    </div>
+  </div>
+
+  <div dw-row>
+    <ng-container *ngFor="let card of cardList">
+      <div dw-col dwXs="24" dwSm="24" dwMd="12" dwLg="8" dwXl="6" style="padding: 8px; ">
+        <dw-card class="dw-cardList" [dwCover]="coverTemplate" [dwHoverable]="checkSiteUrl(card)" (click)="openSiteUrl(card)">
+          <dw-card-meta [dwTitle]="card.title | translate"></dw-card-meta>
+        </dw-card>
+        <ng-template #coverTemplate>
+          <img class="dw-card-coverTemplate" [alt]="card.title | translate" [src]="card.sampleImage" />
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
+<!-- 竹寫的 -->

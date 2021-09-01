@@ -1,0 +1,31 @@
+.ant-advanced-search-form {
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+.search-form-row {
+  padding-bottom: 15px;
+}
+.search-form-row-label {
+  text-align: right;
+  vertical-align: middle;
+  line-height: 32px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-form-row-label label:after {
+    content: ":";
+    margin: 0 8px 0 2px;
+    position: relative;
+    top: -0.5px;
+}
+
+.number-align {
+  text-align: right;
+}

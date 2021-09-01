@@ -1,0 +1,28 @@
+// dw-f-input-listwin   開窗組件
+.dw-f-input-listwin {
+  margin: 1.25rem;
+  .dw-f-input-listwin-block {
+    padding: 1rem;
+    border-right: 1px dotted #ccc;
+    &:last-child {
+      border-right: none;
+    }
+    .title.ant-form-item-label label {
+      font-size: 1.13rem;
+    }
+  }
+  .dw-f-form-head.dw-f-dynamic-val {
+    padding: 1rem;
+    border-top: .06rem dotted #ccc;
+    margin-top: 1rem;
+  }
+  .dw-f-dynamic-val-info {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .dw-f-dynamic .dw-f-dynamic-block {
+    border-right: none;
+  }
+}

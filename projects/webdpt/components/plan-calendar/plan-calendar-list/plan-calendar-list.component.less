@@ -1,0 +1,39 @@
+.calendar-list-item {
+  position: relative;
+  label {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+  &:hover {
+    .calendar-operators {
+      opacity: 1;
+    }
+    .calendar-list-item-name {
+      width: calc(~'100% - 60px');
+    }
+  }
+  .calendar-operators {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translate(0, -50%);
+    i {
+      font-size: 16px;
+      color: #5f6368;
+      cursor: pointer;
+    }
+    i:first-child {
+      margin-right: 10px;
+    }
+  }
+  .calendar-list-item-name {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(~'100% - 20px');
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

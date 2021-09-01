@@ -1,0 +1,216 @@
+// ---------------------------------------------------------
+// 選單寬度變數 凍結右移對應位置
+//   @dw-f-siderWidth: 300px;
+//   @dw-f-siderCollapsedWidt:60px;
+//   @menu-collapsed-width: 60px;
+// 還要記得改程式那邊的
+// dwWidth = 300;
+// dwCollapsedWidth = 60;
+// ---------------------------------------------------------
+.en_US.dw-f-menusider.ant-layout-sider {
+  @dw-f-siderWidth: 300px;
+  @dw-f-siderCollapsedWidt: 60px;
+  @menu-collapsed-width: 60px;
+  top: 0;
+  bottom: 0; // margin-top: 45px;
+  z-index: 5;
+  .dw-f-menu-right {
+    width: @dw-f-siderWidth;
+    background-color: @menu-dark-bg;
+  }
+  &.ant-layout-sider-collapsed {
+    // 左側浮動選單 寬度改變
+    .dw-f-menu-right {
+      width: @dw-f-siderCollapsedWidt;
+      .ant-menu-inline-collapsed {
+        // 縮小選單寬度
+        width: @dw-f-siderCollapsedWidt;
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------
+// 選單寬度變數 凍結右移對應位置
+// ---------------------------------------------------------
+.en_US.dw-f-header.ant-layout-header {
+  @dw-f-siderWidth: 0px;
+  @dw-f-siderCollapsedWidt: 60px;
+  margin-left: @dw-f-siderWidth;
+  width:~"calc(100% - @{dw-f-siderWidth} + 7px)"; // header 凍結 寬度變更
+}
+
+.en_US.dw-f-content-wp {
+  @dw-f-siderWidth: 300px;
+  @dw-f-siderCollapsedWidt: 60px;
+  .dw-f-tabset-bar [dw-tabs-nav].ant-tabs-bar,
+  .dw-f-tabset-bar [nz-tabs-nav].ant-tabs-bar {
+    // 頁籤凍結
+    left: @dw-f-siderWidth;
+  }
+}
+
+// 選單縮小 header 凍結 寬度變更
+.en_US.dw-f-menusider.ant-layout-sider.ant-layout-sider-collapsed~.dw-f-wrapper .dw-f-header.ant-layout-header {
+  @dw-f-siderCollapsedWidt: 60px;
+  margin-left: @dw-f-siderCollapsedWidt;
+  width:~"calc(100% - @{dw-f-siderCollapsedWidt} + 7px)";
+}
+
+.en_US.dw-f-menusider.ant-layout-sider.ant-layout-sider-collapsed~.dw-f-wrapper .dw-f-tabset-bar [dw-tabs-nav].ant-tabs-bar,
+.en_US.dw-f-menusider.ant-layout-sider.ant-layout-sider-collapsed~.dw-f-wrapper .dw-f-tabset-bar [nz-tabs-nav].ant-tabs-bar {
+  @dw-f-siderCollapsedWidt: 60px;
+  left: @dw-f-siderCollapsedWidt;
+}
+
+.en_US.dw-f-menusider .dw-layout-basic-side-logo {
+  height: 60px;
+  img {
+    padding: 3px;
+  }
+}
+
+// sider 左側選單 文字折行 , 不隱藏, 不固定高度
+// .ant-menu-inline  展開
+// .ant-menu-vertical 縮小的樣式直式
+// .ant-menu-inline-collapsed 縮小的樣式
+// .ant-menu-vertical-left
+// .ant-menu-vertical-right
+// .ant-menu-submenu-popup 縮小的浮動次選單
+.en_US.dw-f-menusider {
+  .ant-menu-submenu-vertical>.ant-menu-submenu-title .ant-menu-submenu-arrow,
+  .ant-menu-submenu-inline>.ant-menu-submenu-title .ant-menu-submenu-arrow {
+    top: 1.5rem;
+  }
+  .ant-menu-inline .ant-menu-submenu {
+    border-bottom: 1px dotted rgba(255, 255, 255, .3);
+  }
+  .ant-menu-inline .ant-menu-item,
+  .ant-menu-inline .ant-menu-submenu-title {
+    display: inline-block;
+    white-space: initial;
+    text-overflow: inherit;
+    line-height: 1.2;
+    height: auto;
+    margin: .05rem 0;
+    padding: .8rem 0;
+    padding-right: 1.63rem;
+    &>span {
+      display: inline-flex;
+    }
+  }
+}
+
+// 縮小選單  ant-menu-vertical ant-menu-inline-collapsed
+.en_US.dw-f-menusider {
+  .ant-menu-inline-collapsed {
+    .ant-menu-submenu-title {
+      text-align: center;
+      .anticon {
+        margin: 0;
+        text-align: center;
+        font-size: 1.25rem;
+      }
+      &>span>span,
+      &>i {
+        display: none;
+      }
+    }
+  }
+}
+
+// 查詢區塊 dw-f-content-wp en_US
+.en_US.dw-f-content-wp .dw-f-search-form-block {
+  dw-form-item.ant-form-item {
+    display: block;
+    .dw-f-label-title,
+    .dw-f-control-data,
+    dw-form-label.ant-form-item-label,
+    dw-form-control.ant-form-item-control-wrapper {
+      width: 100%;
+      text-align: left;
+    }
+    .dw-f-label-title,
+    dw-form-label.ant-form-item-label {
+      line-height: 1;
+      text-align: left;
+    }
+  }
+}
+
+// 單頭
+.dw-f-content-wp.en_US {
+  .dw-f-content-edit .dw-f-form-head dw-form-item.ant-form-item,
+  .dw-f-content-view .dw-f-form-head dw-form-item.ant-form-item,
+  .dw-f-content-view.view dw-form-item.ant-row.ant-form-item {
+    display: block;
+    .dw-f-label-title,
+    .dw-f-control-data {
+      width: 100%;
+      .ant-form-item-control span {
+        line-height: 2.31rem;
+      }
+    }
+    .dw-f-label-title {
+      line-height: 1;
+      text-align: left;
+    }
+  }
+  .dw-f-content-edit .dw-f-form-head,
+  .dw-f-content-view .dw-f-form-head {
+    dw-form-label.ant-form-item-label {
+      display: block;
+      line-height: 1;
+      text-align: left;
+      width: 100%;
+    }
+    dw-form-control.ant-form-item-control-wrapper {
+      width: 100%;
+    }
+  }
+}
+
+.dw-f-content-wp.en_US {
+  word-wrap: break-word;
+  word-break: initial;
+  .ant-calendar-picker {
+    width: 100%;
+  }
+  .dw-f-content-view dw-form-item.ant-row.ant-form-item>span,
+  .dw-f-content-view.view dw-form-item.ant-row.ant-form-item>span {
+    margin-left: 1rem;
+  }
+  dw-table .ant-table-thead>tr>th {
+    word-break: initial;
+  }
+}
+
+// 彈窗裡的 dw-form-item
+.ant-modal-body .en_US dw-form-item.ant-row.ant-form-item {
+  dw-form-label,
+  dw-form-control {
+    text-align: left;
+    line-height: 1;
+    width: 100%;
+  }
+}
+
+// 選單設定  dw-sys-menu
+.en_US.dw-f-left-block .dw-f-btn-box button {
+  padding: 0 12px;
+  width: 5.6rem;
+  text-align: left;
+  span {
+    margin-left: 4px;
+  }
+}
+
+// 忘記密碼
+.en_US .dw-f-newpassword dw-form-label,
+.en_US .dw-f-newpassword dw-form-control,
+.en_US .dw-f-confnewpassword dw-form-label,
+.en_US .dw-f-confnewpassword dw-form-control {
+  width: 100%;
+  text-align: left;
+  line-height: 1;
+}

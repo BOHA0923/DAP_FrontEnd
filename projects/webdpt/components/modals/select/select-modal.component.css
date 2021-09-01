@@ -1,0 +1,15 @@
+.dw-f-pop-tag-select{
+  position: absolute;
+  width: 72%;
+  height: 40px;
+  bottom: 5px;
+  overflow: auto;
+
+}
+.dw-f-pop-tag-select dw-tag.dw-f-tag-s{
+  margin-bottom: 3px;
+  display: inline-block;
+}
+dw-radio-group {
+  width: 100%;
+}

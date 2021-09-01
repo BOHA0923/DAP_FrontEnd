@@ -1,0 +1,42 @@
+<dw-content class="dw-f-dynamic">
+  <form dw-form [formGroup]="validateForm" >
+    <div dw-row [dwGutter]="24" class="dw-f-form-head">
+
+      <div dw-col [dwMd]="24" [dwLg]="12" class="dw-f-dynamic-block" *ngFor="let rows of datasFormGroup">
+        <dw-form-item dw-row>
+          <dw-form-label dw-col [dwSpan]="24" class="title">
+            {{rows.title}}
+          </dw-form-label>
+        </dw-form-item>
+        <dw-form-item dw-row>
+          <dw-form-label dw-col [dwSm]="6" [dwXs]="24">
+            {{'dw-dynamic-listwin-輸入欄位' | translate}}
+          </dw-form-label>
+          <dw-form-control dw-col [dwSm]="18" [dwXs]="24">
+            <app-sbep-query-input
+              formControlName="{{rows.controlName}}"
+              selectWindowId="{{rows.selectWindowId}}"
+              resourceUrl="{{rows.resourceUrl}}"
+              title="{{rows.title}}"
+              multiSelect="{{rows.multiSelect}}"
+              (selectedValue)="onselectedValue($event)"
+            ></app-sbep-query-input>
+            <button dw-button type="button" dwType="primary" (click)="clearValue(rows.controlName)">{{'clear' | translate}}</button>
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+
+    </div>
+    <div dw-row [dwGutter]="24" class="dw-f-form-head dw-f-dynamic-val">
+      <div dw-col [dwSpan]="24">
+        <button dw-button type="button" dwType="primary" (click)="getFormGroupValue()">{{'dw-dynamic-listwin-取值' | translate}}</button>
+      </div>
+    </div>
+    <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info">
+      <div dw-col [dwSpan]="24">
+        {{ formGroupValue | json }}
+      </div>
+    </div>
+  </form>
+
+</dw-content>

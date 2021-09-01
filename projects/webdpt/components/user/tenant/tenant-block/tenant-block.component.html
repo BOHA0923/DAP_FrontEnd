@@ -1,0 +1,30 @@
+<span *ngIf="currTenantList.length > 0" dw-popover [(dwPopoverVisible)]="visibleFromTitle" [dwPopoverContent]="tenantListTemp"
+      dwPopoverTrigger="click" class="dw-f-header-item">
+  <span class="dw-f-layout-header-tenant-icon dw-header-anticon"></span>
+  <span dw-tooltip dwTooltipPlacement="bottom" class="dw-f-text-link">{{userDetail.tenantName}}</span>
+</span>
+<ng-template #tenantListTemp>
+  <ng-container *ngIf="currTenantList.length === 1">
+    <dw-list dwBordered [dwHeader]="headerOneTemp" dwSize="large">
+      <ng-template #headerOneTemp>
+        <i dw-icon dwType="check" dwTheme="outline"></i>{{userDetail.tenantName}}
+      </ng-template>
+    </dw-list>
+  </ng-container>
+
+  <ng-container *ngIf="currTenantList.length > 1">
+    <dw-list [dwDataSource]="currTenantList" [dwHeader]="headerTemp" dwBordered [dwRenderItem]="tenantListTemp"
+      dwSize="large">
+      <ng-template #headerTemp>
+        <i dw-icon dwType="retweet" dwTheme="outline"></i><span translate>dw-tenant-switch-tenant</span>
+      </ng-template>
+      <ng-template #tenantListTemp let-tenantItem>
+        <dw-list-item [dwContent]="itemContent"></dw-list-item>
+        <ng-template #itemContent>
+          <i dw-icon dwType="check" dwTheme="outline" *ngIf="userDetail.tenantSid === tenantItem.tenantSid"></i>
+          <a (click)="changeTenant(tenantItem.tenantSid)">{{tenantItem.tenantName}}</a>
+        </ng-template>
+      </ng-template>
+    </dw-list>
+  </ng-container>
+</ng-template>

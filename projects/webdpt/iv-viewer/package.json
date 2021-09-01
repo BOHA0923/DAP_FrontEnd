@@ -1,0 +1,15 @@
+{
+  "name": "@webdpt/iv-viewer",
+  "version": "2.0.1",
+  "description": "iv-viewer-extra",
+  "main": "iv-viewer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-yadav/iv-viewer.git"
+  },
+  "author": "",
+  "license": "MIT"
+}

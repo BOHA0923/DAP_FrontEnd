@@ -1,0 +1,109 @@
+.view-package {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  .description {
+    order: 1;
+  }
+  .view-tooltip {
+    order: 3
+  }
+  .view-container {
+    order: 2
+  }
+}
+
+.view-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background-color: #000000;
+  .other-file {
+    text-align: center;
+    top: 33%;
+    position: relative;
+  }
+  .video-type {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    video {
+      width: 100%;
+      height: 100%
+    }
+  }
+}
+
+:host ::ng-deep .file-icon-container {
+  i {
+    font-size: 100px;
+  }
+}
+
+.view-tooltip {
+  text-align: center;
+  background-color: #000000;
+  padding: 5px 5px 5px 5px;
+  a {
+    padding-left: 20px;
+    color: #fff;
+    i {
+      font-size: 24px;
+    }
+  }
+  a.disabled {
+    color: #444444;
+    cursor: auto;
+  }
+  .icon-div {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    display: inline-block;
+    bottom: -5px;
+    position: relative;
+    background-image: url('/assets/dw-framework/img/icon/oneone.svg');
+  }
+  a.disabled .icon-div {
+    background-image: url('/assets/dw-framework/img/icon/oneone-disabled.svg');
+  }
+}
+
+.description {
+  text-align: center;
+  background-color: #000;
+  padding: 10px 10px 10px 10px;
+  span {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+  }
+}
+
+.arrow {
+  font-size: 50px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+  .prev {
+    cursor: pointer;
+    left: 20px;
+    position: absolute;
+    height: 32px;
+    margin-top: -66px;
+  }
+  .next {
+    cursor: pointer;
+    right: 20px;
+    position: absolute;
+    height: 32px;
+    margin-top: -66px;
+  }
+}

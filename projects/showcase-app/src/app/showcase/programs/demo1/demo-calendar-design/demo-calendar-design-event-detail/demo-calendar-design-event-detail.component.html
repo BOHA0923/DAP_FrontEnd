@@ -1,0 +1,18 @@
+<dw-plan-calendar-event-detail [(dwVisible)]="isVisible" [dwTitle]="'【Demo】活動詳情'" (dwOnOk)="handleOk($event)"
+  [dwComponentParams]="componentParams">
+
+  <span class="title" *dwReplace="'time-label'">【Demo】{{'dw-plan-calendar-time' | translate}} :</span>
+  <span *dwReplace="'time-value'">
+    {{componentChildByType.eventData.eventInfo.startDatetime | date:'medium'}}&nbsp;~&nbsp;
+    {{componentChildByType.eventData.eventInfo.endDatetime | date:'medium'}}
+  </span>
+
+  <span class="title" *dwReplace="'location-label'">【Demo】{{'dw-plan-calendar-location' | translate}} :</span>
+
+  <!-- 【Demo】修改活動開窗 -->
+  <app-demo-calendar-design-event-modify *dwReplace="'dw-plan-calendar-event-modify'"
+    [(dwVisible)]="componentChildByType.planCalendarEventModifyVisible"
+    (dwOnCancel)="planCalendarEventEditHandleCancel($event)" (dwOnOk)="planCalendarEventEditHandleOk($event)"
+    [calendarSid]="componentChildByType.calendarSid" [eventSid]="componentChildByType.eventSid">
+  </app-demo-calendar-design-event-modify>
+</dw-plan-calendar-event-detail>

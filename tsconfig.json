@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "importHelpers": true,
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@webdpt/framework": [
+        "../projects/webdpt/framework/public-api"
+      ],
+      "@webdpt/framework/*": [
+        "../projects/webdpt/framework/*"
+      ],
+      "@webdpt/components": [
+        "../projects/webdpt/components/public-api"
+      ],
+      "@webdpt/components/*": [
+        "../projects/webdpt/components/*"
+      ],
+      "@webdpt/programs": [
+        "../projects/webdpt/programs/public-api"
+      ],
+      "@webdpt/analytics": [
+        "../projects/webdpt/analytics/index"
+      ],
+      "@webdpt/iv-viewer": [
+        "../projects/webdpt/iv-viewer/iv-viewer.js"
+      ]
+    },
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  }
+}

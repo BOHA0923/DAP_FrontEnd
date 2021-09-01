@@ -1,0 +1,13 @@
+<dw-content class="dw-f-content-list dw-treemenu-wp">
+  <div class="dw-treemenu-left">
+    <div [style.display]="!isViewEvent?'block':'none'" class="dwDivMask"> </div>
+      <dw-tree [(dwData)]="treeMenuData"
+        [dwExpandedKeys]="expandKeys"
+        (dwExpandChange)="expandDataCache($event)"
+        (dwClick)="openDetail($event)">
+      </dw-tree>
+  </div>
+  <div  class="dw-treemenu-right">
+    <app-dw-list [treeItemObserve]="treeItemSubject" (deleteTreeMenu)="doDeleteTreeMenu($event)" (isViewEvent)="doIsViewEvent($event)"></app-dw-list>
+  </div>
+</dw-content>

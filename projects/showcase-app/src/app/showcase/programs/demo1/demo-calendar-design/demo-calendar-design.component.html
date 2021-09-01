@@ -1,0 +1,77 @@
+<div class="plan-calendar-default-header">
+  <div class="plan-calendar-default-header-left">
+    <div>
+      <button dw-button type="button" dwType="default" dwShape="circle"
+        (click)="calendarLeftPanelDisplay = !calendarLeftPanelDisplay">
+        <i *ngIf="!calendarLeftPanelDisplay" dw-icon dwType="menu-unfold" dwTheme="outline"></i>
+        <i *ngIf="calendarLeftPanelDisplay" dw-icon dwType="menu-fold" dwTheme="outline"></i>
+      </button>
+    </div>
+    <div class="plan-calendar-default-header-title calendar-title">{{planCalendarTitleKey | translate}}</div>
+  </div>
+  <div class="flex-col">
+    <dw-plan-calendar-toolbar [defaultViewType]="defaultViewType" (gotoPrevious)="previous()" (gotoNext)="next()"
+      (gotoToday)="today()" (viewMonth)="viewMonth()" (viewWeek)="viewWeek()" (viewDay)="viewDay()"
+      (viewMonthList)="viewMonthList()">
+    </dw-plan-calendar-toolbar>
+  </div>
+</div>
+<div class="panel">
+  <div class="left-panel" *ngIf="calendarLeftPanelDisplay">
+    <!-- 小日曆 -->
+    <dw-plan-calendar-card [selectedDate]="currentDate" (currentDateChange)="changeCurrentDate($event)">
+    </dw-plan-calendar-card>
+    <!-- 行事曆列表 -->
+    <div class="calendar-list">
+      <div class="calendar-title">
+        {{'dw-plan-calendar-list' | translate}}
+
+        <a dw-dropdown [dwDropdownMenu]="menu" [dwTrigger]="'click'">
+          <i dw-icon dwType="plus" dwTheme="outline"></i>
+        </a>
+        <dw-dropdown-menu #menu="dwDropdownMenu">
+          <ul dw-menu>
+            <li dw-menu-item (click)="calendarSubscribe()">{{'dw-plan-calendar-subscribe-calendar' | translate}}</li>
+            <li dw-menu-item (click)="calendarAdd()">{{'dw-plan-calendar-add-calendar' | translate}}</li>
+          </ul>
+        </dw-dropdown-menu>
+      </div>
+      <dw-plan-calendar-list [calendarList]="calendarList" (dwOnCalendarModify)="calendarModify($event)"
+        (dwOnCalendarDelete)="calendarDelete($event)" (dwOnCalendarUnsubscribe)="calendarUnsubscribe($event)"
+        (dwOnCalendarSelect)="calendarSelect($event)">
+      </dw-plan-calendar-list>
+    </div>
+  </div>
+  <div class="main-panel">
+    <!-- full calendar -->
+    <dw-plan-calendar-view [defaultViewType]="defaultViewType" [currentDate]="currentDate"
+      (dateClick)="dateClick($event)" (eventClick)="eventClick($event)">
+    </dw-plan-calendar-view>
+  </div>
+</div>
+
+<!-- 新增行事曆開窗 -->
+<dw-plan-calendar-add [(dwVisible)]="planCalendarAddVisible" (dwOnOk)="planCalendarAddHandleOk($event)"
+  [planCalendarCategory]="planCalendarCategory">
+</dw-plan-calendar-add>
+<!-- 修改行事曆開窗 -->
+<dw-plan-calendar-modify [(dwVisible)]="planCalendarEditVisible" (dwOnOk)="planCalendarEditHandleOk($event)"
+  [planCalendarCategory]="planCalendarCategory" [calendarSid]="planCalendarEditCalendarSid">
+</dw-plan-calendar-modify>
+<!-- 新增活動開窗 -->
+<dw-plan-calendar-event-add [(dwVisible)]="planCalendarEventAddVisible" (dwOnOk)="planCalendarEventAddHandleOk($event)"
+  [date]="planCalendarEventAddClickDate">
+</dw-plan-calendar-event-add>
+<!-- 活動詳情開窗 -->
+<!-- <dw-plan-calendar-event-detail [(dwVisible)]="planCalendarEventDetailVisible"
+  (dwOnOk)="planCalendarEventDetailHandleOk($event)" [dwComponentParams]="planCalendarEventDetailData">
+</dw-plan-calendar-event-detail> -->
+<!-- 訂閱行事曆開窗 -->
+<dw-plan-calendar-subscribe [(dwVisible)]="planCalendarSubscribeVisible"
+  (dwOnOk)="planCalendarSubscribeHandleOk($event)" [planCalendarCategory]="planCalendarCategory">
+</dw-plan-calendar-subscribe>
+
+<!-- 【Demo】活動詳情開窗 -->
+<app-demo-calendar-design-event-detail [(dwVisible)]="planCalendarEventDetailVisible"
+  (dwOnOk)="planCalendarEventDetailHandleOk($event)" [dwComponentParams]="planCalendarEventDetailData">
+</app-demo-calendar-design-event-detail>

@@ -1,0 +1,6 @@
+<ng-container *ngIf="dwType">
+  <i dw-icon [dwType]="dwType" [dwTheme]="dwTheme" [ngClass]="cssClass"></i>
+</ng-container>
+<ng-container *ngIf="!dwType && cssClass">
+  <i [ngClass]="cssClass"></i>
+</ng-container>

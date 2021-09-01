@@ -1,0 +1,28 @@
+<span *ngIf="data.length === 0" class="dw-f-header-item">
+  <i dw-icon dwType="user" class="dw-header-anticon"></i>
+  <span>{{userDetail.userName}}</span>
+</span>
+
+<span *ngIf="data.length > 0" [(dwPopoverVisible)]="visibleFromTitle"
+      dw-popover
+      [dwPopoverContent]="userPersonalizeTemp"
+      dwPopoverTrigger="click"
+      dwPopoverPlacement="bottomRight"
+      class="dw-f-header-item dw-f-text-link">
+  <i dw-icon dwType="user" class="dw-header-anticon"></i>
+  <span>{{userDetail.userName}}</span>
+</span>
+
+<ng-template #userPersonalizeTemp>
+  <dw-list [dwDataSource]="data" [dwRenderItem]="item" [dwItemLayout]="'horizontal'" dwSize="small">
+    <ng-template #item let-item>
+      <dw-list-item>
+        <dw-list-item-meta [dwTitle]="dwTitle">
+          <ng-template #dwTitle>
+            <a (click)="personalize(item.id)">{{item.title | translate}}</a>
+          </ng-template>
+        </dw-list-item-meta>
+      </dw-list-item>
+    </ng-template>
+  </dw-list>
+</ng-template>

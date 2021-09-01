@@ -1,0 +1,12 @@
+{
+  "dw-organize-tree-title": "組織與人員",
+  "dw-organize-tree-org-title": "組織",
+  "dw-organize-tree": "用戶ID與組織ID",
+  "dw-organize-tree-org": "組織ID",
+  "dw-organize-tree-sid": "用戶Sid與組織Sid",
+  "dw-organize-tree-org-sid": "組織Sid",
+  "dw-organize-tree-multiple": "多選",
+  "dw-organize-tree-single": "單選",
+  "dw-organize-tree-data": "取得組織結構清單",
+  "dw-organize-tree-onlyuser": "只選人員"
+}

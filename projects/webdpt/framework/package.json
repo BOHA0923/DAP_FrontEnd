@@ -1,0 +1,23 @@
+{
+  "name": "@webdpt/framework",
+  "version": "3.0.0+LTS.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11",
+    "web-animations-js": "^2.3.2",
+    "classlist.js": "^1.1.20150312"
+  },
+  "main": "bundles/framework.umd.js",
+  "module": "./fesm5/framework.js",
+  "es2015": "./fesm2015/framework.js",
+  "esm5": "./esm5/framework.js",
+  "esm2015": "./esm2015/framework.js",
+  "fesm5": "./fesm5/framework.js",
+  "fesm2015": "./fesm2015/framework.js",
+  "typings": "framework.d.ts",
+  "metadata": "framework.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

@@ -1,0 +1,100 @@
+<dw-modal [(dwVisible)]="isVisible" [dwTitle]="title" (dwOnCancel)="handleCancel()" (dwOnOk)="handleOk()"
+  [dwWidth]="dwWidth" [dwMaskClosable]="false" [dwFooter]="null">
+
+  <ng-container *ngIf="eventPermissions.readDetail, else noViewPermissionTpl">
+    <ng-container *ngTemplateOutlet="hasViewPermissionTpl"></ng-container>
+  </ng-container>
+
+  <ng-template #noViewPermissionTpl>
+    <div class="plan-calendar-event-item plan-calendar-event-item-flex">
+      <span class="schedule-status" [ngStyle]="{'background-color': eventData.eventInfo.color}"></span>
+      <span>{{'dw-plan-calendar-view-busy' | translate}}</span>
+    </div>
+    <div class="plan-calendar-event-item" *dwId="'time-row'">
+      <span class="title" *dwId="'time-label'">{{'dw-plan-calendar-time' | translate}} :</span>
+      <span *dwId="'time-value'">
+        {{eventData.eventInfo.startDatetime}}&nbsp;~&nbsp;{{eventData.eventInfo.endDatetime}}
+      </span>
+      <ng-container *ngIf="eventData.eventInfo.allDay">
+        <span *dwId="'allDay-value'">&nbsp;&nbsp;{{'dw-plan-calendar-allDay' | translate}}</span>
+      </ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #hasViewPermissionTpl>
+    <div class="plan-calendar-event-item plan-calendar-event-item-flex">
+      <span class="schedule-status" [ngStyle]="{'background-color': eventData.eventInfo.color}"></span>
+      <span>{{eventData.eventInfo.summary}}</span>
+    </div>
+    <div class="plan-calendar-event-item" *dwId="'time-row'">
+      <span class="title" *dwId="'time-label'">{{'dw-plan-calendar-time' | translate}} :</span>
+      <span *dwId="'time-value'">
+        {{eventData.eventInfo.startDatetime}}&nbsp;~&nbsp;{{eventData.eventInfo.endDatetime}}
+      </span>
+      <ng-container *ngIf="eventData.eventInfo.allDay">
+        <span *dwId="'allDay-value'">&nbsp;&nbsp;{{'dw-plan-calendar-allDay' | translate}}</span>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="eventData.eventInfo.location">
+      <div class="plan-calendar-event-item" *dwId="'location-row'">
+        <span class="title" *dwId="'location-label'">{{'dw-plan-calendar-location' | translate}} :</span>
+        <span *dwId="'location-value'">{{eventData.eventInfo.location}}</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="eventData.eventInfo.description">
+      <div class="plan-calendar-event-item">
+        <span class="title">{{'dw-description' | translate}}:</span>
+        <span>{{eventData.eventInfo.description}}</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="eventData.eventInfo.userName">
+      <div class="plan-calendar-event-item">
+        <span class="title">{{'dw-plan-calendar-creater' | translate}} :</span>
+        <span>{{eventData.eventInfo.userName}}</span>
+      </div>
+    </ng-container>
+    <ng-container
+      *ngIf="eventPermissions.readDetail && eventData.eventInfo.attendees && eventData.eventInfo.attendees.length > 0">
+      <div class="plan-calendar-event-item plan-calendar-event-item-flex" *dwId="'attendees-list'">
+        <span class="title">{{'dw-plan-calendar-participants' | translate}} :</span>
+        <div>
+          <span class="attendee" *ngFor="let attend of eventData.eventInfo.attendees"
+            [ngStyle]="{'color': attend.eventStatus === 'CONFIRMED'?'#1890ff':'#666'}">{{attend.attendeeName}}</span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <ng-container *ngIf="eventData.eventInfo.eventStatus === 'TENTATIVE', else editPermissionTpl">
+    <hr class="modal-hr" style="margin-top: 20px;" />
+    <div class="modal-btn">
+      <span>{{'dw-plan-calendar-join-schedule-tip' | translate}}</span>
+      <button dw-button dwType="primary"
+        (click)="eventsUpdateStatus('CONFIRMED')">{{'dw-plan-calendar-join' | translate}}</button>
+      <button dw-button dwType="default"
+        (click)="eventsUpdateStatus('CANCELED')">{{'dw-plan-calendar-notjoin' | translate}}</button>
+    </div>
+  </ng-container>
+
+  <ng-template #editPermissionTpl>
+    <ng-container *ngIf="eventPermissions.modifyDetail || eventPermissions.modifyAttendee || eventPermissions.delete">
+      <hr class="modal-hr" style="margin-top: 20px;" />
+      <div class="modal-btn">
+        <button dw-button dwType="default" dwShape="circle" (click)="modifyEvent()"
+          *ngIf="eventPermissions.modifyDetail || eventPermissions.modifyAttendee">
+          <i dw-icon dwType="edit" dwTheme="outline"></i>
+        </button>
+        <button dw-button dwShape="circle" (click)="deleteEvent()" *ngIf="eventPermissions.delete">
+          <i dw-icon dwType="delete" dwTheme="outline"></i>
+        </button>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <!-- 修改活動開窗 -->
+  <dw-plan-calendar-event-modify *dwId="'dw-plan-calendar-event-modify'" [(dwVisible)]="planCalendarEventModifyVisible"
+    (dwOnCancel)="planCalendarEventEditHandleCancel($event)" (dwOnOk)="planCalendarEventEditHandleOk($event)"
+    [calendarSid]="calendarSid" [eventSid]="eventSid">
+  </dw-plan-calendar-event-modify>
+
+</dw-modal>

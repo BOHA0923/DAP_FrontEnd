@@ -1,0 +1,69 @@
+export interface GoogleAnalyticsSettings {
+  /** array of additional account names (only works for analyticsjs) */
+  additionalAccountNames: string[];
+  userId: any;
+  /** see https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport */
+  transport: string;
+  anonymizeIp: boolean;
+  appId: string;
+  tenantId: string;
+  dimensions: {[key: string]: any};
+}
+
+export interface AppInsightsSettings {
+  userId: string;
+}
+
+export interface GoogleTagManagerSettings {
+  [name: string]: any;
+  userId: any;
+  dimensions: {[key: string]: any};
+}
+
+export interface GoogleGlobalSiteTagSettings {
+  trackingIds: any;
+  userId?: any;
+  anonymizeIp?: boolean;
+  customMap?: { [key: string]: string };
+}
+
+export interface PageTrackingSettings {
+  autoTrackVirtualPages: boolean;
+  basePath: string;
+  excludedRoutes: (string | RegExp)[];
+  /** drop ids from url `/sections/123/pages/456` -> `/sections/pages` */
+  clearIds: boolean;
+  /** drop contents of url after hash marker `/callback#authcode=1234` -> `/callback` */
+  clearHash: boolean;
+  /** drop query params from url `/sections/123/pages?param=456&param2=789` -> `/sections/123/pages` */
+  clearQueryParams: boolean;
+  /** used with clearIds, define the matcher to clear url parts */
+  idsRegExp: RegExp;
+}
+
+export interface DwAnalyticsSettings {
+  pageTracking: Partial<PageTrackingSettings>;
+  /** Disable page tracking */
+  developerMode: boolean;
+  ga: Partial<GoogleAnalyticsSettings>;
+  appInsights: Partial<AppInsightsSettings>;
+  gtm: Partial<GoogleTagManagerSettings>;
+  gst: Partial<GoogleGlobalSiteTagSettings>;
+}
+
+export class DefaultConfig implements DwAnalyticsSettings {
+  pageTracking = {
+    autoTrackVirtualPages: true,
+    basePath: '',
+    excludedRoutes: [],
+    clearIds: false,
+    clearHash: false,
+    clearQueryParams: false,
+    idsRegExp: /^\d+$|^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+  };
+  developerMode = false;
+  ga = {};
+  appInsights = {};
+  gtm = {};
+  gst = {};
+}

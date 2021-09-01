@@ -1,0 +1,131 @@
+// .theme-white {
+// @import '~ng-quicksilver/src/ng-quicksilver.less';
+// @import '../../../ng-quicksilver/src/ng-quicksilver.less';
+// @import '../style.less';
+@import '../../styles.less';
+@theme-color: #159cd1;
+@lighten-color: lighten(@theme-color, 50%);
+@dark-color: darken(@theme-color, 20%);
+// wp
+// @dw-f-header-h: 42px;
+
+  // 覆蓋原有,泡泡訊息才不會縮在一起
+  .ant-popover {
+    position: relative;
+  }
+.dw-f-wrapper {
+  border-left: 1px solid #efefef;
+}
+
+.dw-f-header.ant-layout-header {
+  box-shadow: none;
+  border-bottom: 1px solid #efefef;
+  background-color: rgb(250, 250, 250);
+}
+
+.dw-header-anticon {
+  font-size: .75rem;
+  line-height: .75rem;
+  padding: .13rem;
+}
+
+.dw-layout-basic-side-username-icon {
+  background-color: transparent;
+  color: @theme-color;
+}
+
+.dw-f-menusider.ant-layout-sider {
+  outline: 1px solid #efefef;
+}
+
+// sider menu
+.dw-f-menu-ul::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+@layout-sider-background : #fff;
+@menu-dark-submenu-bg: rgba(255, 255, 255, .93); // 次層背景色
+@menu-dark-bg: rgb(255, 255, 255); // 外層背景色
+@menu-dark-color: @theme-color;
+@menu-dark-highlight-color: @lighten-color;
+@menu-dark-item-active-bg: @theme-color;
+
+.ant-menu-dark {
+
+  .ant-menu-item:hover,
+  .ant-menu-item-active,
+  .ant-menu-submenu-active,
+  .ant-menu-submenu-open,
+  .ant-menu-submenu-selected,
+  .ant-menu-submenu-title:hover {
+    background-color: @dark-color;
+    color: @lighten-color;
+  }
+
+  .ant-menu-inline.ant-menu-sub {
+    box-shadow: none;
+  }
+
+  .ant-menu-submenu-title .ant-menu-submenu-arrow {
+    opacity: 1;
+
+    &:after,
+    &:before {
+      background-color: @theme-color;
+    }
+  }
+
+  .ant-menu-sub {
+    .ant-menu-submenu-title .ant-menu-submenu-arrow {
+      opacity: 1;
+
+      &:after,
+      &:before {
+        background-color: @theme-color;
+      }
+    }
+  }
+}
+
+.ant-menu-submenu-inline {
+  &>.ant-menu-submenu-title:hover {
+    .ant-menu-submenu-arrow {
+
+      &:after,
+      &:before {
+        background: #fff;
+      }
+    }
+  }
+}
+
+.ant-menu-inline {
+
+  .ant-menu-submenu-title,
+  .ant-menu-item {
+    margin: .06rem 0;
+  }
+}
+
+// 滑鼠樣式  selected
+tr.ant-table-row.detailSelected,
+.detailSelected {
+  background-color: @lighten-color;
+}
+
+// 樹狀雙介面
+dw-content.dw-treemenu-wp .dw-treemenu-left dw-tree>ul.ant-tree li {
+
+  .ant-tree-node-content-wrapper.ant-tree-node-selected::before,
+  .ant-tree-node-content-wrapper:hover::before {
+    background-color: @lighten-color;
+  }
+}
+
+// 
+.ant-select-dropdown-menu-item:hover,
+.ant-calendar-date:hover {
+  background-color: @lighten-color;
+}
+
+// }

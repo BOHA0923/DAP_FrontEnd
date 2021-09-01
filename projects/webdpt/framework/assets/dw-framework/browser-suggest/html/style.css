@@ -1,0 +1,485 @@
+body {
+  background-color: #fff;
+  font-family: Microsoft JhengHei, Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.browser-suggest-wrapper {
+  background-color: #09203f;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  height: 100vh;
+  background-image: url(./images/IE8-bg.jpg)\0;
+  background-color: #2d2d2d \9;
+  background-position: 50% 0\9;
+  background-repeat: no-repeat\9;
+  height: 100%\9;
+  display: block\9;
+  position: relative\9;
+  padding-bottom: 50%\9;
+}
+
+/* for ie 10 */
+
+@media all and (-ms-high-contrast:none) {
+  .browser-suggest-wrapper {
+    background-image: url(./images/IE10-bg.jpg);
+  }
+}
+
+.browser-suggest-wrapper .main {
+  position: absolute;
+  margin: auto;
+  top: 20vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 9;
+  color: #fff;
+  top: 20%\9;
+}
+
+.browser-suggest-wrapper .main .txt-a {
+  font-size: 1.5rem;
+  font-size: 1.5em\9;
+  margin-bottom: .16em;
+}
+
+.browser-suggest-wrapper .main .title-a {
+  font-size: 3.3rem;
+  font-size: 3.3em\9;
+  margin-bottom: .48em;
+}
+
+.browser-suggest-wrapper .main .browser-suggest ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  display: inline\9;
+  width: 100%\9;
+}
+
+.browser-suggest-wrapper .main .browser-suggest ul li {
+  margin: 0;
+  padding: 0 1em;
+  border-right: .06rem dotted #efefef;
+  border-right: 1px dotted\9;
+  display: inline-block\9;
+}
+
+.browser-suggest-wrapper .main .browser-suggest ul li:last-child {
+  border-right: none;
+}
+
+.browser-suggest-wrapper .main .btn-download a {
+  font-size: 1.13rem;
+  color: #1890FF;
+  border: .06rem solid #1890FF;
+  background-color: #fff;
+  padding: .63rem 1.8rem .63rem 1.5rem;
+  border-radius: .25rem;
+  display: inline-block;
+  line-height: 2;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 0.19rem rgba(0, 0, 0, 0.3);
+}
+
+.browser-suggest-wrapper .main .btn-download a:hover {
+  background-color: #1890FF;
+  color: #fff;
+  box-shadow: 0 0 0.31rem rgba(0, 0, 0, 0.5);
+  border-color: #fff;
+}
+
+.browser-suggest-wrapper .main .btn-download a span {
+  display: inline-block;
+}
+
+.browser-suggest-wrapper .main .btn-download a img {
+  width: 2.2rem;
+  vertical-align: bottom;
+  margin-right: .5rem;
+}
+
+.browser-suggest-wrapper .pic-cloud {
+  position: relative;
+  height: 62vh;
+  top: 30vh;
+  overflow: hidden;
+  display: none\9 !important;
+}
+
+.browser-suggest-wrapper .pic-cloud div {
+  position: absolute;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-01 {
+  left: 10vw;
+  top: 11vh;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-01 img {
+  width: 27.88em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-02 {
+  left: 45vw;
+  top: 9vh;
+  opacity: .3;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-02 img {
+  width: 7.5em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-03 {
+  left: 55vw;
+  top: 17vh;
+  opacity: .6;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-03 img {
+  width: 10.5em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-04 {
+  right: 22vw;
+  top: 6vh;
+  opacity: 0.3;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-04 img {
+  width: 6.5em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-05 {
+  left: -3vw;
+  top: 0;
+  opacity: .6;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-05 img {
+  width: 7.5em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-06 {
+  right: 10vw;
+  top: 28vh;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-06 img {
+  width: 140%;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-07 {
+  right: 6vw;
+  top: 10vh;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-07 img {
+  width: 7.88em;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-08 {
+  left: 40vw;
+  bottom: 10vh;
+}
+
+.browser-suggest-wrapper .pic-cloud .cloud-08 img {
+  width: 5.8em;
+}
+
+.browser-suggest-wrapper .footer {
+  text-align: center;
+  background-color: #e7e7e7;
+  font-size: .75rem;
+  color: #444;
+  padding: .25rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.browser-suggest-wrapper .footer ul {
+  list-style: none;
+}
+
+.browser-suggest-wrapper .footer ul li {
+  display: inline-block;
+  padding: 0 .5rem;
+  border-right: .06rem groove #777;
+}
+
+.browser-suggest-wrapper .footer ul li:last-child,
+.browser-suggest-wrapper .footer ul li:first-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.pic-cloud .cloud-01 {
+  animation: cloud-01 4s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-01 {
+  0% {
+    top: 11vh;
+    left: 8vw;
+  }
+  25% {
+    top: 11.3vh;
+    opacity: .75;
+  }
+  50% {
+    top: 11vh;
+  }
+  75% {
+    top: 11.18vh;
+    opacity: 1;
+  }
+  100% {
+    top: 12vh;
+    left: 9vw;
+  }
+}
+
+.pic-cloud .cloud-02 {
+  animation: cloud-02 6s 3s infinite ease-in-out both;
+}
+
+@keyframes cloud-02 {
+  0% {
+    left: 45vw;
+    opacity: .3;
+  }
+  25% {
+    left: 100vw;
+    opacity: 0;
+  }
+  50% {
+    left: -5vw;
+    opacity: 0;
+  }
+  75% {
+    left: 45vw;
+    opacity: .3;
+  }
+  100% {
+    left: 45vw;
+  }
+}
+
+.pic-cloud .cloud-03 {
+  animation: cloud-03 5s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-03 {
+  0% {
+    opacity: .6;
+    top: 17vh;
+    left: 50vw;
+  }
+  30% {
+    opacity: .2;
+    top: 16vh;
+    left: 52vw;
+  }
+  100% {
+    opacity: .8;
+    top: 20vh;
+    left: 49vw;
+  }
+}
+
+.pic-cloud .cloud-04 {
+  animation: cloud-04 6s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-04 {
+  0% {
+    right: 22vw;
+    top: 6vh;
+    opacity: 0.3;
+  }
+  23% {
+    right: 21.2vw;
+    top: 6.1vh;
+    opacity: 0.1;
+  }
+  73% {
+    right: 20.2vw;
+    top: 5.5vh;
+    opacity: 0.2;
+  }
+  100% {
+    right: 22vw;
+    top: 6vh;
+    opacity: 0.3;
+  }
+}
+
+.pic-cloud .cloud-05 {
+  animation: cloud-05 5s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-05 {
+  0% {
+    left: -3vw;
+    top: 0;
+    opacity: .6;
+  }
+  50% {
+    left: -2.6vw;
+    top: 1%;
+    opacity: .3;
+  }
+  100% {
+    left: -3vw;
+    top: 0;
+    opacity: .8;
+  }
+}
+
+.pic-cloud .cloud-06 {
+  animation: cloud-06 5s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-06 {
+  0% {
+    right: 10vw;
+    top: 28vh;
+    opacity: 1;
+  }
+  19% {
+    right: 10.3vw;
+    top: 27.6vh;
+    opacity: .4;
+  }
+  47% {
+    right: 10vw;
+    top: 28vh;
+    opacity: 1;
+  }
+  86% {
+    right: 9.7vw;
+    top: 28.2vh;
+    opacity: .6;
+  }
+}
+
+.pic-cloud .cloud-07 {
+  animation: cloud-07 10s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-07 {
+  0% {
+    right: 6vw;
+    top: 10vh;
+    opacity: 1;
+  }
+  8% {
+    right: 5.8vw;
+    top: 9.5vh;
+  }
+  59% {
+    right: 6vw;
+    top: 10vh;
+  }
+  95% {
+    right: 6.3vw;
+    top: 10.4vh;
+    opacity: .6;
+  }
+}
+
+.pic-cloud .cloud-08 {
+  animation: cloud-08 7s infinite ease-in-out both alternate;
+}
+
+@keyframes cloud-08 {
+  0% {
+    left: 40vw;
+    bottom: 10vh;
+    opacity: 1;
+  }
+  8% {
+    left: 39.5vw;
+    bottom: 10.3vh;
+  }
+  59% {
+    left: 40.3vw;
+    bottom: 9.7vh;
+    opacity: .2;
+  }
+  95% {
+    left: 40vw;
+    bottom: 10vh;
+    opacity: .6;
+  }
+}
+
+@media (max-width: 1152px) {
+  .pic-cloud .cloud-03 {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .browser-suggest-wrapper .pic-cloud .cloud-01 {
+    top: 17vh;
+  }
+  .browser-suggest-wrapper .pic-cloud .cloud-01 img {
+    width: 24em;
+  }
+  @keyframes cloud-01 {
+    0% {
+      top: 17vh;
+      left: 8vw;
+    }
+    25% {
+      top: 17.3vh;
+      opacity: .75;
+    }
+    50% {
+      top: 17vh;
+    }
+    75% {
+      top: 17.18vh;
+      opacity: 1;
+    }
+    100% {
+      top: 18vh;
+      left: 9vw;
+    }
+  }
+  .browser-suggest-wrapper .pic-cloud .cloud-06 {
+    right: 0;
+    bottom: 0;
+    top: initial;
+  }
+  .browser-suggest-wrapper .pic-cloud .cloud-06 img {
+    width: 14.8em;
+  }
+  @keyframes cloud-06 {
+    0% {
+      right: 0;
+      bottom: 0;
+      opacity: 1;
+    }
+    23% {
+      bottom: 1vh;
+      opacity: .4;
+    }
+    57% {
+      right: 14vw;
+      bottom: 0;
+      opacity: 1;
+    }
+    100% {
+      right: 0;
+      bottom: 1.2vh;
+      opacity: .6;
+    }
+  }
+}

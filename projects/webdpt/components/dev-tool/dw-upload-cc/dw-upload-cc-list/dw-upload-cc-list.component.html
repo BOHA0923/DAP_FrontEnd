@@ -1,0 +1,81 @@
+<dw-content class="dw-f-content-list">
+  <div dw-row class="dw-f-btn-bar-action">
+    <div dw-col [dwSpan]="12">
+      <button dw-button (click)="expandAllChange()" [disabled]="currentData.length === 0">
+        <ng-container *ngIf="!expandAll">
+          <i dw-icon dwType="plus-square" dwTheme="outline"></i>{{'dw-upload-cc-expandAll-show' | translate}}
+        </ng-container>
+        <ng-container *ngIf="expandAll">
+          <i dw-icon dwType="minus-square" dwTheme="outline"></i>{{'dw-upload-cc-expandAll-hide' | translate}}
+        </ng-container>
+      </button>
+    </div>
+    <div dw-col [dwSpan]="12" class="dw-f-txt-right">
+      <button dw-button dwType="danger" [dwLoading]="uploadCcIng" (click)="uploadCc()"
+              dw-tooltip
+              dwTooltipTitle="{{'dw-upload-cc-hint' | translate}}"
+        [disabled]="rowCount === 0">
+        <i dw-icon dwType="cloud-upload" dwTheme="outline"></i>{{'dw-upload-cc-upload' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <div class="dw-f-table">
+    <dw-table #dwTable [dwData]="currentData" dwShowSizeChanger [dwLoading]="searchLoading" [dwTotal]="rowCount"
+      [dwFrontPagination]="false" [dwPageIndex]="search.pageIndex" (dwPageIndexChange)="onPageIndexChange($event)"
+      [(dwPageSize)]="search.pageSize" (dwPageSizeChange)="onPageSizeChange()" [dwPageSizeOptions]="pageSizeOptions"
+      [dwNoResult]="dwNoResultTpl">
+      <thead>
+        <tr>
+          <th dwWidth="150px">module</th>
+          <th dwWidth="150px">program id</th>
+          <th dwWidth="150px">name</th>
+          <th>page</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dwTable.data">
+          <td>{{data.module}}</td>
+          <td>{{data.code}}</td>
+          <td>{{data.name}}</td>
+          <td>
+            <dw-table #innerTablePage [dwData]="data.page" dwSize="middle" [dwShowPagination]="false" *ngIf="expandAll && data.page.length > 0">
+              <thead>
+                <tr>
+                  <th dwWidth="150px">page id</th>
+                  <th>name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pageItem of innerTablePage.data">
+                  <td>{{pageItem.id}}</td>
+                  <td>{{pageItem.name}}</td>
+                </tr>
+              </tbody>
+            </dw-table>
+          </td>
+          <td>
+            <dw-table #innerTableAction [dwData]="data.action" dwSize="middle" [dwShowPagination]="false" *ngIf="expandAll && data.action.length > 0">
+              <thead>
+                <tr>
+                  <th dwWidth="150px">action id</th>
+                  <th>name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actionItem of innerTableAction.data">
+                  <td>{{actionItem.id}}</td>
+                  <td>{{actionItem.name}}</td>
+                </tr>
+              </tbody>
+            </dw-table>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #dwNoResultTpl>
+        {{'dw-upload-cc-noProgramInfo' | translate}}
+      </ng-template>
+    </dw-table>
+  </div>
+</dw-content>

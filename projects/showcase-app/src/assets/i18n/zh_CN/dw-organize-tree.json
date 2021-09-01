@@ -1,0 +1,12 @@
+{
+  "dw-organize-tree-title": "组织与人员",
+  "dw-organize-tree-org-title": "组织",
+  "dw-organize-tree": "用户ID与组织ID",
+  "dw-organize-tree-org": "组织ID",
+  "dw-organize-tree-sid": "用户Sid与组织Sid",
+  "dw-organize-tree-org-sid": "组织Sid",
+  "dw-organize-tree-multiple": "多选",
+  "dw-organize-tree-single": "单选",
+  "dw-organize-tree-data": "取得组织结构列表",
+  "dw-organize-tree-onlyuser": "只选人员"
+}

@@ -1,0 +1,171 @@
+<dw-content class="dw-f-content-list">
+
+  <!-- 查詢條件 -->
+  <form dw-form [formGroup]="searchForm">
+    <div dw-row class="ant-advanced-search-form dw-f-search-form-block">
+
+      <div dw-col [dwSpan]="24" [dwLg]="{span: 23}">
+        <div dw-row [dwGutter]="5">
+          <div dw-col [dwSpan]="8">
+            <dw-form-input
+              name="orderid"
+              formControlName="orderid"
+              dwLabel="{{'dw-document-order-訂單編號' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16"
+              [dwRequired]="false">
+            </dw-form-input>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-select
+              [dwOptionList]="statusList"
+              formControlName="status"
+              dwMode="tags"
+              name="status"
+              dwLabel="{{'dw-document-order-狀態碼' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16">
+            </dw-form-select>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-input
+              name="totalcount"
+              formControlName="totalcount"
+              dwLabel="{{'dw-document-order-訂單總額' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16"
+              [dwRequired]="false">
+            </dw-form-input>
+          </div>
+        </div>
+
+        <div dw-row [dwGutter]="5" [style.display]="!isCollapse?'block':'none'">
+          <div dw-col [dwSpan]="8">
+            <dw-form-input
+              name="customerid"
+              formControlName="customerid"
+              dwLabel="{{'dw-document-order-客戶名稱' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16"
+              [dwRequired]="false">
+            </dw-form-input>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-input
+              name="employeename"
+              formControlName="employeename"
+              dwLabel="{{'dw-document-order-業務員姓名' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16"
+              [dwRequired]="false">
+            </dw-form-input>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-select
+              [dwOptionList]="genderList"
+              formControlName="gender"
+              dwMode="tags"
+              name="gender"
+              dwLabel="{{'dw-document-order-業務員性別' | translate}}"
+              dwLabelSpan="8"
+              dwInputSpan="16">
+            </dw-form-select>
+          </div>
+        </div>
+
+        <div dw-row class="search-form-row">
+          <div dw-col [dwSpan]="24">
+            <button dw-button type="button" [dwType]="'primary'" dwActionAuthorized [dwActionId]="'query'" [dwDefaultAuthorized]="'hidden'" (dwClick)="searchData(true)">{{ 'dw-document-order-查詢' | translate }}
+            </button>
+            <button dw-button type="button" (click)="resetForm()">{{ 'dw-document-order-清除' | translate }}</button>
+            <a class="dw-f-link-more" (click)="isCollapse = !isCollapse">
+              {{ 'dw-document-order-進階查詢' | translate }}
+              <i dw-icon [dwType]="isCollapse ? 'down' : 'up'"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <div dw-row class="dw-f-btn-bar-action">
+    <div dw-col>
+      <button dw-button type="button" [dwType]="'primary'" dwActionAuthorized [dwActionId]="'add'" [dwDefaultAuthorized]="'disabled'" (dwClick)="create()">
+        <i dw-icon dwType="plus" dwTheme="outline"></i>
+        <span translate>dw-document-order-新增</span>
+      </button>
+    </div>
+  </div>
+  <div class="dw-f-table">
+    <dw-table #dwTable [dwData]="dataSet" dwShowSizeChanger [dwLoading]="searchLoading" [dwTotal]="rowCount" [dwFrontPagination]="false"
+      [dwPageIndex]="queryInfo.pageNumber" (dwPageIndexChange)="onPageIndexChange($event)" [(dwPageSize)]="queryInfo.pageSize" (dwPageSizeChange)="onPageSizeChange()">
+      <thead>
+        <tr>
+          <th>
+            <span translate>dw-document-order-狀態碼</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-訂單編號</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-訂單日期</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-訂單總額</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-客戶編號</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-送貨地址</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-業務員姓名</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-業務員性別</span>
+          </th>
+          <th>
+            <span translate>dw-document-order-操作</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dwTable.data; let rowIndex = index;">
+          <td>
+            {{data.status}}
+          </td>
+          <td>
+            <a dwActionAuthorized [dwActionId]="'modify'" [dwDefaultAuthorized]="'disabled'" (dwClick)="detail(data.orderid)">{{data.orderid}}</a>
+          </td>
+          <td>
+            {{data.orderdate | date:'yyyy/MM/dd HH:mm:ss a'}}
+          </td>
+          <td class="number-align">
+            {{data.totalcount | currency: 'TWD': '$': '1.0-0'}}
+          </td>
+          <td>
+            {{data.customerid}}
+          </td>
+          <td>
+            {{data.address}}
+          </td>
+          <td>
+            {{data.employeename }} ({{data.employeeid}})
+          </td>
+          <td>{{data.gender}}</td>
+          <td>
+            <a dwActionAuthorized [dwActionId]="'modify'" [dwDefaultAuthorized]="'disabled'" (dwClick)="modify(data.orderid)" translate>dw-document-order-修改</a>
+            &nbsp;
+            <a dw-popconfirm [dwPopconfirmTitle]="'dw-document-order-是否刪除' | translate" (dwOnConfirm)="delete(rowIndex)"
+            [dwOkText]="'dw-determine' | translate" [dwCancelText]="'dw-cancel' | translate"
+            [dwPopconfirmPlacement]="'topRight'"
+            dwActionAuthorized [dwActionId]="'delete'" [dwDefaultAuthorized]="'disabled'" translate>dw-document-order-刪除</a>
+            <!-- <a dwActionAuthorized [dwActionId]="'delete'" [dwDefaultAuthorized]="'disabled'" (dwClick)="delete(rowIndex)" translate>dw-document-order-刪除</a> -->
+          </td>
+        </tr>
+      </tbody>
+    </dw-table>
+  </div>
+</dw-content>

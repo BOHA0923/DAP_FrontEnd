@@ -1,0 +1,144 @@
+.dw-lag-wp {
+  padding: 1rem;
+  outline: 1px solid #f9f9f9;
+  .info-block {
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+    .txt-a {
+      padding-right: 1rem;
+    }
+    .pic-001 {
+      position: relative;
+      padding-right: 1.25rem;
+      i {
+        position: absolute;
+        top: .31rem;
+        right: 1.63rem;
+        width: 3rem;
+        height: 3rem;
+        z-index: 3;
+        display: block;
+      }
+      i::before {
+        background-color: rgba(0, 0, 0, .6);
+        position: absolute;
+        right: 0;
+        font-size: 1.25rem;
+        text-align: center;
+        color: #fff;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        line-height: 2rem;
+        z-index: 3;
+        display: block;
+      }
+      img {
+        padding: .13rem;
+        border: .06rem solid #ccc;
+        background-color: #fff;
+        border-radius: .5rem;
+        border: 1px solid #fff;
+        box-shadow: 0 0 .06rem .06rem rgba(0, 0, 0, .3);
+      }
+      img.pic-s {
+        width: 100%;
+        max-width: 37.5rem;
+        z-index: 1;
+        float: right;
+      }
+      img.pic-b {
+        width: 80vw;
+        max-width: 51rem;
+        right: -15px;
+        top: -20px;
+        z-index: -1;
+        position: absolute;
+        display: none;
+      }
+      i:hover img.pic-b {
+        display: block;
+      }
+    }
+  } //  pre  |  code
+  pre.code-black {
+    font-size: .75rem;
+    padding: 1rem;
+    margin: 1rem;
+    display: table;
+    background-color: #000;
+    code {
+      color: #83d8ff;
+    }
+  }
+}
+
+// table
+.txt-b dw-table.dw-common-var {
+  thead {
+    tr th {
+      background-color: @dark-color;
+      color: #fff;
+      &:last-child,
+      &:first-child {
+        border-radius: 0;
+      }
+    }
+  }
+  tbody {
+    tr:nth-child(2n) {
+      background-color: @lighten-color;
+    }
+  }
+}
+
+.color-01 {
+  color: #050f2c;
+}
+
+.color-02 {
+  color: #00aeff;
+}
+
+.color-03 {
+  color: #1cc7d0;
+}
+
+.color-04 {
+  color: #3369e7;
+}
+
+.color-05 {
+  color: #8e43e7;
+}
+
+.color-06 {
+  color: #b84592;
+}
+
+.color-07 {
+  color: #ff4f81;
+}
+
+.color-08 {
+  color: #ff6c5f;
+}
+
+.color-09 {
+  color: #ffc168;
+}
+
+.color-10 {
+  color: #2dde98;
+}
+
+.color-11 {
+  color: #666;
+}
+
+// RWD
+@media (max-width: 1279px) {
+  .dw-lag-wp .info-block .pic-001 img.pic-b {
+    width: ~"calc(100vw - 380px)";
+  }
+}

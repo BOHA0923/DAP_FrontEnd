@@ -1,0 +1,379 @@
+<form [formGroup]="mainForm">
+  <dw-radio-group formControlName="cronType" [dwSize]="dwSize"
+                  *ngIf="dwJobType === undefined ||
+                    ((hasJobType('SIMPLE') || hasJobType('CYCLE')) && hasJobType('RRULE'))
+                  ">
+    <div dw-radio-button dwValue="daily">{{'every-day-bg-job' | translate}}</div>
+    <div dw-radio-button dwValue="cycle">{{'cycle-day-bg-job' | translate}}</div>
+  </dw-radio-group>
+
+
+  <div [formGroup]="type2Form" [ngStyle]="{display: mainForm.get('cronType').value === 'daily' ? 'block' : 'none'}">
+
+    <ng-template #time_radio_0>
+      <dw-form-item [formGroup]="simpleForm">
+        <dw-form-control [dwErrorTip]="timeErrorTpl">
+          <dw-time-picker formControlName="time" [dwSize]="dwSize"></dw-time-picker>
+          <ng-template #timeErrorTpl>
+            <ng-container *ngIf="errors?.time_required">{{'complete-the-info' | translate}}</ng-container>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </ng-template>
+
+    <ng-template #time_radio_1>
+      <div [formGroup]="dailyForm">
+        <div [ngClass]="{error: errors?.time1_required}">
+          <div>
+            <label>
+              {{'section-1' | translate}}&nbsp;
+              <dw-select formControlName="time1_start_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              &nbsp;~&nbsp;
+              <dw-select formControlName="time1_end_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+            </label>
+            <label>
+              &nbsp;{{'every' | translate}}&nbsp;
+              <dw-input-number formControlName="time1_cycle_value" dwMin="0" dwMax="59" [dwSize]="dwSize"
+                               class="timeUnit"></dw-input-number>
+              &nbsp;
+              <dw-select formControlName="time1_cycle_unit" dwAllowClear [dwSize]="dwSize">
+                <dw-option dwValue="1" dwLabel="{{'minute' | translate}}"></dw-option>
+                <dw-option dwValue="2" dwLabel="{{'hour' | translate}}"></dw-option>
+              </dw-select>
+              &nbsp;{{'execute-once' | translate}}
+            </label>
+          </div>
+
+          <div style="margin-top: 5px;display: none;">
+            <label>
+              每小時
+              <dw-select formControlName="time1_start_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let minute of minutesOfHour"
+                           [dwValue]="minute" dwLabel="{{('0' + minute).substr(-2)}}"></dw-option>
+              </dw-select>
+              分至
+              <dw-select formControlName="time1_end_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of minutesOfHour"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              分
+            </label>
+          </div>
+          <dw-form-item>
+            <dw-form-control [dwValidateStatus]="errors?.time1_required ? 'error' : null" [dwErrorTip]="'complete-the-info' | translate">
+            </dw-form-control>
+          </dw-form-item>
+        </div>
+
+        <div [ngClass]="{error: errors?.time2_required}">
+          <div>
+            <label>
+              {{'section-2' | translate}}&nbsp;
+              <dw-select formControlName="time2_start_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              &nbsp;~&nbsp;
+              <dw-select formControlName="time2_end_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+            </label>
+            <label>
+              &nbsp;{{ 'every' | translate}}&nbsp;
+              <dw-input-number formControlName="time2_cycle_value" dwMin="0" dwMax="59" [dwSize]="dwSize"
+                               class="timeUnit"></dw-input-number>
+              &nbsp;
+              <dw-select formControlName="time2_cycle_unit" dwAllowClear [dwSize]="dwSize">
+                <dw-option dwValue="1" dwLabel="{{'minute' | translate}}"></dw-option>
+                <dw-option dwValue="2" dwLabel="{{'hour' | translate}}"></dw-option>
+              </dw-select>
+              &nbsp;{{'execute-once' | translate}}
+            </label>
+          </div>
+          <div style="margin-top: 5px;display: none;">
+            <label>
+              分鐘：從
+              <dw-select formControlName="time2_start_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let minute of minutesOfHour"
+                           [dwValue]="minute" dwLabel="{{('0' + minute).substr(-2)}}"></dw-option>
+              </dw-select>
+              分 到
+              <dw-select formControlName="time2_end_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of minutesOfHour"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              分
+            </label>
+          </div>
+          <dw-form-item>
+            <dw-form-control [dwValidateStatus]="errors?.time2_required ? 'error' : null" [dwErrorTip]="'complete-the-info' | translate">
+            </dw-form-control>
+          </dw-form-item>
+
+        </div>
+
+        <div [ngClass]="{error: errors?.time3_required}">
+          <div>
+            <label>
+              {{'section-3' | translate}}&nbsp;
+              <dw-select formControlName="time3_start_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              &nbsp;~&nbsp;
+              <dw-select formControlName="time3_end_hour" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of hoursOfDay"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+            </label>
+            <label>
+              &nbsp;{{ 'every' | translate}}&nbsp;
+              <dw-input-number formControlName="time3_cycle_value" dwMin="0" dwMax="59" [dwSize]="dwSize"
+                               class="timeUnit"></dw-input-number>
+              &nbsp;
+              <dw-select formControlName="time3_cycle_unit" dwAllowClear [dwSize]="dwSize">
+                <dw-option dwValue="1" dwLabel="{{'minute' | translate}}"></dw-option>
+                <dw-option dwValue="2" dwLabel="{{'hour' | translate}}"></dw-option>
+              </dw-select>
+              &nbsp;{{'execute-once' | translate}}
+            </label>
+          </div>
+          <div style="margin-top: 5px;display: none;">
+            <label>
+              每小時的
+              <dw-select formControlName="time3_start_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let minute of minutesOfHour"
+                           [dwValue]="minute" dwLabel="{{('0' + minute).substr(-2)}}"></dw-option>
+              </dw-select>
+              分 至
+              <dw-select formControlName="time3_end_minute" dwAllowClear [dwSize]="dwSize">
+                <dw-option *ngFor="let hour of minutesOfHour"
+                           [dwValue]="hour" dwLabel="{{('0' + hour).substr(-2)}}"></dw-option>
+              </dw-select>
+              分
+            </label>
+          </div>
+          <dw-form-item>
+            <dw-form-control [dwValidateStatus]="errors?.time3_required ? 'error' : null" [dwErrorTip]="'complete-the-info' | translate">
+            </dw-form-control>
+          </dw-form-item>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="hasJobType('SIMPLE') && !hasJobType('CYCLE') ? time_radio_0: null"></ng-container>
+    <ng-container *ngTemplateOutlet="hasJobType('CYCLE') && !hasJobType('SIMPLE') ? time_radio_1: null"></ng-container>
+
+    <ng-container *ngIf="dwJobType === undefined || (hasJobType('SIMPLE') && hasJobType('CYCLE'))">
+      <dw-radio-group formControlName="time_radio" dwName="time_radio" style="width: 100%" [dwSize]="dwSize">
+        <div dw-row>
+          <div dw-col dwSpan="3" style="margin-top: 8px;">
+            <label dw-radio dwValue="0">{{'time-of-every-day' | translate}}</label>
+          </div>
+          <div dw-col dwSpan="20">
+            <ng-container *ngTemplateOutlet="time_radio_0"></ng-container>
+          </div>
+        </div>
+        <div dw-row>
+          <div dw-col dwSpan="3" style="margin-top: 3px;">
+            <label dw-radio dwValue="1">{{'daily-section' | translate}}</label>
+          </div>
+          <div dw-col dwSpan="20">
+
+            <ng-container *ngTemplateOutlet="time_radio_1"></ng-container>
+
+          </div>
+        </div>
+      </dw-radio-group>
+    </ng-container>
+  </div>
+
+  <div [ngStyle]="{display: (mainForm.get('cronType').value === 'cycle') || (dwJobType && hasJobType('RRULE', true)) ? 'block' : 'none'}">
+    <div dw-row [formGroup]="rruleForm">
+      <ng-container *ngIf="hasJobType('RRULE')">
+        <div dw-col [dwSpan]="dwShowRRuleResult ? 16: 24">
+          <div dw-row>
+            <div dw-col dwSpan="4">
+              <dw-radio-group formControlName="cycleMonth" dwName="cycleMonth" style="width: 100%" [dwSize]="dwSize">
+                <label dw-radio dwValue="everyMonth">{{'every-month' | translate}}</label>
+                <label dw-radio dwValue="customMonth">{{'custom-month' | translate}}</label>
+              </dw-radio-group>
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            (bymonth, freq: monthly)-->
+              <dw-checkbox-wrapper dwName="months" formArrayName="months"
+                                   style="width: 100%">
+                <ng-container *ngFor="let day of months; let i = index">
+                  <label dw-checkbox [formControlName]="i" class="days-of-month"
+                         [dwDisabled]="rruleForm.get('cycleMonth').value === 'everyMonth'">
+                    {{day.label}}
+                  </label>
+                </ng-container>
+              </dw-checkbox-wrapper>
+            </div>
+          </div>
+
+          <dw-divider style="height: 3px;"></dw-divider>
+
+          <div dw-row>
+            <div dw-col dwSpan="4">
+              <!--            週別與日別只能二擇一-->
+              <dw-radio-group formControlName="cycleWeek" dwName="cycleWeek" style="width: 100%" [dwSize]="dwSize">
+                <label dw-radio dwValue="everyWeek">{{'every-week' | translate}}</label>
+                <label dw-radio dwValue="customWeek">{{'custom-week' | translate}}</label>
+              </dw-radio-group>
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            (bysetpos, freq: monthly): x，受wkst影響，當byweekday數量>1或bymonthday數量>= 1時，必須給提示!!!<br/>-->
+              <dw-checkbox-wrapper formArrayName="weeksOfMonth">
+                <ng-container *ngFor="let day of weeksOfMonth; let i = index">
+                  <label dw-checkbox [formControlName]="i" class="days-of-month"
+                         [dwDisabled]="rruleForm.get('cycleWeek').value === 'everyWeek'">
+                    {{day.label | translate}}
+                  </label>
+                </ng-container>
+              </dw-checkbox-wrapper>
+              <label>
+
+                <dw-select formControlName="daysOfWeekForWeeksOfMonth" dwAllowClear [dwSize]="dwSize"
+                           [dwDisabled]="rruleForm.get('cycleWeek').value === 'everyWeek'">
+                  <dw-option *ngFor="let day of daysOfWeek" [dwValue]="day.value"
+                             dwLabel="{{day.label | translate}}"></dw-option>
+                </dw-select>
+              </label>
+              <br/>
+              <!--            最後一週：bysetpos = -1-->
+            </div>
+          </div>
+
+          <dw-divider style="height: 3px;"></dw-divider>
+
+          <div dw-row>
+            <div dw-col dwSpan="4">
+              <dw-radio-group formControlName="cycleDays" dwName="cycleDays" style="width: 100%" [dwSize]="dwSize"
+                              [dwDisabled]="rruleForm.get('cycleWeek').value === 'customWeek'">
+                <label dw-radio dwValue="everyDay">{{'every-day' | translate}}</label>
+                <label dw-radio dwValue="customDay">{{'custom-day' | translate}}</label>
+              </dw-radio-group>
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            <label>每-->
+              <!--              <dw-input-number formControlName="interval" [dwMin]="1"-->
+              <!--                               [dwDisabled]="rruleForm.get('interval').disabled"></dw-input-number>-->
+              <!--              天 (interval, freq:daily)-->
+              <!--            </label>-->
+              <!--            <dw-divider></dw-divider>-->
+
+              <!--            (byweekday, freq:montyly)<br/>-->
+              <label>
+                <dw-checkbox-wrapper formArrayName="daysOfWeek">
+                  <ng-container *ngFor="let day of daysOfWeek; let i=index;">
+                    <label dw-checkbox [formControlName]="i"
+                           [dwDisabled]="rruleForm.get('cycleDays').value === 'everyDay'">{{day.label | translate}}</label>
+                  </ng-container>
+                </dw-checkbox-wrapper>
+              </label>
+
+              <!--            (bymonthday, freq:monthly)-->
+
+              <dw-checkbox-wrapper dwName="daysOfMonth" formArrayName="daysOfMonth"
+                                   style="width: 100%">
+                <ng-container *ngFor="let day of daysOfMonth; let i = index">
+                  <label dw-checkbox [formControlName]="i" class="days-of-month"
+                         [dwDisabled]="rruleForm.get('cycleDays').value === 'everyDay'">
+                    {{day.label + '' | translate}}
+                  </label>
+                </ng-container>
+              </dw-checkbox-wrapper>
+              <!--            月底：freq=monthly, bymonthday=-1-->
+              <!--            <dw-checkbox-group formControlName="daysOfMonth1" dwName="daysOfMonth1"-->
+              <!--                               style="width: 100%"></dw-checkbox-group>-->
+              <!--            <dw-checkbox-group formControlName="daysOfMonth2" dwName="daysOfMonth2"-->
+              <!--                               style="width: 100%"></dw-checkbox-group>-->
+              <!--            <dw-checkbox-group formControlName="daysOfMonth3" dwName="daysOfMonth3"-->
+              <!--                               style="width: 100%"></dw-checkbox-group>-->
+              <!--            <dw-checkbox-group formControlName="daysOfMonth4" dwName="daysOfMonth4"-->
+              <!--                               style="width: 100%"></dw-checkbox-group>-->
+
+            </div>
+          </div>
+
+          <dw-divider style="height: 3px;"></dw-divider>
+
+          <div dw-row style="margin: 5px 0;">
+            <div dw-col dwSpan="4">
+              <label>{{'start-time' | translate}}</label>
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            (dtstart)-->
+              <label>
+                <dw-date-picker formControlName="dtStart" dwShowTime [dwSize]="dwSize"></dw-date-picker>
+              </label>
+            </div>
+          </div>
+          <div dw-row style="margin: 5px 0;">
+            <div dw-col dwSpan="4">
+              <label>{{'until' | translate}}</label>
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            (byweekday, freq:montyly)     (until)-->
+              <label>
+                <dw-date-picker formControlName="until" dwShowTime [dwSize]="dwSize"></dw-date-picker>
+              </label>
+            </div>
+          </div>
+          <div dw-row style="margin: 5px 0;">
+            <div dw-col dwSpan="4">
+              <label>{{'count' | translate}}</label>
+              <!--            (count)-->
+            </div>
+            <div dw-col dwSpan="20">
+              <!--            [(ngModel)]="executeCount"-->
+              <label>
+                <dw-input-number formControlName="count" dwPlaceHolder="{{'infinite' | translate}}" dwMin="0"
+                                 [dwSize]="dwSize"></dw-input-number>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div dw-col dwSpan="8" *ngIf="dwShowRRuleResult">
+          <div>
+            <label>{{'result' | translate}}(UTC)</label>
+            <!--        <dw-table #table [dwData]="results">-->
+            <dw-table #table [dwData]="results" dwSize="small">
+              <thead>
+              <tr>
+                <th>{{'week' | translate}}</th>
+                <th>{{'time' | translate}}</th>
+                <th>{{'day' | translate}}</th>
+                <th>{{'month' | translate}}</th>
+                <th>{{'year' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr *ngFor="let date of table.data; let i=index">
+                <td>{{('rrule.week.' + date.getDay()) | translate}}</td>
+                <td>{{date.toISOString().substr(11, 8)}}</td>
+                <td>{{date.getDate()}}</td>
+                <td>{{(date.getMonth() + 1) }}</td>
+                <td>{{date.getFullYear()}}</td>
+              </tr>
+
+              </tbody>
+            </dw-table>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</form>

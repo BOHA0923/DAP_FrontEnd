@@ -1,0 +1,167 @@
+<dw-content class="dw-f-content-list">
+
+  <!-- 查詢條件 -->
+  <form dw-form [formGroup]="searchForm">
+    <div dw-row class="ant-advanced-search-form dw-f-search-form-block">
+      <div dw-col [dwSpan]="24" [dwLg]="{span: 23}">
+        <div dw-row [dwGutter]="5">
+          <div dw-col [dwSpan]="8">
+            <dw-form-item>
+              <dw-form-label [dwSpan]="8">{{'dw-schedule-result-program' | translate}}</dw-form-label>
+              <dw-form-control [dwSpan]="16">
+                <dw-select id="program_code" formControlName="program_code" dwMode="multiple" [dwMaxMultipleCount]="4">
+                  <dw-option *ngFor="let programItem of programCodeEnum; let rowIndex = index;"
+                    [dwValue]="programItem.value" [dwLabel]="(programPre + programItem.value) | translate">
+                  </dw-option>
+                </dw-select>
+              </dw-form-control>
+            </dw-form-item>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-item>
+              <dw-form-label [dwSpan]="8">{{'dw-schedule-result-schedule-type' | translate}}</dw-form-label>
+              <dw-form-control [dwSpan]="16">
+                <dw-select id="schedule_type" formControlName="schedule_type" dwMode="multiple"
+                  [dwMaxMultipleCount]="4">
+                  <dw-option *ngFor="let typeItem of scheduleTypeEnum; let rowIndex = index;" [dwValue]="typeItem.value"
+                    [dwLabel]="('dw-schedule-result-enum-schedule-type-' + typeItem.value) | translate">
+                  </dw-option>
+                </dw-select>
+              </dw-form-control>
+            </dw-form-item>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-input name="schedule_id" formControlName="schedule_id"
+              dwLabel="{{'dw-schedule-result-schedule-id' | translate}}" dwLabelSpan="8" dwInputSpan="16"
+              [dwRequired]="false">
+            </dw-form-input>
+          </div>
+        </div>
+
+        <div dw-row [dwGutter]="5" [style.display]="!isCollapse?'block':'none'">
+          <div dw-col [dwSpan]="8">
+            <dw-form-item>
+              <dw-form-label [dwSpan]="8">{{'dw-schedule-result-execution-status' | translate}}</dw-form-label>
+              <dw-form-control [dwSpan]="16">
+                <dw-select id="execute_status" formControlName="execute_status" dwMode="multiple"
+                  [dwMaxMultipleCount]="4">
+                  <dw-option *ngFor="let statusItem of executeStatusEnum; let rowIndex = index;"
+                    [dwValue]="statusItem.value"
+                    [dwLabel]="('dw-schedule-result-enum-execute-status-' + statusItem.value) | translate">
+                  </dw-option>
+                </dw-select>
+              </dw-form-control>
+            </dw-form-item>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <!-- <dw-form-date-picker dwLabel="{{'dw-schedule-result-start-time' | translate}}"
+              formControlName="start_time" [dwFormat]="dwDateFormat" dwLabelSpan="8" dwInputSpan="16">
+            </dw-form-date-picker> -->
+            <dw-form-item>
+              <dw-form-label [dwSm]="8" [dwXs]="24">{{'dw-schedule-result-start-time' | translate}}</dw-form-label>
+              <dw-form-control [dwSm]="16" [dwXs]="24">
+                <dw-date-picker formControlName="start_time" [dwFormat]="dwDateFormat"></dw-date-picker>
+              </dw-form-control>
+            </dw-form-item>
+          </div>
+          <div dw-col [dwSpan]="8">
+            <dw-form-date-picker dwLabel="{{'dw-schedule-result-end-time' | translate}}" formControlName="end_time"
+              [dwFormat]="dwDateFormat" dwLabelSpan="8" dwInputSpan="16">
+            </dw-form-date-picker>
+          </div>
+        </div>
+
+        <div dw-row class="search-form-row">
+          <div dw-col [dwSpan]="24">
+            <button dw-button [dwType]="'primary'"
+              (click)="searchData(true)">{{ 'dw-schedule-result-search' | translate }}
+            </button>
+            <button dw-button type="button" (click)="resetForm()">{{ 'dw-schedule-result-reset' | translate }}</button>
+            <a class="dw-f-link-more" (click)="isCollapse = !isCollapse">
+              {{ 'dw-schedule-result-advanced-search' | translate }}
+              <i dw-icon [dwType]="isCollapse ? 'down' : 'up'"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="dw-f-table">
+    <dw-table #dwTable [dwData]="dataSet" dwShowSizeChanger [dwLoading]="searchLoading" [dwTotal]="rowCount"
+      [dwFrontPagination]="false" [dwPageIndex]="queryInfo.pageNumber" (dwPageIndexChange)="onPageIndexChange($event)"
+      [(dwPageSize)]="queryInfo.pageSize" (dwPageSizeChange)="onPageSizeChange()">
+      <thead>
+        <tr>
+          <th dwShowExpand></th>
+          <th>
+            <span translate>dw-schedule-result-program</span>
+          </th>
+          <th>
+            <span translate>dw-schedule-result-start-time</span>
+          </th>
+          <th>
+            <span translate>dw-schedule-result-end-time</span>
+          </th>
+          <th>
+            <span translate>dw-schedule-result-schedule-type</span>
+          </th>
+          <th>
+            <span translate>dw-schedule-result-execution-status</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="dwTable.data">
+          <tr>
+            <td dwShowExpand [(dwExpand)]="data.expand"></td>
+            <td>
+              <ng-container *ngIf="data.program_code">
+                {{((programPre + data.program_code) | translate).indexOf(programPre) === -1 ? ((programPre + data.program_code) | translate): ''}}
+                ({{data.program_code}})
+              </ng-container>
+            </td>
+            <td>
+              {{data.start_time | date:'yyyy/MM/dd HH:mm:ss'}}
+            </td>
+            <td>
+              {{data.end_time | date:'yyyy/MM/dd HH:mm:ss'}}
+            </td>
+            <td>
+              {{('dw-schedule-result-enum-schedule-type-' + data.schedule_type) | translate}}
+            </td>
+            <td>
+              <div [ngStyle]="{'cursor': data.message ? 'pointer' : 'auto'}"
+                (click)="showMessage(data.schedule_id, data.execute_status, data.message, data.message_detail)">
+                <div class="dw-schedule-status-icon dw-schedule-status-icon-{{data.execute_status}}"></div>
+                <div>
+                  {{('dw-schedule-result-enum-execute-status-' + data.execute_status) | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr [dwExpand]="data.expand">
+
+              <div dw-row dwJustify="center">
+                <div dw-col dwSpan="7">
+                  {{'dw-schedule-result-schedule-id' | translate}}：{{data.schedule_id}}
+                </div>
+                <div dw-col dwSpan="7">
+                  {{'dw-schedule-result-schedule-type' | translate}}：{{('dw-schedule-result-enum-schedule-type-' + data.schedule_type) | translate}}
+                </div>
+                <div dw-col dwSpan="7">
+                  {{'dw-schedule-result-executor' | translate}}：{{data.executor}}
+                </div>
+              </div>
+              <div dw-row dwJustify="center">
+                <div dw-col dwSpan="21">
+                  {{'dw-schedule-result-schedule-name' | translate}}：{{data.schedule_name}}
+                </div>
+              </div>
+
+          </tr>
+        </ng-template>
+      </tbody>
+    </dw-table>
+  </div>
+</dw-content>

@@ -1,0 +1,340 @@
+<dw-content class="dw-f-content-list">
+  <dw-tabset>
+    <dw-tab *ngFor="let tab of tabs; let tabIdx = index" [dwTitle]="titleTemplate" [dwDisabled]="tab.disabled"
+      (dwSelect)="selectedIndexChange(tabIdx)">
+      <ng-template #titleTemplate>
+        <i dw-icon [dwType]="tab.icon" dwTheme="outline"></i>
+        {{tab.nameId | translate}}
+      </ng-template>
+
+      <!-- 個人首頁 -->
+      <ng-container>
+        <div [hidden]="tab.id !== 'user-cfg'">
+          <form dw-form [formGroup]="userCfgForm" (ngSubmit)="cfgSave(tab.level, userCfgForm)">
+            <input type="text" dw-input formControlName="cfgLevel" style="display: none;">
+            <dw-radio-group formControlName="homeType" style="width: 100%;">
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="preset">
+                {{'dw-home-setting-preset' | translate}}
+              </label>
+
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="program">
+                {{'dw-home-setting-program' | translate}}：
+                <ng-container *ngIf="userCfgForm.controls['homeProgramId'].value">
+                  {{programPre + userCfgForm.controls['homeProgramId'].value | translate}}
+                  ({{userCfgForm.controls['homeProgramId'].value}})
+                </ng-container>
+                <span class="dw-f-home-setting-error"
+                  *ngIf="!userCfgForm.controls['homeProgramId'].value && userCfgForm.controls['homeType'].value === 'program'">
+                  {{'dw-home-setting-select-prog' | translate}}
+                </span>
+              </label>
+              <div dw-row dwGutter="16" class="dw-f-home-setting-content">
+                <div dw-col [dwSpan]="14">
+                  <input type="text" dw-input formControlName="programOptions" style="display: none;">
+                  <div class="dw-f-program-search">
+                    <ng-template #userProgramSearchButton>
+                      <button dw-button type="button" dwType="primary" dwSearch (click)="programSearch(userCfgForm)">
+                        <i dw-icon dwType="search" dwTheme="outline"></i>
+                      </button>
+                    </ng-template>
+                    <dw-input-group dwSearch [dwAddOnAfter]="userProgramSearchButton">
+                      <input type="text" dw-input formControlName="programSearchValue">
+                    </dw-input-group>
+                  </div>
+                  <dw-card class="dw-f-home-setting-program-card">
+                    <dw-radio-group formControlName="homeProgramId" style="width:100%">
+                      <ng-container
+                        *ngFor="let programOption of userCfgForm.controls['programOptions'].value; let idx = index">
+                        <label dw-radio class="dw-f-home-setting-radioRow dw-f-home-setting-programs"
+                          dwValue="{{programOption.key}}" *ngIf="programOption.isMatched">{{programOption.name}}</label>
+                      </ng-container>
+                    </dw-radio-group>
+                  </dw-card>
+                </div>
+                <div dw-col [dwSpan]="10"
+                  [style.display]="userCfgForm.controls['viewHiddenParameter'].value ? 'none' : 'unset'">
+                  <input type="text" dw-input formControlName="viewHiddenParameter" style="display: none;">
+                  <!-- 參數設定 -->
+                  <dw-form-item>
+                    {{'dw-home-setting-parameterSetting' | translate}}：
+                    <div dw-col [dwSpan]="24">
+                      <!-- 固定參數 -->
+                      <div dw-row formArrayName="fixparam" class="dw-modals-menu-edit-name">
+                        <div dw-col [dwSpan]="24"
+                          *ngFor="let paramGroup of userCfgForm.controls['fixparam'].controls; let idx = index"
+                          formGroupName="{{idx}}">
+                          <div dw-row [dwGutter]="4" class="dw-f-add-name dw-f-home-setting-f-val">
+                            <div dw-col [dwSpan]="10">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  {{paramGroup.controls['name'].value}}
+                                  <input dw-input formControlName="name" style="display: none;">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="12">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  {{paramGroup.controls['value'].value}}
+                                  <input dw-input formControlName="value" style="display: none;">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="2" class="dw-f-btn-icons">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 可變參數 -->
+                      <div dw-row formArrayName="homeParameter" class="dw-modals-menu-edit-name">
+                        <div dw-col [dwSpan]="24"
+                          *ngFor="let paramGroup of userCfgForm.controls['homeParameter'].controls; let idx = index"
+                          formGroupName="{{idx}}">
+                          <div dw-row [dwGutter]="4" class="dw-f-add-name">
+                            <div dw-col [dwSpan]="10">
+                              <dw-form-item>
+                                <dw-form-control [dwErrorTip]="userNameErrorTpl">
+                                  <input dw-input formControlName="name" placeholder="{{'dw-home-setting-parameterName' | translate}}">
+                                  <ng-template #userNameErrorTpl>
+                                    <ng-container class="dw-f-home-setting-error"
+                                      *ngIf="!paramGroup.controls['name'].errors?.required && paramGroup.controls['name'].errors?.nameValidator">
+                                      {{'dw-home-setting-msg-exist' | translate}}
+                                    </ng-container>
+                                  </ng-template>
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="12">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  <input dw-input formControlName="value"
+                                    placeholder="{{'dw-home-setting-parameterValue' | translate}}">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="2" class="dw-f-btn-icons">
+                              <i dw-icon dwType="minus-circle" dwTheme="outline" class="dw-f-sysmenu-dynamic-delete"
+                                (click)="formArrayDelete(userCfgForm.controls['homeParameter'], idx)"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 添加 -->
+                      <dw-form-item>
+                        <dw-form-control [dwSpan]="22">
+                          <button dw-button type="button" dwType="dashed" style="width:100%"
+                            (click)="paramAddFieldControlRow(userCfgForm, '', '')">
+                            <i dw-icon dwType="plus" dwTheme="outline"></i>
+                            {{'dw-home-setting-increase' | translate}}
+                          </button>
+                        </dw-form-control>
+                      </dw-form-item>
+                    </div>
+                  </dw-form-item>
+                  <!-- /. 參數設定  -->
+                </div>
+              </div>
+
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="externalUrl">
+                {{'dw-home-setting-linkURL' | translate}}：
+              </label>
+              <div dw-row class="dw-f-home-setting-content">
+                <div dw-col [dwSpan]="24">
+                  <dw-form-item class="dw-f-home-setting-urlInput">
+                    <dw-form-control [dwSpan]="24" [dwErrorTip]="userHomeExternalUrlErrorTpl">
+                      <input dw-input formControlName="homeExternalUrl" placeholder="http://, https://">
+                      <!-- pattern="https?://.+" -->
+                      <ng-template #userHomeExternalUrlErrorTpl>
+                        <ng-container
+                          *ngIf="(userCfgForm.get('homeExternalUrl').touched || userCfgForm.get('homeExternalUrl').dirty) && !userCfgForm.get('homeExternalUrl').errors?.required && userCfgForm.get('homeExternalUrl').errors?.pattern">
+                          {{'dw-home-setting-linkURL' | translate}} http://, https://
+                        </ng-container>
+                      </ng-template>
+                    </dw-form-control>
+                  </dw-form-item>
+                </div>
+              </div>
+            </dw-radio-group>
+            <!-- 表單按鈕 -->
+            <div dw-row class="dw-f-home-setting-buttonbar">
+              <div dw-col [dwSpan]="24">
+                <button dw-button type="button" [dwType]="'default'" (click)="cfgCancel(tab.level)" translate>
+                  {{'dw-home-setting-cancel' | translate}}
+                </button>
+                <button dw-button dwType="primary" [disabled]="!userCfgForm.valid">
+                  {{'dw-home-setting-save' | translate}}
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </ng-container>
+
+      <!-- 共用首頁 -->
+      <ng-container>
+        <div [hidden]="tab.id !== 'tenant-cfg'">
+          <form dw-form [formGroup]="tenantCfgForm" (ngSubmit)="cfgSave(tab.level, tenantCfgForm)">
+            <input type="text" dw-input formControlName="cfgLevel" style="display: none;">
+            <dw-radio-group formControlName="homeType" style="width: 100%;">
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="preset">
+                {{'dw-home-setting-preset' | translate}}
+              </label>
+
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="program">
+                {{'dw-home-setting-program' | translate}}：
+                <ng-container *ngIf="tenantCfgForm.controls['homeProgramId'].value">
+                  {{programPre + tenantCfgForm.controls['homeProgramId'].value | translate}}
+                  ({{tenantCfgForm.controls['homeProgramId'].value}})
+                </ng-container>
+                <span class="dw-f-home-setting-error"
+                  *ngIf="!tenantCfgForm.controls['homeProgramId'].value && tenantCfgForm.controls['homeType'].value === 'program'">
+                  {{'dw-home-setting-select-prog' | translate}}
+                </span>
+              </label>
+              <div dw-row dwGutter="16" class="dw-f-home-setting-content">
+                <div dw-col [dwSpan]="14">
+                  <input type="text" dw-input formControlName="programOptions" style="display: none;">
+                  <div class="dw-f-program-search">
+                    <ng-template #tenantProgramSearchButton>
+                      <button dw-button type="button" dwType="primary" dwSearch (click)="programSearch(tenantCfgForm)">
+                        <i dw-icon dwType="search" dwTheme="outline"></i>
+                      </button>
+                    </ng-template>
+                    <dw-input-group dwSearch [dwAddOnAfter]="tenantProgramSearchButton">
+                      <input type="text" dw-input formControlName="programSearchValue">
+                    </dw-input-group>
+                  </div>
+                  <dw-card class="dw-f-home-setting-program-card">
+                    <dw-radio-group formControlName="homeProgramId" style="width:100%">
+                      <ng-container
+                        *ngFor="let programOption of tenantCfgForm.controls['programOptions'].value; let idx = index">
+                        <label dw-radio class="dw-f-home-setting-radioRow dw-f-home-setting-programs"
+                          dwValue="{{programOption.key}}" *ngIf="programOption.isMatched">{{programOption.name}}</label>
+                      </ng-container>
+                    </dw-radio-group>
+                  </dw-card>
+                </div>
+                <div dw-col [dwSpan]="10"
+                  [style.display]="tenantCfgForm.controls['viewHiddenParameter'].value ? 'none' : 'unset'">
+                  <input type="text" dw-input formControlName="viewHiddenParameter" style="display: none;">
+                  <!-- 參數設定 -->
+                  <dw-form-item>
+                    {{'dw-home-setting-parameterSetting' | translate}}：
+                    <div dw-col [dwSpan]="24">
+                      <!-- 固定參數 -->
+                      <div dw-row formArrayName="fixparam" class="dw-modals-menu-edit-name">
+                        <div dw-col [dwSpan]="24"
+                          *ngFor="let paramGroup of tenantCfgForm.controls['fixparam'].controls; let idx = index"
+                          formGroupName="{{idx}}">
+                          <div dw-row [dwGutter]="4" class="dw-f-add-name dw-f-home-setting-f-val">
+                            <div dw-col [dwSpan]="10">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  {{paramGroup.controls['name'].value}}
+                                  <input dw-input formControlName="name" style="display: none;">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="12">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  {{paramGroup.controls['value'].value}}
+                                  <input dw-input formControlName="value" style="display: none;">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="2" class="dw-f-btn-icons">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 可變參數 -->
+                      <div dw-row formArrayName="homeParameter" class="dw-modals-menu-edit-name">
+                        <div dw-col [dwSpan]="24"
+                          *ngFor="let paramGroup of tenantCfgForm.controls['homeParameter'].controls; let idx = index"
+                          formGroupName="{{idx}}">
+                          <div dw-row [dwGutter]="4" class="dw-f-add-name">
+                            <div dw-col [dwSpan]="10">
+                              <dw-form-item>
+                                <dw-form-control [dwErrorTip]="tenantNameErrorTpl">
+                                  <input dw-input formControlName="name" placeholder="{{'dw-home-setting-parameterName' | translate}}">
+                                  <ng-template #tenantNameErrorTpl>
+                                    <ng-container class="dw-f-home-setting-error"
+                                      *ngIf="!paramGroup.controls['name'].errors?.required && paramGroup.controls['name'].errors?.nameValidator">
+                                      {{'dw-home-setting-msg-exist' | translate}}
+                                    </ng-container>
+                                  </ng-template>
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="12">
+                              <dw-form-item>
+                                <dw-form-control>
+                                  <input dw-input formControlName="value"
+                                    placeholder="{{'dw-home-setting-parameterValue' | translate}}">
+                                </dw-form-control>
+                              </dw-form-item>
+                            </div>
+                            <div dw-col [dwSpan]="2" class="dw-f-btn-icons">
+                              <i dw-icon dwType="minus-circle" dwTheme="outline" class="dw-f-sysmenu-dynamic-delete"
+                                (click)="formArrayDelete(tenantCfgForm.controls['homeParameter'], idx)"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 添加 -->
+                      <dw-form-item>
+                        <dw-form-control [dwSpan]="22">
+                          <button dw-button type="button" dwType="dashed" style="width:100%"
+                            (click)="paramAddFieldControlRow(tenantCfgForm, '', '')">
+                            <i dw-icon dwType="plus" dwTheme="outline"></i>
+                            {{'dw-home-setting-increase' | translate}}
+                          </button>
+                        </dw-form-control>
+                      </dw-form-item>
+                    </div>
+                  </dw-form-item>
+                  <!-- /. 參數設定  -->
+                </div>
+              </div>
+
+              <label dw-radio class="dw-f-home-setting-radioRow" dwValue="externalUrl">
+                {{'dw-home-setting-linkURL' | translate}}：
+              </label>
+              <div dw-row class="dw-f-home-setting-content">
+                <div dw-col [dwSpan]="24">
+                  <dw-form-item class="dw-f-home-setting-urlInput">
+                    <dw-form-control [dwSpan]="24" [dwErrorTip]="tenantHomeExternalUrlErrorTpl">
+                      <input dw-input formControlName="homeExternalUrl" placeholder="http://, https://">
+                      <!-- pattern="https?://.+" -->
+                      <ng-template #tenantHomeExternalUrlErrorTpl>
+                        <ng-container
+                          *ngIf="(tenantCfgForm.get('homeExternalUrl').touched || tenantCfgForm.get('homeExternalUrl').dirty) && !tenantCfgForm.get('homeExternalUrl').errors?.required && tenantCfgForm.get('homeExternalUrl').errors?.pattern">
+                          {{'dw-home-setting-linkURL' | translate}} http://, https://
+                        </ng-container>
+                      </ng-template>
+                    </dw-form-control>
+                  </dw-form-item>
+                </div>
+              </div>
+            </dw-radio-group>
+            <!-- 表單按鈕 -->
+            <div dw-row class="dw-f-home-setting-buttonbar">
+              <div dw-col [dwSpan]="24">
+                <button dw-button type="button" [dwType]="'default'" (click)="cfgCancel(tab.level)" translate>
+                  {{'dw-home-setting-cancel' | translate}}
+                </button>
+                <button dw-button dwType="primary" [disabled]="!tenantCfgForm.valid">
+                  {{'dw-home-setting-save' | translate}}
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </ng-container>
+
+    </dw-tab>
+  </dw-tabset>
+</dw-content>

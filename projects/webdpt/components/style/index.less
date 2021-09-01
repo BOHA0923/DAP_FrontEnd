@@ -1,0 +1,644 @@
+@import './variable.less';
+@import './login-block.less';
+@import './wp-layout.less';
+@import './loading-http.less';
+@import './input-group.less';
+
+// 仿超連結文字樣式
+.dw-f-text-link {
+  color: @color-link;
+  cursor: pointer;
+}
+
+.dw-f-text-link:active {
+  color: @color-hover;
+}
+
+dw-layout {
+  // height: 100%;
+  &.ant-layout {
+    background: #fff;
+  }
+}
+
+// 禁用功能
+.dw-f-action-disable {
+  cursor: not-allowed;
+  pointer-events: none; // for hyperlink click
+  color: @text-color;
+}
+
+// ---------------------------------------------------------
+// | framework 視覺設計
+// ---------------------------------------------------------
+&::-webkit-scrollbar {
+  width: .4rem;
+  height: .5rem;
+}
+
+&::-webkit-scrollbar-thumb {
+  border-radius: 1.88rem;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.dw-f-iframe-finereport {
+  // 另外有需求可以再增設.dw-f-iframe-general
+  background-color: @iframe-finereport-background-color;
+}
+
+// ---------------------------------------------------------
+// 滑鼠樣式
+// hover: #f6f6f6 淺淺灰
+// detailSelected | focus: #e6f7ff  淺藍
+// 列編輯:  #fff7e6 淺橘 (active)
+// ---------------------------------------------------------
+// 滑鼠樣式  hover
+.ant-table-thead>tr.ant-table-row-hover>td,
+.ant-table-tbody>tr.ant-table-row-hover>td,
+.ant-table-thead>tr:hover>td,
+.ant-table-tbody>tr:hover>td {
+  // background: rgba(0, 0, 0, 0.03);
+  background-color: #f7f7f7; // 凍結用色 (如果有另外設主色,可以移出去寫在自己的 less)
+}
+
+// 滑鼠樣式  selected
+tr.ant-table-row.detailSelected,
+.detailSelected {
+  background-color: lighten(@theme-color, 42%);
+}
+
+// btn
+button+button,
+button+dw-dropdown {
+  margin-left: .5rem;
+}
+
+//  日期元件 dw-date-picker
+dw-date-picker {
+  width: 100%;
+}
+
+// 多選項的搜尋按鈕圖示多行的時候撐開
+dw-select[dwmode=multiple]+span {
+  height: 100%;
+  button {
+    height: 100%;
+  }
+}
+
+// //
+// .dw-f-tabset-bar {
+//   .ant-tabs-nav-container {
+//     //overflow: visible;
+//   }
+//   //margin: 0 -.63rem;
+//   [dw-tabs-nav].ant-tabs-bar {
+//     margin-bottom: 0;
+//     border-bottom: none;
+//     .ant-tabs-extra-content.dw-f-btn-closeall {
+//       //position: absolute;
+//       //z-index: 11;
+//       //right: 8px;
+//     }
+//     .ant-tabs-nav-container-scrolling {
+//       //margin-right: 24px;
+//     }
+//     .ant-tabs-nav {
+//       padding: 0 .63rem;
+//       .ant-tabs-tab {
+//         padding: 0 .6rem;
+//         .anticon {
+//           margin-right: 0;
+//         }
+//       }
+//       .ant-tabs-tab-active {
+//         padding-bottom: 2px;
+//         position: relative;
+//         &::before {
+//           //content: "";
+//           //position: absolute;
+//           //left: 0;
+//           //bottom: -1px;
+//           //height: 4px;
+//           //width: 100%;
+//           //display: block;
+//           //background-color: #fff;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// 表單內容 (作業內容) 框架共用樣式
+.dw-f-content-info {
+  background-color: #fff;
+  padding: .94rem;
+}
+
+// 查詢列表頁
+.dw-f-content-list {
+  .dw-f-content-info();
+}
+
+// 詳情頁
+.dw-f-content-view {
+  .dw-f-content-info();
+}
+
+// 編輯頁
+.dw-f-content-edit {
+  .dw-f-content-info();
+}
+
+// dw-f-search-form-block 單頭搜尋條件
+.ant-advanced-search-form {
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+.ant-advanced-search-form.dw-f-search-form-block {
+  margin-bottom: .63rem;
+  .search-form-row {
+    text-align: right;
+    padding-bottom: 15px;
+    a.dw-f-link-more {
+      margin-left: .5rem;
+      font-size: .75rem;
+    }
+  }
+}
+
+// .ant-form-item  下方間距
+dw-layout .ant-form-item,
+.ant-advanced-search-form .ant-form-item,
+.ant-modal-content .ant-form-item {
+  margin-bottom: .5rem;
+}
+
+// ---------------------------------------------------------
+// 組合運用 寬度 100%
+// ---------------------------------------------------------
+button.dw-f-btn-w100,
+.dw-f-width100 {
+  width: 100%;
+}
+
+// 組合運用 文字靠右
+.dw-f-txt-right {
+  text-align: right;
+}
+
+.dw-f-txt-center {
+  text-align: center;
+}
+
+// 組合運用 padding-bottom .63rem
+.dw-f-padding-bottom {
+  padding-bottom: .63rem;
+}
+
+.dw-f-row-bottom {
+  .dw-f-padding-bottom();
+}
+
+.dw-f-row-bottom-margin {
+  margin-bottom: 20px;
+}
+
+// 雙檔 , 作業操作 btn 列
+.dw-f-btn-bar-action {
+  .dw-f-padding-bottom();
+}
+
+.dw-f-table {
+  .dw-f-padding-bottom();
+  min-height: 12.5rem;
+}
+
+// dw-card hover 的 樣式不顯示
+// .dw-f-content-wp .ant-card:not(.ant-card-no-hovering):hover{
+//   box-shadow: none;
+// }
+// dw-link-txt  操作 文字連結
+.dw-link-txt a {
+  margin-left: .5rem;
+}
+
+// ---------------------------------------------------------
+//  分段編輯的白底遮罩  dw-div-mask
+//  多檔的時候還是要加  !important
+// ---------------------------------------------------------
+dw-div-mask .dwDivMask,
+.dwDivMask {
+  //  樹狀雙介面的左側選單用
+  background-color: #ffffff !important;
+  opacity: 0.5 !important;
+  position: fixed;
+  z-index: 7;
+}
+
+// 搜尋區塊欄位組 .dw-f-search-form-block
+.dw-f-search-form-block {
+  dw-form-item.ant-form-item {
+    display: flex;
+    .dw-f-label-title {
+      width: 130px; //  最多7個字, 需求更多文字時修改這組寬度
+      text-overflow: ellipsis;
+    }
+    .dw-f-control-data {
+      width: ~"calc(100% - 130px)";
+      .ant-form-item-control {
+        width: 100%;
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// 單頭 欄位組
+.dw-f-form-head {
+  width: 100%;
+  dw-form-item.ant-form-item {
+    display: flex;
+    .dw-f-label-title {
+      width: 130px; //  最多7個字, 需求更多文字時修改這組寬度
+      text-overflow: ellipsis;
+    }
+    .dw-f-control-data {
+      width: ~"calc(100% - 130px)";
+      .ant-form-item-control {
+        width: 100%;
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// 單頭 欄位樣式 dw-f-content-edit | dw-f-form-head
+.dw-f-content-edit,
+.dw-f-content-view {
+  .dw-f-form-head {
+    dw-form-item.ant-form-item {
+      min-height: 2.44rem;
+      margin-bottom: .5rem;
+      .msg-tip {
+        position: absolute;
+        z-index: 3;
+        right: 0;
+        top: -.5rem;
+        color: @color-tip;
+        font-size: .75rem;
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, .8);
+      }
+      .dw-f-control-data {
+        .ant-form-item-control span {
+          overflow: inherit;
+          white-space: normal;
+          [dw-form-explain].ng-star-inserted {
+            //  dw-picker 驗證提示
+            position: absolute;
+            z-index: 3;
+            right: 0; // top: -.63rem;
+            top: -.81rem;
+            line-height: .75rem;
+            color: @color-tip;
+            font-size: .75rem;
+            transform: scale(0.95);
+            background-color: rgba(255, 255, 255, .8);
+          }
+        }
+      }
+    }
+  }
+}
+
+// dw-f-content-view
+.dw-f-content-view.view {
+  .dw-f-top-btn-bar {
+    dw-form-item.ant-row.ant-form-item {
+      margin-bottom: 1.25rem;
+      min-height: initial;
+    }
+  }
+  .master-title span.dw-f-btn-edit {
+    font-size: .81rem;
+    font-weight: normal;
+    i {
+      color: @color-link;
+      font-size: .94rem;
+    }
+  }
+  dw-form-item.ant-row.ant-form-item {
+    margin-bottom: .5rem;
+    .ant-form-item-label {
+      text-align: right;
+      line-height: 1.5;
+    }
+    .ant-form-item-control {
+      line-height: 1.5;
+    }
+  }
+}
+
+// 單身  dw-f-form-box
+.dw-f-form-box {
+  padding: 20px;
+  margin: 15px 0;
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 991px) {
+  // dw-content [class^="dw-f-content-"]{
+  //   dw-form-item.ant-form-item{
+  //     display: inherit;
+  //     min-height: 62px;
+  //     .dw-f-label-title.ant-form-item-label{
+  //       width: 100%;
+  //       line-height: 1.2;
+  //       text-align: left;
+  //       padding: 0;
+  //       position: relative;
+  //       margin-bottom: -6px;
+  //       z-index: 2;
+  //       text-shadow: 2px 2px 2px #fff;
+  //     }
+  //     label{
+  //       padding-left: 8px;
+  //       color: rgba(0, 0, 0,.6);
+  //       font-size: .75rem;
+  //       transform: scale(0.95);
+  //     }
+  //     .dw-f-control-data{
+  //       width: 100%;
+  //     }
+  // }
+  // .dw-f-top-btn-bar dw-form-item.ant-form-item{
+  //   min-height: initial;
+  // }
+  // .ant-form-item-required:before{
+  //   position: absolute;
+  //   margin-left: -8px;
+  //   top: 3px;
+  // }
+  // }
+  .dw-f-content-edit .dw-f-form-head {
+    &>div {
+      min-height: 4.25rem;
+    }
+    dw-form-item.ant-form-item .msg-tip {
+      top: 8px;
+    }
+  } // .dw-f-content-view.view{
+  //     dw-form-item.ant-row.ant-form-item{
+  //       min-height: inherit;
+  //       .dw-f-label-title.ant-form-item-label{
+  //         text-align: left;
+  //         padding: 0;
+  //         position: relative;
+  //         margin-bottom: -6px;
+  //         z-index: 2;
+  //         label{
+  //           padding-left: .94rem;
+  //           color: rgba(0, 0, 0,.6);
+  //           font-size: .75rem;
+  //           transform: scale(0.95);
+  //         }
+  //       }
+  //       dw-form-control{
+  //         padding-left: .94rem;
+  //         font-size: .88rem;
+  //         color: #000;
+  //       }
+  //     }
+  //   .ant-form-item-required:before{
+  //     position: absolute;
+  //     margin-left: -12px;
+  //     top: 3px;
+  //   }
+  // }
+  // dw-content [class^="dw-f-content-"] .dw-f-search-form-block dw-form-item.ant-form-item{
+  //   display: block;
+  //   min-height: auto;
+  // }
+  // .dw-f-search-form-block{  // 搜尋區塊
+  //   .ant-form-item{
+  //     margin-bottom: 8px;
+  //   }
+  //   .ant-form-item-label{
+  //     line-height: 1;
+  //     width: 100%;
+  //     text-align: left;
+  //   }
+  //   dw-form-control.ant-form-item-control-wrapper{
+  //     width: 100%;
+  //   }
+  // }
+  .dw-f-content-edit {
+    // 編輯頁面小於992  月曆寬度不足100%
+    dw-date-picker dw-picker span.ant-calendar-picker {
+      display: block;
+      top: .19rem;
+    }
+  }
+  .dw-treemenu-right .view dw-form-control {
+    padding-left: .63rem;
+    font-size: .88rem;
+    color: #000;
+  }
+}
+
+// @media (max-width: 767px){
+//   [dw-row].ant-row{
+//     min-width: 680px;
+//   }
+// }
+dw-table {
+  .ant-table-thead>tr>th,
+  .ant-table-tbody>tr>td {
+    padding: 12px 8px;
+  }
+  .ant-table-thead>tr>th {
+    border-top: 1px solid #e8e8e8;
+    border-radius: 0;
+    &:first-child {
+      border-radius: 0;
+    }
+  }
+}
+
+// ---------------------------------------------------------
+// 頁籤遮罩
+// ---------------------------------------------------------
+.tabRoutingMask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  opacity: 0.1;
+  z-index: 999;
+}
+
+// ---------------------------------------------------------
+// tree  dwTree  dw-card
+// ---------------------------------------------------------
+.dw-f-content-list.dwTree {
+  .ant-card-head {
+    padding: 0;
+    min-height: initial;
+    .ant-card-head-title {
+      padding: 8px 0;
+      font-weight: 600;
+    }
+  }
+  .ant-card-body {
+    padding: 15px 0;
+  }
+}
+
+dw-row-expand-icon.anticon.dw-f-tree-icon-ex {
+  border: 0;
+  background-color: transparent;
+}
+
+// ---------------------------------------------------------
+// treemenu
+// ---------------------------------------------------------
+dw-content.dw-treemenu-wp {
+  padding: 0;
+  display: flex;
+  .dw-treemenu-left {
+    position: relative;
+    width: @dw-treemenu-left-block + .63rem;
+    height:~"calc(100% - (@{dw-f-header-h} + @{dw-f-tabbar-h}) + 2px)";
+    z-index: 3;
+    background-color: #fff;
+    text-align: left;
+    .dwDivMask {
+      width: @dw-treemenu-left-block;
+      height: 100%;
+      top: 0; // position: absolute;
+    }
+    dw-tree>ul {
+      padding-top: .94rem;
+      padding-right: .63rem; // margin-left: .63rem;
+      // margin-top: -2px;
+      position: fixed;
+      width: @dw-treemenu-left-block;
+      height:~"calc(100% - (@{dw-f-header-h} + @{dw-f-tabbar-h}) + 2px)";
+      overflow: auto;
+      background-color: #fff;
+      border-right: .06rem solid #efefef;
+      &.ant-tree li .ant-tree-node-content-wrapper {
+        min-height: 1.5rem;
+        height: auto;
+        line-height: 1.38rem;
+        width: 100%;
+      }
+      &.ant-tree li span.ant-tree-switcher {
+        width: 1rem;
+        position: absolute;
+        z-index: 3;
+      }
+      &.ant-tree li span.ant-tree-title {
+        position: relative;
+        padding-left: 1.2rem;
+        display: inline-block;
+        width: 100%;
+        white-space: normal;
+        z-index: 2;
+      }
+      &.ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected,
+      &.ant-tree li .ant-tree-node-content-wrapper:hover {
+        width: 100%;
+        color: @color-link;
+        background-color: transparent;
+        position: relative;
+        &::before {
+          content: "";
+          width: 178px;
+          height: 100%;
+          background-color: lighten(@theme-color, 42%);
+          position: absolute;
+          right: -8px;
+          z-index: 1;
+        }
+      }
+      &.ant-tree li span.ant-tree-switcher.ant-tree-switcher_close:after,
+      &.ant-tree li span.ant-tree-switcher.ant-tree-switcher_open:after {
+        font-size: 14px;
+      }
+    }
+  }
+  .dw-treemenu-right {
+    padding-top: .94rem;
+    padding-left: 1.3rem;
+    padding-right: .63rem;
+    width:~"calc(100% - (@{dw-treemenu-left-block} + 1.3rem))"; // margin-left: @dw-treemenu-left-block + .63rem;
+    z-index: 1;
+    flex-grow: 1;
+  }
+}
+
+// ---------------------------------------------------------
+// rwd  min-width: 960px;  內容最小寬
+// ---------------------------------------------------------
+// dw-layout.dw-fWp-top-fixed {
+//   min-width: 960px; // overflow-y: hidden;
+// }
+
+// @media (max-width: 991px) {
+//   // affix 下拉後位置會被推到外面看不到, 目前先強制齊右
+//   dw-layout.dw-fWp-top-fixed .ant-affix {
+//     left: initial !important;
+//     right: 0 !important;
+//   }
+// }
+
+.ag-invalid-cell-overlay .ant-tooltip-arrow::before {
+  background-color: red;
+}
+
+.ag-invalid-cell-overlay .ant-tooltip-inner {
+  background-color: red;
+}
+
+.update-refresh-modal {
+  width: 350px !important;
+}
+// 2020-01-30: ant 升 ang 8 禪窗選的 dw-input-group button i ant 自己產生 right:12px; 這裡暫解強制改為 button right:-12px
+.ant-input-affix-wrapper .ant-input-suffix button{
+  right: -12px;
+}
+// 組織樹DwOrganizeTreeModalComponent
+/* icon 增加顏色 */
+.dw-organize-tree i.anticon-user {
+  // color:#0084FF;
+  color:@theme-color;
+}
+/* 控制 checkbox 與 icon 的間距     */
+.dw-organize-tree .ant-tree-node-content-wrapper {
+  padding-left: 0px;
+}
+.dw-organize-tree .ant-tree-checkbox {
+  margin-right: 4px;
+}
+
+@import 'en_US.less'; //  英文語系微調
+// @import 'zh_CN.less';  //  簡中語系微調

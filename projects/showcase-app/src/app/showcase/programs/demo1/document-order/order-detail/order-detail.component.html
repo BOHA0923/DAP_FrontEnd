@@ -1,0 +1,135 @@
+<dw-content class="dw-f-content-edit">
+  <form dw-form *ngIf="master.controls[0]" [formGroup]="master.controls[0]" (ngSubmit)="save()">
+    <!-- 單頭 -->
+    <div dw-row [dwType]="'flex'" [dwJustify]="'start'">
+      <div dw-row [dwGutter]="10" class="dw-f-form-head">
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" dwRequired><span translate>dw-document-order-訂單編號</span></dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+            {{master.controls[0].get('orderid').value}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" dwRequired >
+            <span translate>dw-document-order-狀態碼</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+              {{getStatusName(master.controls[0].get('status').value)}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" dwRequired >
+            <span translate>dw-document-order-訂單日期</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+              {{master.controls[0].get('orderdate').value | date:'yyyy/MM/dd HH:mm:ss'}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" dwRequired>
+            <span translate>dw-document-order-客戶編號</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+              {{master.controls[0].get('customerid').value}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" >
+            <span translate>dw-document-order-業務員員工編號</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+              {{master.controls[0].get('employeeid').value}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="12" [dwLg]="{span: 8}" [dwXXl]="{span: 6}">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title">
+            <span translate>dw-document-order-訂單總額</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+            {{master.controls[0].controls['totalcount'].value | currency: 'TWD': '$': '1.0-0'}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+      <div dw-col [dwSpan]="24">
+        <dw-form-item dw-row>
+          <dw-form-label class="dw-f-label-title" >
+            <span translate>dw-document-order-送貨地址</span>
+          </dw-form-label>
+          <dw-form-control class="dw-f-control-data">
+              {{master.controls[0].get('address').value}}
+          </dw-form-control>
+        </dw-form-item>
+      </div>
+    </div>
+    </div>
+    <!-- 單身 -->
+    <div class="dw-f-table dw-f-row-bottom-margin">
+      <dw-table #dwTable [dwData]="detail.controls" [dwShowPagination]="false" [dwFrontPagination]="false" dwShowSizeChanger [dwLoading]="searchLoading">
+        <thead dw-thead>
+          <tr>
+            <th dw-th>
+              <span translate>dw-document-order-序列號</span>
+            </th>
+            <th dw-th>
+              <span translate>dw-document-order-配送狀態</span>
+            </th>
+            <th dw-th>
+              <span translate>dw-document-order-商品編號</span>
+            </th>
+            <th dw-th>
+              <span translate>dw-document-order-銷售單價</span>
+            </th>
+            <th dw-th>
+              <span translate>dw-document-order-數量</span>
+            </th>
+            <th dw-th>
+              <span translate>dw-document-order-小計</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody dw-tbody *ngIf="detail" >
+        <ng-container *ngFor="let data of detail.controls; let idx = index" [formGroup]="data">
+          <tr dw-tbody-tr *ngIf="data['$state'] !== 'd'" >
+            <td dw-td>
+              {{data.controls['seq'].value}}
+            </td>
+            <td dw-td>
+              {{data.controls['deliverystatus'].value}}
+            </td>
+            <td dw-td>
+                {{data.controls['productid'].value}}
+            </td>
+            <td dw-td >
+              {{data.controls['price'].value}}
+            </td>
+            <td dw-td>
+                {{data.controls['quantity'].value}}
+            </td>
+            <td dw-td >
+              {{data.controls['price'].value * data.controls['quantity'].value}}
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </dw-table>
+    </div>
+    <!-- 表單按鈕 -->
+    <dw-form-item dw-row class="dw-f-bottom-btn-bar">
+      <div dw-col [dwSpan]="24" dw-form-control class="dw-f-txt-center">
+        <button dw-button type="button" [dwType]="'primary'" (click)="modify()">{{ 'dw-document-order-修改' | translate }}</button>
+        <button dw-button type="button" (click)="list()">{{ 'dw-document-order-返回' | translate }}</button>
+      </div>
+    </dw-form-item>
+  </form>
+</dw-content>

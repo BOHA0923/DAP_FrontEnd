@@ -1,0 +1,14 @@
+{
+  "select-modal-enum-modalTitle": "Order Details",
+  "select-modal-enum-orderId": "Order ID",
+  "select-modal-enum-orderDate": "Order date",
+  "select-modal-enum-status": "Status code",
+  "select-modal-enum-customerId": "Customer ID",
+  "select-modal-enum-customerName": "Customer name",
+  "select-modal-enum-orderAddr": "Delivery address",
+  "select-modal-enum-total": "Order total",
+  "select-modal-enum-salesmanName": "Salesman Name",
+  "select-modal-enum-gender": "Salesman Gender",
+  "select-modal-enum-gender-male": "male",
+  "select-modal-enum-gender-female": "female"
+}

@@ -1,0 +1,12 @@
+{
+  "select-modal-demo-order-modalTitle": "訂單明細",
+  "select-modal-demo-order-orderId": "訂單編號",
+  "select-modal-demo-order-orderDate": "訂單日期",
+  "select-modal-demo-order-status": "狀態碼",
+  "select-modal-demo-order-customerId": "客戶編號",
+  "select-modal-demo-order-customerName": "客戶名稱",
+  "select-modal-demo-order-orderAddr": "送貨地址",
+  "select-modal-demo-order-total": "訂單總額",
+  "select-modal-demo-order-salesmanName": "業務員姓名",
+  "select-modal-demo-order-gender": "業務員性別"
+}

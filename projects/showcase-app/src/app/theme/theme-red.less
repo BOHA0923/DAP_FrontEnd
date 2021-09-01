@@ -1,0 +1,37 @@
+   // .theme-red {
+  //  @import '~ng-quicksilver/src/ng-quicksilver.less';
+  // @import '../../../ng-quicksilver/src/ng-quicksilver.less';
+  //  @import '../style.less';
+  @import '../../styles.less';
+   @theme-color: #740f4a;
+   // @primary-color: @theme-color;   
+   @menu-dark-submenu-bg: rgba(255, 255, 255, .1);
+   @menu-dark-bg: #000;
+   @menu-bg: #000;
+   @lighten-color: lighten(@theme-color, 70%);
+   @dark-color: darken(@theme-color, 10%);
+   
+  // 覆蓋原有,泡泡訊息才不會縮在一起
+  .ant-popover {
+    position: relative;
+  }
+   // 滑鼠樣式  selected
+   tr.ant-table-row.detailSelected,
+   .detailSelected {
+     background-color: @lighten-color;
+   }
+
+   // 樹狀雙介面
+   dw-content.dw-treemenu-wp .dw-treemenu-left dw-tree>ul.ant-tree li {
+
+     .ant-tree-node-content-wrapper.ant-tree-node-selected::before,
+     .ant-tree-node-content-wrapper:hover::before {
+       background-color: @lighten-color;
+     }
+   }
+
+   // 
+   .ant-select-dropdown-menu-item:hover,
+   .ant-calendar-date:hover {
+     background-color: @lighten-color;
+   }

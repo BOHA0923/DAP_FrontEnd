@@ -1,0 +1,298 @@
+<dw-content class="dw-f-input-listwin">
+<form dw-form>
+  <div dw-row [dwGutter]="24">
+    <!-- 多選 - 用戶ID與租戶ID -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-multiple</span> - <span translate>dw-organize-tree</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixMultiple">
+            <dw-select style="width: 100%" [(ngModel)]="multiple" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of multiple" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixMultiple>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openMultiple($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+    <!-- 單選 - 租戶ID -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-single</span> - <span translate>dw-organize-tree-org</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixSingle">
+            <dw-select style="width: 100%" [(ngModel)]="single" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of single" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixSingle>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openSingle($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+
+  <div dw-row [dwGutter]="24">
+    <!-- 取得組織結構清單 - 用戶ID與租戶ID -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getMultipleNodeLists()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="multipleLists.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="multipleLists" dwBordered [dwRenderItem]="multipleItem">
+                <ng-template #multipleItem let-multipleItem>
+                  <dw-list-item>{{ multipleItem | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+    <!-- 取得組織結構清單 - 租戶ID -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getSingleNodeLists()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree-org</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="singleLists.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="singleLists" dwBordered [dwRenderItem]="singleItem">
+                <ng-template #singleItem let-singleItem>
+                  <dw-list-item>{{ singleItem | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+
+  <div dw-row [dwGutter]="24">
+    <!-- 多選 - 用戶Sid與租戶Sid -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-multiple</span> - <span translate>dw-organize-tree-sid</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixSidMultiple">
+            <dw-select style="width: 100%" [(ngModel)]="sidMultiple" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of sidMultiple" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixSidMultiple>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openSidMultiple($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+    <!-- 單選 - 租戶Sid -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-single</span> - <span translate>dw-organize-tree-org-sid</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixSidSingle">
+            <dw-select style="width: 100%" [(ngModel)]="sidSingle" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of sidSingle" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixSidSingle>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openSidSingle($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+
+  <div dw-row [dwGutter]="24">
+    <!-- 取得組織結構清單 - 用戶Sid與租戶Sid -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getSidMultipleNodeLists()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree-sid</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="sidMultipleLists.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="sidMultipleLists" dwBordered [dwRenderItem]="sidMultipleItem">
+                <ng-template #sidMultipleItem let-sidMultipleItem>
+                  <dw-list-item>{{ sidMultipleItem | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item>
+
+    </div>
+
+    <!-- 取得組織結構清單 - 租戶Sid -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getSidSingleNodeLists()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree-org-sid</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="sidSingleLists.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="sidSingleLists" dwBordered [dwRenderItem]="sidSingleItem">
+                <ng-template #sidSingleItem let-sidSingleItem>
+                  <dw-list-item>{{ sidSingleItem | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+
+  <div dw-row [dwGutter]="24">
+    <!-- 多選 - 用戶Sid與租戶Sid - 只選人員 - 與UX操作情境不符合, 不建議使用此設定展開組織樹 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block" style="min-height: 122px">
+      <!-- <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-multiple</span> - <span translate>dw-organize-tree-sid</span> - <span translate>dw-organize-tree-onlyuser</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixSidMultipleOnlyuser">
+            <dw-select style="width: 100%" [(ngModel)]="sidMultipleOnlyuser" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of sidMultipleOnlyuser" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixSidMultipleOnlyuser>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openSidMultipleOnlyuser($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item> -->
+    </div>
+
+    <!-- 單選 - 用戶Sid與租戶Sid - 只選人員 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-label dw-col [dwSpan]="24" class="title">
+          <span translate>dw-organize-tree-single</span> - <span translate>dw-organize-tree-org-sid</span> - <span translate>dw-organize-tree-onlyuser</span>
+        </dw-form-label>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <dw-input-group dwSearch [dwAddOnAfter]="suffixSidSingleOnlyuser">
+            <dw-select style="width: 100%" [(ngModel)]="sidSingleOnlyuser" dwMode="multiple" [compareWith]="compareWith" [ngModelOptions]="{standalone: true}">
+              <dw-option *ngFor="let option of sidSingleOnlyuser" [dwLabel]="option.title" [dwValue]="option"></dw-option>
+            </dw-select>
+          </dw-input-group>
+          <ng-template #suffixSidSingleOnlyuser>
+            <button dw-button type="button" dwType="primary" dwSearch (click)="openSidSingleOnlyuser($event)">
+              <i dw-icon dwType="search" dwTheme="outline"></i>
+            </button>
+          </ng-template>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+
+  <div dw-row [dwGutter]="24">
+    <!-- 取得組織結構清單 - 用戶Sid與租戶Sid - 只選人員 - 與UX操作情境不符合, 不建議使用此設定展開組織樹 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block" style="min-height: 88px">
+      <!-- <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getSidMultipleNodeListsOnlyuser()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree-sid</span> - <span translate>dw-organize-tree-onlyuser</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="sidMultipleListsOnlyuser.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="sidMultipleListsOnlyuser" dwBordered [dwRenderItem]="sidMultipleOnlyuserItem">
+                <ng-template #sidMultipleOnlyuserItem let-sidMultipleOnlyuserItem>
+                  <dw-list-item>{{ sidMultipleOnlyuserItem | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item> -->
+    </div>
+
+    <!-- 取得組織結構清單 - 用戶Sid與租戶Sid - 只選人員 -->
+    <div dw-col [dwSpan]="12" class="dw-f-input-listwin-block">
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <button dw-button type="button" dwType="primary" (click)="getSidSingleNodeListsOnlyuser()"><span translate>dw-organize-tree-data</span> - <span translate>dw-organize-tree-org-sid</span> - <span translate>dw-organize-tree-onlyuser</span></button>
+        </dw-form-control>
+      </dw-form-item>
+      <dw-form-item dw-row>
+        <dw-form-control dw-col [dwSm]="24" [dwXs]="24">
+          <div dw-row [dwGutter]="24" class="dw-f-dynamic-val-info" *ngIf="sidSingleListsOnlyuser.length">
+            <div dw-col [dwSpan]="24">
+              <dw-list [dwDataSource]="sidSingleListsOnlyuser" dwBordered [dwRenderItem]="sidSingleItemOnlyuser">
+                <ng-template #sidSingleItemOnlyuser let-sidSingleItemOnlyuser>
+                  <dw-list-item>{{ sidSingleItemOnlyuser | json }}</dw-list-item>
+                </ng-template>
+              </dw-list>
+            </div>
+          </div>
+        </dw-form-control>
+      </dw-form-item>
+    </div>
+
+  </div>
+
+</form>
+</dw-content>

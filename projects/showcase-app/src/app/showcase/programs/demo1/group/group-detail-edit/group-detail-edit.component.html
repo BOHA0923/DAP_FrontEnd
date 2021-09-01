@@ -1,0 +1,64 @@
+<dw-content class="form-content">
+  <form dw-form [formGroup]="detailEditForm" (ngSubmit)="emitDataOutside()">
+    <dw-form-input
+      formControlName="detailEditCompanyId"
+      (change)="detailEdit.companyId=$event.target.value"
+      dwLabel="{{'dw-group-company-id' | translate}}"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwRequired]="true">
+    </dw-form-input>
+    <dw-form-input
+      formControlName="detailEditCompanyName"
+      (change)="detailEdit.companyName=$event.target.value"
+      dwLabel="{{'dw-group-company-name' | translate}}"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwRequired]="true">
+    </dw-form-input>
+    <dw-form-select
+      [dwOptionList]="currencyOptions | async"
+      formControlName="detailEditCurrencyId"
+      dwLabel="{{'dw-group-currency-setting' | translate}}"
+      [dwPlaceHolder]="'dw-group-please-select' | translate"
+      [dwNotFoundContent]="'dw-group-no-options' | translate"
+      dwLabelSpan="6"
+      dwInputSpan="18"
+      [dwRequired]="true">
+    </dw-form-select>
+    <dw-form-item dw-row>
+      <dw-form-label dw-col [dwSpan]="6">
+        {{ 'dw-group-msg-confirm-execute' | translate}}
+      </dw-form-label>
+      <dw-form-control dw-col [dwSpan]="18">
+        <label dw-checkbox formControlName="detailEditStatus" >
+          <!-- <span>是否執行</span> -->
+        </label>
+      </dw-form-control>
+    </dw-form-item>
+    <dw-form-date-picker
+      dwShowTime
+      formControlName="detailEditStartDate"
+      dwLabel="{{'dw-group-start-date' | translate}}"
+      [dwPlaceHolder]="'dw-group-start-date'|translate"
+      [dwDisabledDate]="disabledStartDate"
+      [dwFormat]="dwDateTimeFormat"
+      dwLabelSpan="6"
+      dwInputSpan="18">
+    </dw-form-date-picker>
+    <dw-form-date-picker
+      dwShowTime
+      formControlName="detailEditEndDate"
+      dwLabel="{{'dw-group-end-date' | translate}}"
+      [dwPlaceHolder]="'dw-group-end-date'|translate"
+      [dwDisabledDate]="disabledEndDate"
+      [dwFormat]="dwDateTimeFormat"
+      dwLabelSpan="6"
+      dwInputSpan="18">
+    </dw-form-date-picker>
+    <div class="customize-footer">
+      <button dw-button type="submit" [dwType]="'primary'" [disabled]="!detailEditForm.valid">{{ 'dw-determine' | translate}}</button>
+      <button dw-button type="button" [dwType]="'default'" (click)="handleCancel($event)">{{ 'dw-cancel' | translate}}</button>
+    </div>
+  </form>
+</dw-content>

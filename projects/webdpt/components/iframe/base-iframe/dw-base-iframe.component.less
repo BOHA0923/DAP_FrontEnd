@@ -1,0 +1,38 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.ww-iframe-block {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  // padding-bottom: 56.25%;
+  /* ww-iframe-block 等比縮放 , 滿版可參看 basic-side.less 需另外計算 抬頭, 頁籤, 頁尾 凍結關係的高度 */
+}
+
+.iframe-ww {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.iframe-mask {
+  display: none;
+  background-color: #ffffff00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ww-iframe-overflow {
+//   position: relative;
+//   width: 100%;
+  height: 100%;
+//   display: block;
+//   overflow: hidden;
+}

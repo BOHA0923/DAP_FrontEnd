@@ -1,0 +1,51 @@
+<div class="markdown">
+  排程组件<code class="key">&lt;dw-job-time-setting&gt;</code>可透过表单<code class="key">formControlName</code>及<code class="key">[(ngModel)]</code>做双向绑定。
+</div>
+
+必要的数据格式：
+<div highlightChildren>
+  <pre><code [textContent]="requireJsonText"></code></pre>
+</div>
+
+<ng-template #description>
+  <div style="text-align: left; color: #000;">
+
+  </div>
+</ng-template>
+
+<dw-table dir="auto">
+  <thead>
+  <tr>
+    <th>名称</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>dwSize</td>
+    <td>同表单组件<code class="key">dwSize</code>属性，可调整每个输入组件的尺寸。</td>
+    <td><code class="key">'default'</code> | <code class="key">'small'</code> | <code class="key">'large'</code></td>
+    <td><code class="key">'small'</code></td>
+  </tr>
+  <tr>
+    <td>dwJobType</td>
+    <td>指定要开放的排程类型，接受<code class="key">string</code>及<code class="key">string[]</code>二种格式。</td>
+    <td>
+      <code class="key">'SIMPLE'</code>： 每日执行时间<br/>
+      <code class="key">'CYCLE'</code>： 每日周期时段<br/>
+      <code class="key">'RRULE'</code>： Recurrence Rule<br/>
+      string:<code class="key">'SIMPLE'</code> | <code class="key">'CYCLE'</code> | <code class="key">'RRULE'</code><br/>
+      string[]: [<code class="key">'SIMPLE'</code> | <code class="key">'CYCLE'</code> | <code class="key">'RRULE'</code>]
+    </td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>dwShowRRuleResult</td>
+    <td>是否显示Recurrence Rule的试算结果。</td>
+    <td><code class="key">boolean</code></td>
+    <td><code class="key">true</code></td>
+  </tr>
+  </tbody>
+</dw-table>

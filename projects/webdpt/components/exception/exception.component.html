@@ -1,0 +1,13 @@
+<div class="error-col" *ngIf="title !== ''">
+  <div class="info-box">
+    <div class="msg">
+      {{title}}
+    </div>
+    <div class="execption-content">
+      <div class="desc">{{desc | translate}}</div>
+      <div class="txt-box">
+        <div *ngFor="let item of descDetail">{{item}}</div>
+      </div>
+    </div>
+  </div>
+</div>

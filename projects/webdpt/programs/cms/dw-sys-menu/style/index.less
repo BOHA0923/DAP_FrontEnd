@@ -1,0 +1,312 @@
+// 選單設定
+@lighten-color: lighten(@theme-color, 42%);
+@dark-color: darken(@theme-color, 8%);
+@left-menu-w: 30rem;
+.dw-f-menu-list-wp {
+  padding: .63rem 1.25rem;
+
+  .dw-f-btn-upload {
+    margin-bottom: 1rem;
+    button{
+      display: inline-flex;
+      align-items:center;
+      font-size: .75rem;
+      i{
+        font-size: 24px;
+      }
+      span{
+        margin-left: .25rem;
+      }
+    }
+  }
+}
+
+//  左 側 浮動
+.dw-f-left-block {
+  position: fixed;
+  width: @left-menu-w;
+  .dw-f-addmenu-block {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    .dw-f-menu-card {
+      width: 77%;
+
+      &~div {
+        margin-left: 2.5%;
+      }
+    }
+
+  }
+
+  .dw-f-menu-card .ant-card-bordered {
+    height: ~"calc(100vh - 10rem)";
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+    dw-form-item {
+      padding-bottom: 1rem;
+
+      dw-form-label {
+        padding-bottom: 0;
+        line-height: 1;
+      }
+
+      .ant-form-item-control {
+        line-height: 1;
+        padding-top: 4px;
+      }
+    }
+
+  }
+
+  //  按鈕 dw-f-btn-box
+  // .dw-f-btn-box{
+  //   display: flex;
+  //   flex-direction:column;
+  //   align-items:center;
+  // }
+}
+
+// 右側 區塊
+.dw-f-right-block {
+  width: ~"calc(100% - @{left-menu-w} - 1rem)";
+  position: relative;
+  left: @left-menu-w + 1rem;
+  .ant-card-bordered {
+    border: 1px solid #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+  }
+}
+
+// .ant-input-affix-wrapper {
+//   display: block;
+// }
+
+// .dw-f-sysmenu-is-dragging {
+//   background-color: transparent !important;
+//   color: #000;
+//   opacity: 0.7;
+// }
+
+// 目錄
+.dw-f-sysmenu-iconpreview {
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+  left: 8px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 1px solid @theme-color;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: all .3s;
+}
+
+.dw-f-sysmenu-iconpreview i {
+  display: block;
+  font-size: 24px;
+  line-height: 32px;
+  color: @theme-color;
+}
+
+// 作業
+.dw-f-menu-card {
+  .dw-f-program-search {
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: .5rem;
+    // margin-bottom: .5rem;
+    margin-top: -.75rem;
+  }
+  .dw-f-checkbox-list{
+    display: block;
+  }
+  .dw-f-checkbox-list-li{
+    &:hover span{
+      color: @theme-color;
+    }
+    label.ant-checkbox-wrapper{
+      width: 100%;
+      border-bottom: 1px dotted #d9d9d9;
+      padding: .5rem 0;
+    }
+  }
+}
+
+// .dw-f-sysmenu-label-left {
+//   text-align: left
+// }
+
+// .dw-f-sysmenu-edit-button {
+//   min-width: 70px;
+// }
+
+// .dw-f-sysmenu-dynamic-delete {
+//   cursor: pointer;
+//   position: relative;
+//   top: 11px;
+//   font-size: 20px;
+//   color: #999;
+//   transition: all .3s;
+// }
+
+// .dw-f-sysmenu-dynamic-delete:hover {
+//   color: #777;
+// }
+
+//  右側 新增選單內容
+.dw-f-new-menu .ant-card-bordered {
+  height: ~"calc(100vh - 10rem)";
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,.3);
+  min-width: 18.75rem;
+}
+.dw-f-new-menu{
+  .ant-tree li span.ant-tree-switcher{
+    vertical-align: middle;
+  }
+  .ant-tree li span.ant-tree-checkbox{
+    margin: 0 .25rem 0 0;
+    line-height: 1.25rem;
+  }
+  .dw-f-sysmenu-node {
+    display: inline-flex;
+    justify-content: space-between;
+    cursor: -webkit-grab;
+    cursor: grab;
+    width: 90%;
+    padding: .5rem 0;
+    vertical-align: middle;
+    .ant-tree li{
+      overflow: hidden;
+    }
+
+    .dw-f-menu-name{
+      position: relative;
+      width: ~"calc(100% - 6.25rem)";
+    word-wrap:break-word;
+    display: inline-flex;
+      .dw-f-sysmenu-treeicon {
+        padding-right: .25rem;
+        color: @theme-color;
+        line-height: 1.25rem;
+      }
+      span{
+        // margin-left: 2rem;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: ~"calc(100% - 1rem)";
+      }
+    }
+    .dw-f-menu-edit{
+      width: 6.25rem;
+      text-align: center;
+    }
+  }
+  .ant-tree li ul{
+    position: relative;
+    z-index: 5;
+    margin: 0;
+    padding: 0;
+    li{
+      padding-left: 20px;
+    }
+  }
+  // .dw-f-sysmenu-node-active {
+  //   background-color: @lighten-color;
+  // }
+  .ant-tree-treenode-selected {
+    // outline: 1px solid #c00;
+    position: relative;
+    z-index: 1;
+    // background-color: @lighten-color;
+  }
+  .ant-tree-treenode-selected::after{
+    content: " ";
+    display: block;
+    width: 200%;
+    background-color: @lighten-color;
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    left: -40%;
+    z-index: -1;
+  }
+  .ant-tree .ant-tree-treenode {
+    align-items: center;
+  }
+  dw-tree-node-title {
+    flex: 1;
+  }
+}
+//  右側彈窗內的
+.dw-modals-menu-edit{
+  .btn-line-box{
+    text-align: right;
+    padding-top: 1rem;
+  }
+}
+// dw-modals-menu-edit-name
+.dw-modals-menu-edit-name{
+  .dw-f-add-name{
+    display: flex;
+    align-items:center;
+  }
+  .dw-f-val{
+    div{
+      border-bottom: .06rem dotted #d7d7d7;
+      padding-left: .88rem;
+      margin-bottom: .5rem;
+      .ant-form-item{
+        margin: .2rem 0 .3rem;
+      }
+    }
+  }
+  .dw-f-add-name dw-form-item.ant-row.ant-form-item{
+    margin-bottom: .5rem;
+  }
+  .dw-f-sysmenu-dynamic-delete{
+    font-size: 18px;
+    vertical-align: initial;
+    color: @theme-color;
+    &:hover{
+      cursor: pointer;
+      color: @theme-color + 50;
+    }
+  }
+}
+// RWD
+@media (max-width: 1279px){
+  @left-menu-w: 20rem;
+  //  左 側 浮動
+  .dw-f-left-block {
+    width: @left-menu-w;
+    z-index: 9;
+    background-color: #fff;
+  }
+  .dw-f-right-block {
+    width: ~"calc(100% - @{left-menu-w} - 2rem)";
+    left: @left-menu-w + 2rem;
+  }
+
+}
+// @media (max-width: 999px){
+//   .dw-f-left-block {
+//     width: 100%;
+//     height: 40vh;
+//   }
+//   .dw-f-right-block {
+//     width: 100%;
+//     height: 60vh;
+//     left: 0;
+//     top: 45vh;
+//   }
+
+// }
