@@ -7,4 +7,9 @@ export const IMPLEMENTATION_ROUTES: Routes = [
     pathMatch: 'prefix',
     loadChildren: (): Promise<any> => import('./home/home.module').then(m => m.HomeModule)
   },
+  {
+    path: 'practice', // 應用模組-派工管理
+    pathMatch: 'prefix',
+    loadChildren: (): Promise<any> => import('./programs/practice/practice.module').then(m => m.PracticeModule)
+  },
 ];
