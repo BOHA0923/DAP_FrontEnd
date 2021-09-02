@@ -1,12 +1,12 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DwLanguageService, DwUserService } from '@webdpt/framework';
 import { DwMessageService, DwModalService } from 'ng-quicksilver';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { PracticeReturnFunction } from '../../function';
+import { BohaEditComponent } from '../boha-edit/boha-edit.component';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class BohaListComponent implements OnInit {
 
   // 查詢相关参数
   public schedule_type: string = '';
+  public queryName: string = '';    // 模糊搜尋關鍵字
   public schedule_id: string = '';
   public rowCount = 0; // 總筆數
   public dataSet = []; // 查詢列表資料
@@ -76,6 +77,68 @@ export class BohaListComponent implements OnInit {
     private languageService: DwLanguageService) {
     }
   ngOnInit(): void {
+  this.searchForm = this.fb.group({});
+  this.searchForm.addControl('queryField', new FormControl(this.queryName));
   }
 
+
+  /**
+   *  刷新数据
+   */
+   public refreshData(): void {
+    this.searchForm.get('queryField').setValue('');
+  }
+
+  /**
+   * 每頁筆數改變
+   */
+  public onPageSizeChange(): void {
+  }
+
+/**
+ * 當前頁碼改變
+ *
+ * @param {number} pageIndex
+ * @memberof Swbi001ListComponent
+ */
+  public onPageIndexChange(pageIndex: number): void {
+    console.log(pageIndex);
+    this.pageNumber = pageIndex;
+  }
+
+
+  /**
+   * 新增 add / 修改 mod
+   * @param status {add / mod}
+   * @param info   {data info}
+   */
+   public edit(status: string, info: any): void {
+    const newScheduleInfo = {
+      location: '',                           // 開團地點
+      time: '',                               // 開團時間
+      people: ''                              // 開團人數
+  };
+    if (status === 'add') {
+    this.dwModalService.create({
+      dwTitle: this.addTitle,
+      dwContent: BohaEditComponent,
+      dwOnOk: (data: any): void => {
+        // newScheduleInfo.location = data.detailEditForm.get('location').value;
+        // newScheduleInfo.time = data.detailEditForm.get('time').value;
+        // newScheduleInfo.people = data.detailEditForm.get('people').value;
+        console.log('newdata', newScheduleInfo);
+        // this.addSchedule(newScheduleInfo, 'add');
+      },
+      dwOnCancel(): void {
+      },
+      dwFooter: null,
+      dwComponentParams: {
+        cmd: 'add',
+        MaxID: this.MaxID,
+        sipi015Edit: newScheduleInfo
+      }
+    });
+    } else {
+    }
+  }
 }

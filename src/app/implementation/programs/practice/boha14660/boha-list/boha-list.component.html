@@ -3,10 +3,10 @@
         <div dw-row>
           <div dw-col dwSpan="16">
             <div dw-row>
-              <!-- 新增 
+          <!-- 新增 -->
               <button dw-button [dwType]="'primary'" type="button" class="sscBtn1" (click)="edit('add', {})">
                 <span translate>ssc-add</span><i dw-icon dwType="plus" dwTheme="outline"></i>
-              </button>-->
+              </button>
             </div>
           </div>
           <!-- 查询 -->
@@ -48,8 +48,7 @@
                 [dwPageIndex]="pageNumber"
                 (dwPageIndexChange)="onPageIndexChange($event)"
                 [(dwPageSize)]="pageSize" 
-                (dwPageSizeChange)="onPageSizeChange()"
-                [dwShowTotal]="rangeTemplate">
+                (dwPageSizeChange)="onPageSizeChange()">
           <thead>
             <tr>
               <th>
