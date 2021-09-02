@@ -1,1 +1,82 @@
-<p>boha-list works!</p>
+<dw-content class="dw-f-content-list">
+    <form dw-form [formGroup]="searchForm">
+        <div dw-row>
+          <div dw-col dwSpan="16">
+            <div dw-row>
+              <!-- 新增 
+              <button dw-button [dwType]="'primary'" type="button" class="sscBtn1" (click)="edit('add', {})">
+                <span translate>ssc-add</span><i dw-icon dwType="plus" dwTheme="outline"></i>
+              </button>-->
+            </div>
+          </div>
+          <!-- 查询 -->
+          <div dw-col [dwSpan]="7" style="text-align: right;">
+            <dw-input-group dwSearch [dwAddOnAfter]="suffixCustomer">
+              <input type="text" class="sscIconIpt" dw-input formControlName="queryField"
+                placeholder="{{'prog-searchInfo' | translate}}">
+            </dw-input-group>
+            <ng-template #suffixCustomer>
+              <button dw-button class="sscIconIpt" type="submit" dwActionAuthorized [dwActionId]="'query'"
+                (click)="searchData(true)">
+                <i style="color:  rgb(153,153,153);" dw-icon dwType="search" dwTheme="outline"></i>
+              </button>
+            </ng-template>
+          </div>
+    
+          <div dw-col [dwSpan]="1" style="text-align: right;">
+            <!-- 刷新 -->
+            <button class="sscBtn2" dw-button type="button"
+              dwActionAuthorized [dwActionId]="'refresh'"
+              (dwClick)="refreshData()"  >
+              <i dw-icon dwType="reload" dwTheme="outline"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    <br>
+    <!--排程設定Table-->
+    <div>
+      <dw-card> 
+        <dw-table #dwTable  [dwData]="dataSet" [dwTotal]="rowCount"
+                [dwPageSizeOptions]="['20','30','50']"
+                [dwScroll]="dataSet.length > 3 ? scrollMap : false"
+                [dwWidthConfig]="widthConfigArray"
+                [dwFrontPagination]="false"
+                [dwShowSizeChanger]="true"
+                [dwShowPagination]="true"
+                [dwShowQuickJumper]="false"
+                [dwPageIndex]="pageNumber"
+                (dwPageIndexChange)="onPageIndexChange($event)"
+                [(dwPageSize)]="pageSize" 
+                (dwPageSizeChange)="onPageSizeChange()"
+                [dwShowTotal]="rangeTemplate">
+          <thead>
+            <tr>
+              <th>
+                <span translate>地點</span>
+              </th>
+              <th>
+                <span translate>報名時間</span>
+              </th>
+              <th>
+                <span translate>成團人數</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let data of dwTable.data; let key = index" (click)="changeDetail(data, key)"
+                  [ngClass]="{changeGrey: data.changeGrey}">
+              <!-- 排程編號 -->
+              <td>{{data.location}}</td>
+              <!-- 排程名稱 -->
+              <td>{{data.time}}</td>
+              <!-- 排程類型 -->
+              <td>{{data.people}}</td>
+            </tr>
+          </tbody>
+        </dw-table>
+      </dw-card>
+
+    </div>
+  </dw-content>
+  
