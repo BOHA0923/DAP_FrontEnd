@@ -34,12 +34,9 @@
         </div>
       </form>
     <br>
-    <!--排程設定Table-->
     <div>
       <dw-card> 
-        <dw-table #dwTable  [dwData]="dataSet" [dwTotal]="rowCount"
-                [dwPageSizeOptions]="['20','30','50']"
-                [dwScroll]="dataSet.length > 3 ? scrollMap : false"
+        <dw-table #dwTable  [dwData]="dataSet"
                 [dwWidthConfig]="widthConfigArray"
                 [dwFrontPagination]="false"
                 [dwShowSizeChanger]="true"
@@ -55,7 +52,7 @@
                 <span translate>地點</span>
               </th>
               <th>
-                <span translate>報名時間</span>
+                <span translate>出團時間</span>
               </th>
               <th>
                 <span translate>成團人數</span>
@@ -63,13 +60,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr  *ngFor="let data of dwTable.data; let key = index" (click)="changeDetail(data, key)"
+            <tr  *ngFor="let data of dwTable.data;  let idx=index"
                   [ngClass]="{changeGrey: data.changeGrey}">
-              <!-- 排程編號 -->
+              <!-- 目的地 -->
               <td>{{data.location}}</td>
-              <!-- 排程名稱 -->
+              <!-- 出團時間 -->
               <td>{{data.time}}</td>
-              <!-- 排程類型 -->
+              <!-- 成團人數 -->
               <td>{{data.people}}</td>
             </tr>
           </tbody>

@@ -7,6 +7,7 @@ import { DwMessageService, DwModalService } from 'ng-quicksilver';
 import { Subscription } from 'rxjs';
 import { PracticeReturnFunction } from '../../function';
 import { BohaEditComponent } from '../boha-edit/boha-edit.component';
+import { Boha14660Service } from '../service/boha14660.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class BohaListComponent implements OnInit {
   public queryName: string = '';    // 模糊搜尋關鍵字
   public schedule_id: string = '';
   public rowCount = 0; // 總筆數
-  public dataSet = []; // 查詢列表資料
+  public dataSet: []; // 查詢列表資料
   public detailData = []; // 查詢列表資料
   public pageSize: number = 10;
   public pageNumber: number = 1;
@@ -74,13 +75,25 @@ export class BohaListComponent implements OnInit {
     private userService: DwUserService,
     private message: DwMessageService,
     private translateService: TranslateService,
-    private languageService: DwLanguageService) {
+    private languageService: DwLanguageService,
+    public boha14660Service: Boha14660Service) {
     }
   ngOnInit(): void {
   this.searchForm = this.fb.group({});
   this.searchForm.addControl('queryField', new FormControl(this.queryName));
+  this.searchData();
   }
-
+  /**
+   * 查询单头
+   * @param reset
+   */
+   public searchData(): void {
+    console.log('language:', this.language);
+    // this.dataSet = JSON.stringify(this.boha14660Service.getList());
+    // this.dataSet = this.boha14660Service.getList();
+    this.boha14660Service.getList().subscribe(res => this.dataSet = res);
+    console.log('123456789', this.dataSet);
+  }
 
   /**
    *  刷新数据
